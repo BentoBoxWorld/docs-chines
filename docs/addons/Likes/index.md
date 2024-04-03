@@ -1,153 +1,155 @@
-# Likes
+# 点赞
 
-**Likes** lets players rate other islands with likes, dislikes or stars.
+**点赞**让玩家可以对其他岛屿进行点赞、点踩或评星。
 
-Created and maintained by [BONNe](https://github.com/BONNe).
+由[BONNe](https://github.com/BONNe)创建和维护。
 
 {{ addon_description("Likes") }}
 
-## Installation
+## 安装
 
-0. Install BentoBox and run it on the server at least once to create its data folders.
-1. Place this jar in the addons folder of the BentoBox plugin.
-2. Restart the server.
-3. The addon will create a data folder and inside the folder will be a config.yml.
-4. Stop the server.
-5. Edit config.yml how you want.
-7. Restart the server.
+0. 安装BentoBox并至少运行一次服务器以创建其数据文件夹。
+1. 将这个jar文件放入BentoBox插件的addons文件夹中。
+2. 重启服务器。
+3. 插件将创建一个数据文件夹，并且文件夹内将有一个config.yml文件。
+4. 停止服务器。
+5. 按你想要的方式编辑config.yml文件。
+7. 重启服务器。
 
-## Configuration
+## 配置
 
-The main `config.yml` file contains basic information about game-mode addon setup.
+主要的`config.yml`文件包含有关游戏模式插件设置的基本信息。
 
-`panels` allows to customize some user accessible panels.
-
+`panels`允许自定义一些用户可访问的面板。
 
 ### config.yml
 
-After addon is successfully installed, it will create config.yml file. Every option in this file comes with comments about them. Please check file for more information.
-You can find the latest config file: [config.yml](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/resources/config.yml)
+插件成功安装后，它将创建config.yml文件。这个文件中的每个选项都附有注释。请检查文件以获取更多信息。
+你可以在这里找到最新的配置文件：[config.yml](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/resources/config.yml)
 
-Some config options can be changed via administration GUI in game. However, some options cannot.
+一些配置选项可以通过游戏中的管理GUI进行更改。然而，有些选项不能更改。
 
-The most important config option is mode:
+最重要的配置选项是模式：
 
-!!! summary "Likes mode"
-    mode: allows changing which mode addon works
+!!! 摘要 "点赞模式"
+    mode: 允许改变插件工作的模式
 
-    - LIKES - Allows adding only Like to island.
-    - LIKES_DISLIKES - Allows adding only Like and Dislikes to island.
-    - STARS - Allows adding Starts to island.
+    - LIKES - 只允许对岛屿添加点赞。
+    - LIKES_DISLIKES - 允许对岛屿添加点赞和点踩。
+    - STARS - 允许对岛屿添加星级评分。
 
-You can use only one mode at the time.
+你一次只能使用一种模式。
 
-### Customizable GUI's
+### 可自定义的GUI
 
-BentoBox 1.17 API introduced a function that allows to implement customizable GUI's. This addon is one of the first one which uses this functionality. We tried to be as simple as possible for customization, however, some features requires explanation.
-You can find more information how BentoBox custom GUI's works here: [Custom GUI's](/en/latest/Tutorials/generic/Customizable-GUI/)
+BentoBox 1.17 API引入了一个功能，允许实现可自定义的GUI。这个插件是第一个使用这个功能的插件之一。我们试图尽可能简单地进行自定义，然而，一些功能需要解释。
+你可以在这里找到更多关于BentoBox自定义GUI如何工作的信息：[自定义GUI](/en/latest/Tutorials/generic/Customizable-GUI/)
 
-??? question "How can I customize GUI's"
-    To customize Addon GUI's you need to have version 2.2. This is a first version that has implemented them. Addon will create a new directory under `/plugins/BentoBox/addons/Likes` with a name `panels`
+??? 问题 "如何自定义GUI"
+    要自定义插件GUI，你需要拥有2.2版本。这是第一个实现它们的版本。插件将在`/plugins/BentoBox/addons/Likes`下创建一个名为`panels`的新目录
 
-    Currently you can customize 3 GUI:
+    目前你可以自定义3个GUI：
 
-    - View Panel: `view_panels` - panel that allows to view who liked player island.
-    - Top Panel: `top_panel` - panel that contains top islands by certain value.
-    - Manage Panel: `manage_panels` - panel that allows to add like/dislike or stars.
+    - 查看面板：`view_panels` - 允许查看给玩家岛屿点赞的面板。
+    - 排行面板：`top_panel` - 包含按某种值排名的顶尖岛屿的面板。
+    - 管理面板：`manage_panels` - 允许添加点赞/点踩或星级的面板。
 
-    View and Manage panels contains 3 different panels for each mode.
+    查看和管理面板包含每种模式的3个不同面板。
 
+## 命令
 
-## Commands
+!!! 小贴士
+    `[player_command]` 和 `[admin_command]` 是根据你运行的游戏模式而不同的命令。
+    游戏模式的`config.yml`文件包含允许你修改这些值的选项。
+    例如，在BSkyBlock上，默认的`[player_command]`是`island`，默认的`[admin_command]`是`bsbadmin`。
 
-!!! tip
-    `[player_command]` and `[admin_command]` are commands that differ depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify these values.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`, and the default `[admin_command]` is `bsbadmin`.
+=== "玩家命令"
+    - `/[player_command] likes`：打开添加/删除点赞、点踩或星级的GUI。
+    - `/[player_command] likes top`：打开显示点赞、点踩或星级排名前的岛屿的GUI。
+    - `/[player_command] likes view <player>`：打开显示谁给岛屿添加了点赞或星级的GUI。
 
-=== "Player commands"
-    - `/[player_command] likes`: opens GUI for adding / removing likes, dislikes or star. 
-    - `/[player_command] likes top`: opens GUI that display Top islands by Likes, Dislikes or Stars
-    - `/[player_command] likes view <player>`: opens GUI that shows who add likes or stars to the island.
+=== "管理员命令"
+    - `/
 
-=== "Admin commands"
-    - `/[admin_command] likes`: opens Admin GUI.
-    - `/[admin_command] likes settings`: opens Admin Settings GUI.
+[admin_command] likes`：打开管理员GUI。
+    - `/[admin_command] likes settings`：打开管理员设置GUI。
 
-## Permissions
+## 权限
 
-!!! tip
-    `[gamemode]` is a prefix that differs depending on the gamemode you are running.
-    The prefix is the lowercased name of the gamemode, i.e. if you are using BSkyBlock, the prefix is `bskyblock`.
-    Similarly, if you are using AcidIsland, the prefix is `acidisland`.
+!!! 小贴士
+    `[gamemode]` 是一个根据你运行的游戏模式而不同的前缀。
+    前缀是游戏模式的小写名称，即如果你使用BSkyBlock，前缀是`bskyblock`。
+    类似地，如果你使用AcidIsland，前缀是`acidisland`。
 
-=== "Player permissions"
-    - `[gamemode].likes` - (default: `true`) - Allows the player to use '/[player_command] likes' command.
-    - `[gamemode].likes.top` - (default: `true`) - Allows the player to use '/[player_command] likes top' command.
-    - `[gamemode].likes.view` - (default: `true`) - Allows the player to use '/[player_command] likes top' command.
-    - `[gamemode].likes.icon.[MATERIAL]` - (default: `false`) - Allows changing island owner icon in Top GUIs.
+=== "玩家权限"
+    - `[gamemode].likes` - (默认：`true`) - 允许玩家使用`/[player_command] likes`命令。
+    - `[gamemode].likes.top` - (默认：`true`) - 允许玩家使用`/[player_command] likes top`命令。
+    - `[gamemode].likes.view` - (默认：`true`) - 允许玩家使用`/[player_command] likes top`命令。
+    - `[gamemode].likes.icon.[MATERIAL]` - (默认：`false`) - 允许在Top GUIs中更改岛屿所有者的图标。
 
-=== "Admin permissions"
-    - `[gamemode].likes.view.others` - (default: `op`) - Allows the player to use '/[player_command] likes view <player>' command.
-    - `[gamemode].likes.bypass-cost` - (default: `op`) - Allows bypassing cost for operations in addon.
-    - `[gamemode].likes.admin` - (default: `op`) - Allows using '/[admin_command] likes' command.
-    - `[gamemode].likes.admin.settings` - (default: `op`) - Allows using '/[admin_command] likes settings' command.
+=== "管理员权限"
+    - `[gamemode].likes.view.others` - (默认：`op`) - 允许玩家使用`/[player_command] likes view <player>`命令。
+    - `[gamemode].likes.bypass-cost` - (默认：`op`) - 允许绕过插件操作的成本。
+    - `[gamemode].likes.admin` - (默认：`op`) - 允许使用`/[admin_command] likes`命令。
+    - `[gamemode].likes.admin.settings` - (默认：`op`) - 允许使用`/[admin_command] likes settings`命令。
 
-??? question "Something is missing?"
-    You can find the comprehensive list of permissions in the [addon.yml](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/resources/addon.yml) file of this addon.  
-    If something is indeed missing from the list below, please let us know!
+??? 问题 "缺少什么？"
+    你可以在这个插件的[addon.yml](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/resources/addon.yml)文件中找到权限的综合列表。  
+    如果下面的列表确实缺少了什么，请告诉我们！
 
-## Placeholders
+## 占位符
 
 {{ placeholders_source(source="Likes") }}
 
-## FAQ
+## 常见问题解答
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/Likes/issues).
+??? 问题 "你能添加功能X吗？"
+    请在[这里](https://github.com/BentoBoxWorld/Likes/issues)添加。
 
-??? question "Can I disable dislikes?"
-    Yes, Likes addon supports 3 working modes:
+??? 问题 "我可以禁用点踩吗？"
+    是的，点赞插件支持3种工作模式：
 
-    - Likes: allows adding only likes to the island
-    - LikesDislikes: allows adding likes and dislikes
-    - Stars: allows to rate player islands with 1 till 5 stars
-       
-??? question "Can I view other player likes?"
-    Yes, but you need a permission: `[gamemode].likes.view.others`. 
+    - Likes: 只允许对岛屿添加点赞
+    - LikesDislikes: 允许添加点赞和点踩
+    - Stars: 允许使用1至5星评价玩家岛屿
     
-    With that permission players can use `/[playercmd] likes view <player>` to view other player likes. 
+??? 问题 "我可以查看其他玩家的点赞吗？"
+    是的，但你需要一个权限：`[gamemode].likes.view.others`。
     
-??? question "Can I change display icon just for some islands?"
-    Yes, it is possible. 
+    拥有这个权限的玩家可以使用`/[playercmd] likes view <player>`来查看其他玩家的点赞。
     
-    There are 2 ways:
+??? 问题 "我可以只为某些岛屿更改显示图标吗？"
+    是的，这是可能的。
     
-    1. using Admin GUI you can choose island and block that will be displayed for it.
-    2. adding permission to island owner: `[gamemode].likes.icon.[MATERIAL]`
+    有两种方式：
+    
+    1. 使用管理员GUI，你可以为它选择岛屿和显示的方块。
+    2. 给岛屿所有者添加权限：`[gamemode].likes.icon.[MATERIAL]`
         
-    Be aware, PLAYER_HEAD will be converted to island owner head.
+    注意，PLAYER_HEAD将转换为岛屿所有者的头像。
 
-## Translations
+## 翻译
 
 {{ translations(3331, ["zh-CN", "de", "id", "pl", "ru", "vi", "es"]) }}
 
 ## API
 
-Since Likes 2.2.0 and BentoBox 1.17 other plugins can access to the Likes addon data directly.
+自Likes 2.2.0和BentoBox 1.17版本起，其他插件可以直接访问Likes插件数据。
 
-### Maven Dependency
+### Maven 依赖
 
-Likes provides an API for other plugins. This covers version 2.2.0 and onwards.
+Likes为其他插件提供了API。这涵盖了2.2.0及之后的版本。
 
-!!! note
-    Add the Likes dependency to your Maven POM.xml:
+!!! 注意
+    将Likes依赖添加到你的Maven POM.xml中：
 
     ```xml
         <repositories>
             <repository>
                 <id>codemc-repo</id>
-                <url>https://repo.codemc.io/repository/maven-public/</url>
+                <
+
+url>https://repo.codemc.io/repository/maven-public/</url>
             </repository>
         </repositories>
         
@@ -161,26 +163,25 @@ Likes provides an API for other plugins. This covers version 2.2.0 and onwards.
         </dependencies>
     ```
 
-Use the latest Likes version.
+使用最新的Likes版本。
 
-The JavaDocs for Likes can be found [here](https://ci.codemc.io/job/BentoBoxWorld/job/Likes/ws/target/apidocs/index.html).
+Likes的JavaDocs可以在[这里](https://ci.codemc.io/job/BentoBoxWorld/job/Likes/ws/target/apidocs/index.html)找到。
 
-### Events
+### 事件
 
 === "LikeAddEvent"
-    !!! summary "Description"
-        Event that is triggered when player adds a new like to the island.
+    !!! 摘要 "描述"
+        当玩家给岛屿添加新的点赞时触发的事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [LikeAddEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/LikeAddEvent.java)
+        类链接：[LikeAddEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/LikeAddEvent.java)
 
-
-    !!! question "Variables"
-        - `UUID user` - id of the player who added the like.
-        - `String islandId` - id of the island which receive the like.
+    !!! 问题 "变量"
+        - `UUID user` - 添加点赞的玩家的id。
+        - `String islandId` - 接收点赞的岛屿的id。
         
-    !!! example "Example"
+    !!! 示例 "示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onLike(LikeAddEvent event) {
@@ -190,18 +191,18 @@ The JavaDocs for Likes can be found [here](https://ci.codemc.io/job/BentoBoxWorl
         ```  
 
 === "LikeRemoveEvent"
-    !!! summary "Description"
-        Event that is triggered when player removes his like from the island.
+    !!! 摘要 "描述"
+        当玩家从岛屿上移除他的点赞时触发的事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [LikeRemoveEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/LikeRemoveEvent.java)
+        类链接：[LikeRemoveEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/LikeRemoveEvent.java)
 
-    !!! question "Variables"
-        - `UUID user` - id of the player who removed the like.
-        - `String islandId` - id of the island which lose the like.
+    !!! 问题 "变量"
+        - `UUID user` - 移除点赞的玩家的id。
+        - `String islandId` - 失去点赞的岛屿的id。
         
-    !!! example "Example"
+    !!! 示例 "示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onLikeRemove(LikeRemoveEvent event) {
@@ -209,20 +210,20 @@ The JavaDocs for Likes can be found [here](https://ci.codemc.io/job/BentoBoxWorl
             String islandId = event.getIslandId();
         }
         ```  
-   
+
 === "DislikeAddEvent"
-    !!! summary "Description"
-        Event that is triggered when player adds a new dislike to the island.
+    !!! 摘要 "描述"
+        当玩家给岛屿添加新的点踩时触发的事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [DislikeAddEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/DislikeAddEvent.java)
+        类链接：[DislikeAddEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/DislikeAddEvent.java)
 
-    !!! question "Variables"
-        - `UUID user` - id of the player who added the dislike.
-        - `String islandId` - id of the island which receive the dislike.
+    !!! 问题 "变量"
+        - `UUID user` - 添加点踩的玩家的id。
+        - `String islandId` - 接收点踩的岛屿的id。
 
-    !!! example "Example"
+    !!! 示例 "示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onDislike(DislikeAddEvent event) {
@@ -232,18 +233,18 @@ The JavaDocs for Likes can be found [here](https://ci.codemc.io/job/BentoBoxWorl
         ```  
 
 === "DislikeRemoveEvent"
-    !!! summary "Description"
-        Event that is triggered when player removes his dislike from the island.
+    !!! 摘要 "描述"
+        当玩家从岛屿上移除他的点踩时触发的事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [DislikeRemoveEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/DislikeRemoveEvent.java)
+        类链接：[DislikeRemoveEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/DislikeRemoveEvent.java)
 
-    !!! question "Variables"
-        - `UUID user` - id of the player who removed the dislike.
-        - `String islandId` - id of the island which lose the dislike.
+    !!! 问题 "变量"
+        - `UUID user` - 移除点踩的玩家的id。
+        - `String islandId` - 失去点踩的岛屿的id。
 
-    !!! example "Example"
+    !!! 示例 "示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onDislikeRemove(DislikeRemoveEvent event) {
@@ -253,19 +254,21 @@ The JavaDocs for Likes can be found [here](https://ci.codemc.io/job/BentoBoxWorl
         ```  
 
 === "StarsAddEvent"
-    !!! summary "Description"
-        Event that is triggered when player adds new stars to the island.
+    !!! 摘要 "描述"
+        当玩家给岛屿添加新的星级评分时触发的事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [StarsAddEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/StarsAddEvent.java)
+        类链接：[StarsAddEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main
 
-    !!! question "Variables"
-        - `UUID user` - id of the player who added the stars.
-        - `String islandId` - id of the island which receive the stars.
-        - `int value` - the value of added stars (from 1 till 5)
+/java/world/bentobox/likes/events/StarsAddEvent.java)
 
-    !!! example "Example"
+    !!! 问题 "变量"
+        - `UUID user` - 添加星级的玩家的id。
+        - `String islandId` - 接收星级的岛屿的id。
+        - `int value` - 添加的星级值（从1到5）
+
+    !!! 示例 "示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onStarsAdd(StarsAddEvent event) {
@@ -276,18 +279,18 @@ The JavaDocs for Likes can be found [here](https://ci.codemc.io/job/BentoBoxWorl
         ```  
 
 === "StarsRemoveEvent"
-    !!! summary "Description"
-        Event that is triggered when player removes his stars from the island.
+    !!! 摘要 "描述"
+        当玩家从岛屿上移除他的星级评分时触发的事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [StarsRemoveEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/StarsRemoveEvent.java)
+        类链接：[StarsRemoveEvent](https://github.com/BentoBoxWorld/Likes/blob/develop/src/main/java/world/bentobox/likes/events/StarsRemoveEvent.java)
 
-    !!! question "Variables"
-        - `UUID user` - id of the player who added the stars.
-        - `String islandId` - id of the island which lose the stars.
+    !!! 问题 "变量"
+        - `UUID user` - 添加星级的玩家的id。
+        - `String islandId` - 失去星级的岛屿的id。
 
-    !!! example "Example"
+    !!! 示例 "示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onStarsRemove(StarsRemoveEvent event) {
@@ -296,68 +299,69 @@ The JavaDocs for Likes can be found [here](https://ci.codemc.io/job/BentoBoxWorl
         }
         ```  
 
-### Addon Request Handlers
+### 插件请求处理器
 
-Till BentoBox 1.17 we had an issue with accessing data outside BentoBox environment doe to the class loader we used to load addons.
-This meant that data was accessible only from other addons. But BentoBox implemented PlAddon functionality, which means that request
-handlers are not necessary anymore.
+直到BentoBox 1.17版本，我们因为使用的类加载器问题导致无法访问BentoBox环境之外的数据。
+这意味着数据只能从其他插件访问。但是BentoBox实现了PlAddon功能，这意味着不再需要请求处理器。
 
-More information about addon request handlers can be found [here](/en/latest/BentoBox/Request-Handler-API---How-plugins-can-get-data-from-addons/)
+更多关于插件请求处理器的信息可以在[这里](/en/latest/BentoBox/Request-Handler-API---How-plugins-can-get-data-from-addons/)找到。
 
 === "island-likes"
-    !!! summary "Description"
-        Returns island likes data that is stored for island in given world.
+    !!! 摘要 "描述"
+        返回给定世界中岛屿存储的岛屿喜欢数据。
 
-    !!! question "Input"
-        - `world-name`: String - the name of the world.
-        - `island`: String - the UUID of the island.
+    !!! 问题 "输入"
+        - `world-name`: 字符串 - 世界的名称。
+        - `island`: 字符串 - 岛屿的UUID。
 
-    !!! success "Output"
-        The output is a `Map<String, Object>` with the following keys:
+    !!! 成功 "输出"
+        输出是一个`Map<String, Object>`，包含以下键：
 
-        - `likes`: long - the number of likes that are set for given island.
-        - `dislikes`: long - the number of dislikes that are set for given island.
-        - `rank`: long - the number of rank for given island.
-        - `stars`: double - the average stars value for given island.
-        - `placeByLikes`: integer - the place in ranking by likes that are set for given island.
-        - `placeByDislikes`: integer - the place in ranking by dislikes that are set for given island.
-        - `placeByRank`: integer - the place in ranking by rank that are set for given island.
-        - `placeByStars`: integer - the place in ranking by stars that are set for given island.
-        - `likedBy`: List&lt;UUID&gt; - the list of player UUIDs who liked given island.
-        - `dislikedBy`: List&lt;UUID&gt; - the list of player UUIDs who disliked given island.
-        - `staredBy`: Map&lt;UUID, Integer&gt; - the map of player UUIDs who stared given island with a number of stars that they added.
+        - `likes`: 长整型 - 给定岛屿设置的喜欢数量。
+        - `dislikes`: 长整型 - 给定岛屿设置的不喜欢数量。
+        - `rank`: 长整型 - 给定岛屿的排名。
+        - `stars`: 双精度 - 给定岛屿的平均星级值。
+        - `placeByLikes`: 整型 - 给定岛屿在喜欢排名中的位置。
+        - `placeByDislikes`: 整型 - 给定岛屿在不喜欢排名中的位置。
+        - `placeByRank`: 整型 - 给定岛屿在排名中的位置。
+        - `placeByStars`: 整型 - 给定岛屿在星级排名中的位置。
+        - `likedBy`: List<UUID> - 喜欢给定岛屿的玩家UUID列表。
+        - `dislikedBy`: List<UUID> - 不喜欢给定岛屿的玩家UUID列表。
+        - `staredBy`: Map<UUID, Integer> - 以星级数量为玩家UUID点赞给定岛屿的映射。
 
 
-    !!! failure
-        This handler will return an empty map if the `world-name` has not been provided or if the `world-name` does not exist or is not a gamemode world or island is not provided or data for island is empty. 
+    !!! 失败
+        如果没有提供`world-name`，或者`world-name`不存在或不是游戏模式世界，或者没有提供岛屿，或者岛屿数据为空，此处理器将返回一个空映射。
 
-    !!! example "Code example"
+    !!! 示例 "代码示例"
         ```java
         public Map<String, Object> getLikesData(String worldName, String islandUUID) {
             return (Map<String, Object>) new AddonRequestBuilder()
                 .addon("Likes")
                 .label("island-likes")
-                .addMetaData("world-name", worldName)
+                .addMetaData("world-name
+
+", worldName)
                 .addMetaData("island", islandUUID)
                 .request();
         }
         ```
 
 === "top-ten-likes"
-    !!! summary "Description"
-        Returns a `Map<String, Number>` containing top 10 island UUID's, and their values in given top.
+    !!! 摘要 "描述"
+        返回一个`Map<String, Number>`，包含给定排名中前10个岛屿UUID及其值。
 
-    !!! question "Input"
-        - `world-name`: String - the name of the world.
-        - `type`: String - the type of the Top. Supports: STARS, LIKES, DISLIKES, RANK.
+    !!! 问题 "输入"
+        - `world-name`: 字符串 - 世界的名称。
+        - `type`: 字符串 - 排名类型。支持：STARS, LIKES, DISLIKES, RANK。
 
-    !!! success "Output"
-        A Map containing the UUIDs of the islands is in the Top 10, mapped to the top value of their island.
+    !!! 成功 "输出"
+        一个映射包含前10名岛屿的UUIDs，映射到其岛屿的顶级值。
 
-    !!! failure
-        This handler will return an empty map if the `world-name` has not been provided or if the `world-name` does not exist or is not a gamemode world or provided top type does not have any data in it.
+    !!! 失败
+        如果没有提供`world-name`，或者`world-name`不存在或不是游戏模式世界，或者提供的排名类型没有任何数据，此处理器将返回一个空映射。
 
-    !!! example "Code example"
+    !!! 示例 "代码示例"
         ```java
         public Map<String, Number> getTopTenLikes(String worldName, String type) {
             return (Map<String, Number>) new AddonRequestBuilder()
@@ -368,3 +372,4 @@ More information about addon request handlers can be found [here](/en/latest/Ben
                 .request();
         }
         ```
+        

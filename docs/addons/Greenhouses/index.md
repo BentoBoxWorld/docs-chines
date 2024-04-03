@@ -1,126 +1,130 @@
-# Greenhouses
+# 温室
 
-Greenhouses is a BentoBox add-on to power-up your island world! It enables players to build their own biome greenhouses complete with weather, friendly mob spawning, unique plant growth, and even block erosion!
+温室是一个为你的岛屿世界增添力量的BentoBox插件！它使玩家能够建造他们自己的生态区温室，包括天气、友好的生物生成、独特的植物生长，甚至还有方块侵蚀！
 
-Greenhouses are made out of glass and must contain the blocks found in the Biome Recipe to be valid. There is a recipe GUI. Once built, the greenhouse can be used to grow plants with bonemeal, and it may spawn biome-specific mobs. If you include a hopper with water in it, snow will form inside the greenhouse when it rains. If you put bonemeal in the hopper, biome-specific plants will grow. Some blocks can also transform over time due to "erosion".
+温室是由玻璃制成的，并且必须包含生物区配方中的方块才算有效。有一个配方GUI。一旦建造完成，温室可以用来用骨粉促进植物生长，它可能会生成特定生物区的生物。如果你在里面放了一个含有水的漏斗，下雨时温室内会形成雪。如果你在漏斗里放骨粉，会生长特定生物区的植物。一些方块也会因为“侵蚀”而随时间转化。
 
-Created and maintained by [tastybento](https://github.com/tastybento).
+由[tastybento](https://github.com/tastybento)创建和维护。
 
 {{ addon_description("Greenhouses") }}
 
-## Features
+## 特性
 
-* Craft your own self-contained biome greenhouse on an island (or elsewhere if you like)
-* Greenhouses can grow plants that cannot normally be grown, like sunflowers
-* Friendly mobs can spawn if your greenhouse is well designed - need slimes? Build a swamp greenhouse!
-* Blocks change in biomes over time - dirt becomes sand in a desert, dirt becomes clay in a river, for example.
-* Greenhouses can run in multiple worlds.
-* Easy to use GUI shows greenhouse recipes (e.g. **/is greenhouses**)
-* Admins can fully customize biomes and recipes
+* 在岛屿上（或你喜欢的其他地方）制造你自己的独立生态区温室
+* 温室可以生长通常无法生长的植物，如向日葵
+* 如果温室设计得当，友好的生物可以生成 - 需要史莱姆？建一个沼泽温室吧！
+* 生物区内的方块会随时间改变 - 例如，沙漠中的泥土变成沙子，河流中的泥土变成粘土
+* 温室可以在多个世界运行
+* 易于使用的GUI显示温室配方（例如 **/is greenhouses**）
+* 管理员可以完全自定义生物区和配方
 
-## How to Build A Greenhouse
+## 如何建造一个温室
 
-This example is for when you are in the BSkyBlock world. For AcidIsland, just use /ai instead of /island.
+以下示例适用于BSkyBlock世界。对于AcidIsland，只需使用/ai代替/island。
 
-1. Make glass blocks and build a rectangular set of walls with a flat roof.
-2. Put a hopper in the wall or roof.
-3. Put a door in the wall so you can get in and out.
-4. Type **/island greenhouses** and read the rules for the greenhouse you want.
-5. Exit the GUI and place blocks, water, lava, and ice so that you make your desired biome.
-6. Type **/island greenhouses** again and click on the biome to make it.
-7. Type **/island greenhouses help** to see other options.
+1. 制作玻璃块并建造一个带有平顶的矩形墙。
+2. 在墙壁或屋顶放置一个漏斗。
+3. 在墙上放置一扇门，以便你可以进出。
+4. 输入 **/island greenhouses** 并阅读你想要的温室的规则。
+5. 退出GUI并放置方块、水、岩浆和冰，以便你制造出你想要的生物区。
+6. 再次输入 **/island greenhouses** 并点击生物区以创建它。
+7. 输入 **/island greenhouses help** 查看其他选项。
 
-### Once made:
+### 一旦建成：
 
-* Use bonemeal to grow small plants on grass blocks immediately in the greenhouse.
-* Or place bonemeal in the hopper to have the greenhouse sprinkle bonemeal automatically. Come back later to see what grows!
-* Place a bucket of water (or more) in the hopper to cause snow to fall in cold biomes. Snow will fall when it rains in the world. Each snowfall empties one bucket of water.
-* Friendly biome-specific mobs may spawn in your greenhouse - the usual rules apply (be more than 24 blocks away).
+* 在温室内的草方块上使用骨粉可以立即生长小植物。
+* 或者将骨粉放入漏斗中，让温室自动撒播骨粉。回来后看看长出了什么！
+* 将一个（或多个）水桶放入漏斗中，可以在寒冷生物区内下雪。当世界下雨时，雪会下落。每次下雪会消耗一个水桶。
+* 友好的特定生物区生物可能会在你的温室中生成 - 通常的规则适用（距离超过24格）。
 
-## FAQ
+## 常见问题
 
-* Can I use stained glass? Yes, you can. It's pretty.
-* Can I fill my greenhouse full of water? Yes. That's an ocean.
-* Will a squid spawn there? Maybe... okay, yes it will if it's a big enough ocean.
-* How do I place a door high up in the wall if the wall is all glass? Place it on a hopper.
-* How do I place a door on a hopper? Crouch and then place it.
-* Can I use metal doors? Yes.
-* Can I use a trap door? Yes.
-* Can I grow swamp flowers with this? Yes. Make a swamp biome and use bonemeal.
-* How much bonemeal is used to grow plants? One per successful plant.
-* How much water do I need to put into the hopper to make it snow? One bucket of water (just the water) is used up every time it rains. This only happens in cold biomes.
-* Can I build a Nether greenhouse? Try it and see... (Actually, you may need permission)
-* Can I build greenhouses in the Nether? Yes. You can colonize the nether with them.
-* What kind of mobs spawn in the biomes? It's what you would expect, wolves in Cold Taiga, horses on plains, etc.
+* 我可以使用着色玻璃吗？可以，这很漂亮。
+* 我可以将我的温室充满水吗？可以。那是一个海洋。
+* 那里会生成鱿鱼吗？也许...好吧，如果它是
 
-## Required Plugin
+足够大的海洋，它会生成。
+* 如果墙全是玻璃，我如何在墙上高处放置门？把它放在漏斗上。
+* 我如何在漏斗上放置门？蹲下然后放置。
+* 我可以使用金属门吗？可以。
+* 我可以使用活板门吗？可以。
+* 我可以用这个生长沼泽花吗？可以。制作一个沼泽生物区并使用骨粉。
+* 生长植物使用多少骨粉？每成功生长一个植物使用一个。
+* 我需要在漏斗中放多少水来让它下雪？每次下雨时使用一个水桶（只有水）。这只在寒冷生物区发生。
+* 我可以建造一个下界温室吗？试试看...(实际上，你可能需要权限)
+* 我可以在下界建造温室吗？可以。你可以用它们在下界建立殖民地。
+* 哪种生物会在生物区中生成？这是你所期待的，冷亚带针叶林中有狼，在平原上有马等等。
 
-This version of Greenhouses is an add-on for BentoBox and will not run stand-alone!
+## 需要的插件
 
-1. BentoBox - make sure you use the latest version!
+这个版本的温室是BentoBox的一个插件，不能单独运行！
 
-## Installation and Configuration
+1. BentoBox - 确保你使用的是最新版本！
 
-1. Download and install BentoBox if you haven't done so already
-2. Download the add-on
-3. Place into the BentoBox addon's folder
-4. Restart your server
-5. The addon will make a data folder called greenhouses. Open that folder.
-6. Check **config.yml** and edit to be what you want, note the list of world names.
-7. Configure the **biomes.yml** if you wish (advanced).
-8. Type **/bsbadmin greenhouses reload** in the game to reload the config or restart the server.
-9. Done!
+## 安装和配置
 
-To make your first greenhouse, build a glass box and type **/is greenhouses make** to see what kind of greenhouse you get. Type **/is greenhouses** to see the recipes.
+1. 如果你还没有安装BentoBox，下载并安装BentoBox
+2. 下载插件
+3. 放入BentoBox插件的addons文件夹中
+4. 重启你的服务器
+5. 插件将创建一个名为greenhouses的数据文件夹。打开那个文件夹。
+6. 检查**config.yml**并根据你的需求进行编辑，注意世界名称列表。
+7. 如果你愿意，配置**biomes.yml**（高级）。
+8. 在游戏中输入 **/bsbadmin greenhouses reload** 重新加载配置或重启服务器。
+9. 完成！
 
-## Upgrading
+要制作你的第一个温室，建造一个玻璃盒子并输入 **/is greenhouses make** 看看你会得到什么类型的温室。输入 **/is greenhouses** 查看配方。
 
-Read the file release notes for changes and instructions on how to upgrade.
+## 升级
 
-## Player Commands
+阅读文件发布说明以了解更改和如何升级的说明。
 
-Add these commands to /island, /ai:
+## 玩家命令
 
-* **greenhouses help** - lists these commands
-* **greenhouses make**: Tries to make a greenhouse by finding the first valid recipe
-* **greenhouses remove**: Removes a greenhouse that you are standing in if you are the owner
-* **greenhouses list**: Lists all the recipes available
-* **greenhouses recipe**: Display the recipe GUI - clicking on a recipe will try to make a greenhouse
+添加到/island, /ai:
 
-## Admin Commands
+* **greenhouses help** - 列出这些命令
+* **greenhouses make**: 尝试通过找到第一个有效的配方来制作一个温室
+* **greenhouses remove**: 如果你是所有者，移除你站立处的温室
+* **greenhouses list**: 列出所有可用的配方
+* **greenhouses recipe**: 显示配方GUI - 点击一个配方会尝试制作一个温室
 
-Use after the game mode admin command, e.g. /bsb or /acid
+## 管理员命令
 
-* **greenhouses reload** : Reloads config files
-* **greenhouses info <player>**: provides info on the player's island greenhouses
-* **greenhouses info**: provides info on the greenhouse you are in
+在游戏模式管理员命令后使用，例如 /bsb 或 /acid
 
-## Permissions
+* **greenhouses reload** : 重新加载配置文件
+* **greenhouses info <player>**: 提供有关玩家岛屿温室的信息
+* **greenhouses info**: 提供你所在温室的信息
 
-A full list of permissions is [here](Permissions).
+## 权限
 
-Permission to use specific biomes can be added in biomes.yml.
+权限的完整列表在[这里](Permissions)。
 
-For example, the permission for the Nether biome is **greenhouses.biome.nether** and is set here:
+在biomes.yml中可以添加使用特定生物区的权限。
+
+例如，下界生物区的权限是 **greenhouses.biome.nether** 并在这里设置：
 
  NETHER:
 
     permission: greenhouses.biome.nether
 
-The permission can be anything you like, e.g., a rank permission, **myserver.VIP**.
+权限可以是你喜欢的任何内容，例如，一个等级权限，**myserver.VIP**。
 
-### General permissions are:
+### 通用权限是：
 
   greenhouses.player:
 
-     description: Gives access to player commands
+     description: 授予玩家命令的访问权限
      default: true
 
   greenhouses.admin:
 
-     description: Gives access to admin commands
+     description: 授予管理员命令的访问权限
      default: op
 
-## Translations
+
+
+## 翻译
 
 {{ translations(3680, ["cs", "hu", "ja", "zh-CN", "fr", "de", "it", "lv", "pl", "ru", "es", "tr", "vi"]) }}

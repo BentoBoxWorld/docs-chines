@@ -1,192 +1,192 @@
 # Level
 
-**Level** lets your players compete to have the top island! Place blocks and increase the island level!
+**Level** 可让你的玩家通过放置方块来提升岛屿等级,竞争最高的岛屿等级!
 
-Created and maintained by [tastybento](https://github.com/tastybento).
+由 [tastybento](https://github.com/tastybento) 创建和维护。
 
 {{ addon_description("Level") }}
 
-## Installation
+## 安装
 
-1. Place the level addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. The addon will create a data folder and inside the folder will be a config.yml
-4. Edit the config.yml how you want. The config specifies how much blocks are worth (see below)
-5. Restart the server if you make a change
+1. 将 level 插件 jar 文件放入 BentoBox 插件的 addons 文件夹
+2. 重启服务器 
+3. 插件将创建一个数据文件夹,里面有一个 config.yml 文件
+4. 根据需要编辑 config.yml。该配置文件指定方块的价值(见下文)
+5. 如果进行了更改,请重启服务器
 
-## Configuration
+## 配置
 
-Level addon has 3 general configuration things:
+Level 插件有 3 个通用配置项:
 
-- config.yml file contains default addon configuration files.
-- blockconfig.yml file contains value for each block.
-- /panels/ contains files that manages player GUI's
+- config.yml 文件包含插件的默认配置。
+- blockconfig.yml 文件包含每个方块的价值。
+- /panels/ 包含管理玩家 GUI 的文件。
 
 ### config.yml
 
-Config file contains main functions for the addon. 
+配置文件包含插件的主要功能。
 
-The latest config.yml can be found [here](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/resources/config.yml).
+最新的 config.yml 可以在[这里](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/resources/config.yml)找到。
 
-This section defines a number of overall settings for the add-on.
+本节定义了插件的许多整体设置。
 
 ??? note "disabled-game-modes"
-    Allows to specify in which GameModeAddons Level addon should not operate.
+    允许指定 Level 插件不应在哪些游戏模式插件中运行。
     
-    Level will NOT hook into these game mode addons.
+    Level 将不会与这些游戏模式插件挂钩。
 
-    Default: `[]`
+    默认值: `[]`
 
 ??? note "log-report-to-console"
-    Allows to see a level report if command is executed from console.
+    如果从控制台执行命令,则允许查看等级报告。
 
-    Default: `true`
+    默认值: `true`
 
-??? note "concurrent-island-calcs"
-    Allows to specify how many island level calculations can be happening at once.
+??? note "concurrent-island-calcs" 
+    允许指定一次可以进行多少个岛屿等级计算。
 
-    If your CPU can handle it, you can run parallel island calcs if there are more than one in the queue.
+    如果队列中有多个,且你的 CPU 可以处理,你可以并行运行岛屿计算。
 
-    Default: `1`
+    默认值: `1`
 
 ??? note "calculation-timeout"
-    Allows to specify the amount of minutes when level calculation should be stopped.
+    允许指定等级计算应在多少分钟后停止。
 
-    Generally, calculation should only take a few seconds, so if this ever triggers then something is not right.
+    一般来说,计算只需要几秒钟,所以如果这个值被触发,说明有些不对劲。
 
-    Default: `5`
+    默认值: `5`
 
 ??? note "zero-new-island-levels"
-    Allows to specify if starting blocks should be included in island level.
+    允许指定起始方块是否应包含在岛屿等级中。
 
-    If true, Level will calculate the starter island's level and remove it from any future level calculations.
-    Player level may go into negative values if all starting blocks are removed.
+    如果为 true,Level 将计算初始岛屿的等级,并将其从任何未来的等级计算中移除。
+    如果移除所有起始方块,玩家等级可能会变成负值。
     
-    If this is false, the player's starter island blocks will count towards their level.
+    如果为 false,玩家的初始岛屿方块将计入他们的等级。
 
-    Default: `true`
+    默认值: `true`
 
 ??? note "login"
-    Allows to set that island level is calculated on player login.
+    允许设置在玩家登录时计算岛屿等级。
 
-    This silently calculates the player's island level when they login.
+    这会在玩家登录时静默计算他们的岛屿等级。
 
-    Default: `false`
+    默认值: `false`
 
 ??? note "nether"
-    Allows to include nether island in level calculation.
+    允许在等级计算中包含下界岛屿。
 
-    Warning: Enabling this mid-game will give players with an island a jump island level. New islands will be correctly zeroed.
+    警告:在游戏中途启用此选项会让拥有岛屿的玩家的岛屿等级突然提高。新岛屿将被正确归零。
 
-    Default: `false`
+    默认值: `false`
 
 ??? note "end"
-    Allows to include the end island in level calculation.
+    允许在等级计算中包含末地岛屿。
 
-    Warning: Enabling this mid-game will give players with an island a jump island level. New islands will be correctly zeroed.
+    警告:在游戏中途启用此选项会让拥有岛屿的玩家的岛屿等级突然提高。新岛屿将被正确归零。
 
-    Default: `false`
+    默认值: `false`
 
 ??? note "include-chests"
-    Allows to include chest content in level calculation.
+    允许在等级计算中包含箱子内容。
 
-    Warning: level calculation will be longer and server performance may be affected.
+    警告:等级计算时间会更长,服务器性能可能受到影响。
 
-    Default: `false`
+    默认值: `false`
 
 ??? note "underwater"
-    Allows to specify underwater block multiplier.
+    允许指定水下方块倍数。
 
-    If blocks are below sea-level, they can have a higher value. e.g. 2x. 
-    Promotes under-water development if there is a sea. Value can be fractional.
+    如果方块低于海平面,它们可以有更高的价值。例如 2 倍。
+    如果有海洋,则可以促进水下开发。该值可以是小数。
 
-    Default: `1.0`
+    默认值: `1.0`
 
 ??? note "levelcost"
-    Allows to specify value of one island level.
+    允许指定一个岛屿等级的价值。
 
-    Default: `100`
+    默认值: `100`
 
-    Minimum: `1`
+    最小值: `1`
 
 ??? note "level-calc"
-    Allows to specify the formula for level calculation.
+    允许指定等级计算公式。
 
-    * blocks - the sum total of all block values, less any death penalty
-    * level_cost - in a linear equation, the value of one level
+    * blocks - 所有方块价值的总和,减去任何死亡惩罚
+    * level_cost - 在线性方程中,一个等级的价值
 
-    This formula can include +,=,*,/,sqrt,^,sin,cos,tan,log (natural log). 
-    Result will always be rounded to a long integer.
+    此公式可以包括 +、=、*、/、sqrt、^、sin、cos、tan、log(自然对数)。
+    结果将始终四舍五入为长整数。
 
-    For example, an alternative non-linear option could be: `3 * sqrt(blocks / level_cost)`
+    例如,另一个非线性选项可以是: `3 * sqrt(blocks / level_cost)`
 
-    Default: `blocks / level_cost`
+    默认值: `blocks / level_cost`
 
-??? note "levelwait"
-    Allows to specify cool down between level requests in seconds.
+??? note "levelwait" 
+    允许指定等级请求之间的冷却时间(秒)。
 
-    Default: `60`
+    默认值: `60`
 
 ??? note "deathpenalty"
-    Allows to specify the death penalty.
+    允许指定死亡惩罚。
 
-    How many block values a player will lose per death. 
-    Default value of 100 means that for every death, the player will lose 1 level (if levelcost is 100).
-    
-    Set to zero to not use this feature.
+    玩家每死一次将损失多少方块价值。
+    默认值 100 意味着每死一次,玩家将损失 1 级(如果 levelcost 为 100)。
 
-    Default: `100`
+    设置为零可不使用此功能。
+
+    默认值: `100`
 
 ??? note "sumteamdeaths"
-    Allows to sum all team members for the death penalty.
+    允许对死亡惩罚中的所有队员求和。
 
-    If false, only the leader's deaths counts.
+    如果为 false,则只计算队长的死亡次数。
 
-    Default: `false`
+    默认值: `false`
 
 ??? note "shorthand"
-    Allows to show shorter island level numbers.
+    允许显示较短的岛屿等级数字。
 
-    Shows large level values rounded down, e.g., 10,345 -> 10k
+    显示向下取整的大等级值,例如 10,345 -> 10k
 
-    Default: `false`
+    默认值: `false`
 
 ### blockconfig.yml
 
-Block config file contains values for blocks.
+方块配置文件包含方块的价值。
 
-The latest blockconfig.yml can be found [here](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/resources/blockconfig.yml).
+最新的 blockconfig.yml 可以在[这里](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/resources/blockconfig.yml)找到。
 
-This section defines values for blocks and limits for them. 
-
-!!! tip
-    Values in this file supports only integers -> full numbers.
+本节定义了方块的价值和限制。
 
 !!! tip
-    The correct material names can be found in Spigot material page. 
+    此文件中的值仅支持整数 -> 完整数字。
 
-    Note: this is latest spigot material list: [MATERIALS](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)
+!!! tip
+    正确的材料名称可以在 Spigot 材料页面找到。
+
+    注意:这是最新的 spigot 材料列表: [材料](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)
 
 ??? note "limits"
-    This section lists the limits for any particular block. 
-    Blocks over this amount are not counted. 
-    This limit applies to all game modes and is not world-specific.
+    本节列出了任何特定方块的限制。
+    超过此数量的方块不会被计算。
+    此限制适用于所有游戏模式,不是特定于世界的。
 
-    Format: `MATERIAL: NUMBER`
+    格式: `MATERIAL: NUMBER`
 
 ??? note "blocks"
-    This section lists the value of a block in all game modes (worlds). 
-    To specific world-specific values, use the next section. 
-    Any blocks not listed will have a value of 0. AIR is always zero.
+    本节列出了所有游戏模式(世界)中方块的价值。
+    要指定特定世界的价值,请使用下一节。
+    任何未列出的方块将具有 0 的价值。空气始终为零。
 
-    Format: `MATERIAL: NUMBER`
+    格式: `MATERIAL: NUMBER`
 
-??? note "worlds"
-    List any blocks that have a different value in a specific world. 
-    If a block is not listed, the default value will be used from the blocks section.
-    Prefix with world name. The values will apply to the associated nether and the end if they exist. 
+??? note "worlds" 
+    列出在特定世界中具有不同价值的任何方块。
+    如果未列出某个方块,将使用 blocks 部分的默认值。
+    以世界名称为前缀。如果存在,这些值将应用于相关的下界和末地。
 
-    Example:
+    示例:
 
     ```
         worlds:
@@ -196,32 +196,32 @@ This section defines values for blocks and limits for them.
             ICE: 0
     ```
 
-    In this example, AcidIsland will use the same values as BSkyBlock for all blocks except for sand, sandstone and ice.
+    在此示例中,AcidIsland 将对所有方块使用与 BSkyBlock 相同的值,除了沙子、沙石和冰。
 
-### Customizable GUI's
+### 可自定义 GUI
 
-BentoBox 1.17 API introduced a function that allows to implement customizable GUI's. We tried to be as simple as possible for customization, however, some features requires explanation.
-You can find more information how BentoBox custom GUI's works here: [Custom GUI's](/en/latest/Tutorials/generic/Customizable-GUI/)
+BentoBox 1.17 API 引入了一个允许实现可自定义 GUI 的功能。我们尽量让自定义变得简单,但有些功能需要解释。
+你可以在这里找到更多关于 BentoBox 自定义 GUI 如何工作的信息: [自定义 GUI](/en/latest/Tutorials/generic/Customizable-GUI/)
 
-??? question "How can I customize GUI's"
-    To customize Level Addon GUI's you need to have version 2.10.0. This is a first version that has implemented them. Addon will create a new directory under `/plugins/bentobox/addons/level` with a name `panels`
+??? question "我如何自定义 GUI?"
+    要自定义 Level 插件的 GUI,你需要 2.10.0 版本。这是第一个实现它们的版本。插件将在 `/plugins/bentobox/addons/level` 下创建一个名为 `panels` 的新目录。
 
-    Currently you can customize 3 GUI's:
+    目前你可以自定义 3 个 GUI:
 
-    - Top panel: `top_panel` - allows to see top 10 islands.
-    - The detail block panel: `detail_panel` - allows to view detailed list block values in game.
-    - The block value panel: `value_panel` - allows to view each block value in game.
+    - 排行榜面板: `top_panel` - 允许查看前 10 名岛屿。
+    - 详细方块面板: `detail_panel` - 允许在游戏中查看详细的方块价值列表。 
+    - 方块价值面板: `value_panel` - 允许在游戏中查看每个方块的价值。
 
-    Each GUI contains functions that is supported only by itself.
+    每个 GUI 都包含仅由其自身支持的功能。
 
-??? question "What does `PREVIOUS`|`NEXT` button type?"
-    This button is available in detail_panel and value_panel.
-    The PREVIOUS and NEXT button types allows creating automatic paging, when you have more blocks than spaces in GUI.
-    These types have extra parameters under data:
+??? question "`PREVIOUS`|`NEXT` 按钮类型是什么?"
+    此按钮在 detail_panel 和 value_panel 中可用。
+    PREVIOUS 和 NEXT 按钮类型允许在方块多于 GUI 中的空间时创建自动分页。
+    这些类型在 data 下有额外的参数:
 
-    - `indexing` - indicates if button will show page number.
+    - `indexing` - 指示按钮是否显示页码。
 
-      Example: 
+      示例:
       ```yaml
           icon: tipped_arrow{CustomPotionColor:11546150}
           title: level.gui.buttons.previous.name
@@ -234,21 +234,21 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
               tooltip: level.gui.tips.click-to-previous
       ```
 
-??? question "What does `TOP` button type?"
-    This button is available in top_panel. It shows island at the top X by island level.
-    
-    The `icon` by default will be `PLAYER_HEAD` with a proper player skin. Enabling it will replace it with specified material.
+??? question "`TOP` 按钮类型是什么?"
+    此按钮在 top_panel 中可用。它按岛屿等级显示排名前 X 的岛屿。
 
-    `index` in the data field allows to specify which place of Top 10 should be showed in current spot.
+    `icon` 默认为 `PLAYER_HEAD`,带有正确的玩家皮肤。启用它将使用指定的材料替换它。
 
-    Top panel has 2 implemented actions which funstion requires extra addon:
-    
-    - `warp` - requires Warps addon. Will be shown only if warp sign exists on players island.
-    - `visit` - requires Visit addon. Will be shown only if visiting is allowed on players island.
+    data 字段中的 `index` 允许指定当前位置应显示前 10 名中的哪个位置。
 
-    Fallback allows to change background icon, when there are no player in top spot.
+    排行榜面板有 2 个实现的操作,功能需要额外的插件:
 
-    Example:
+    - `warp` - 需要 Warps 插件。仅当玩家岛屿上存在传送标志时才会显示。
+    - `visit` - 需要 Visit 插件。仅当玩家岛屿上允许访问时才会显示。
+
+    Fallback 允许在排行榜位置上没有玩家时更改背景图标。
+
+    示例:
     ```yaml
         #icon: PLAYER_HEAD
         title: level.gui.buttons.island.name
@@ -268,14 +268,14 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
           title: level.gui.buttons.island.empty
     ```
 
-??? question "What does `VIEW` button type?"
-    This button is available in top_panel. It shows viewer island level.
+??? question "`VIEW` 按钮类型是什么?"
+    此按钮在 top_panel 中可用。它显示查看者的岛屿等级。
 
-    The `icon` by default will be `PLAYER_HEAD` with a proper player skin. Enabling it will replace it with specified material.
-    
-    The action `view` allows to see detailed menu of players island.
+    `icon` 默认为 `PLAYER_HEAD`,带有正确的玩家皮肤。启用它将使用指定的材料替换它。
 
-    Example:
+    `view` 操作允许查看玩家岛屿的详细菜单。
+
+    示例:
     ```yaml
         #icon: PLAYER_HEAD
         title: level.gui.buttons.island.name
@@ -288,10 +288,10 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: level.gui.tips.click-to-view
     ```
 
-??? question "What does `BLOCK` button type?"
-    This button is available in detail_panel and value_panel. This button shows given material as icon. 
+??? question "`BLOCK` 按钮类型是什么?"
+    此按钮在 detail_panel 和 value_panel 中可用。此按钮将给定材料显示为图标。
 
-    Example:
+    示例:
     ```yaml
       #icon: STONE
       title: level.gui.buttons.value.name
@@ -300,112 +300,105 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
         type: BLOCK
     ```
 
-## Commands
+## 命令
 
 !!! tip
-    `[player_command]` and `[admin_command]` are commands that differ depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify these values.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`, and the default `[admin_command]` is `bsbadmin`.
+    `[player_command]` 和 `[admin_command]` 是根据你运行的游戏模式而不同的命令。
+    游戏模式的 `config.yml` 文件包含允许你修改这些值的选项。
+    例如,在 BSkyBlock 中,默认的 `[player_command]` 是 `island`,默认的 `[admin_command]` 是 `bsbadmin`。
 
-=== "Player commands"
-    - `/[player_command] top`: access to the top panel. Requires `[gamemode].island.top` permission.
-    - `/[player_command] level`: triggers level calculation for player. Requires `[gamemode].island.level` permission.
-    - `/[player_command] value [material]`: allows to check block value. Requires `[gamemode].island.value` permission.
+=== "玩家命令"
+    - `/[player_command] top`: 访问排行榜面板。需要 `[gamemode].island.top` 权限。
+    - `/[player_command] level`: 触发玩家的等级计算。需要 `[gamemode].island.level` 权限。
+    - `/[player_command] value [material]`: 允许检查方块价值。需要 `[gamemode].island.value` 权限。
 
+=== "管理员命令"
+    - `/[admin_command] level <player>`: 触发玩家的等级计算。需要 `[gamemode].admin.level` 权限。
+    - `/[admin_command] levelstatus`: 显示有多少岛屿在队列中。需要 `[gamemode].admin.levelstatus` 权限。
+    - `/[admin_command] sethandicap <player> <number>`: 允许设置岛屿等级的初始数值。需要 `[gamemode].admin.level.sethandicap` 权限。
+    - `/[admin_command] top`: 在聊天中显示前 10 名岛屿。需要 `[gamemode].admin.top` 权限。
+    - `/[admin_command] top remove <player>`: 允许从排行榜中移除玩家。需要 `[gamemode].admin.top.remove` 权限。
 
-=== "Admin commands"
-    - `/[admin_command] level <player>`: triggers level calculation for player. Requires `[gamemode].admin.level` permission.
-    - `/[admin_command] levelstatus`: shows how many islands are in the queue. Requires `[gamemode].admin.levelstatus` permission.
-    - `/[admin_command] sethandicap <player> <number>`: allows to set initial number of island level. Requires `[gamemode].admin.level.sethandicap` permission.
-    - `/[admin_command] top`: shows the top 10 islands in chat. Requires `[gamemode].admin.top` permission.
-    - `/[admin_command] top remove <player>`: allows to remove player from the top. Requires `[gamemode].admin.top.remove` permission.
-
-
-## Permissions
+## 权限
 
 !!! tip
-    `[gamemode]` is a prefix that differs depending on the gamemode you are running.
-    The prefix is the lowercased name of the gamemode, i.e. if you are using BSkyBlock, the prefix is `bskyblock`.
-    Similarly, if you are using AcidIsland, the prefix is `acidisland`.
+    `[gamemode]` 是一个根据你运行的游戏模式而不同的前缀。
+    前缀是游戏模式的小写名称,即如果你使用 BSkyBlock,前缀就是 `bskyblock`。
+    类似地,如果你使用 AcidIsland,前缀就是 `acidisland`。
 
-=== "Player permissions"
-    - `[gamemode].intopten` - (default: `true`) - Lets the player be in top 10 panel.
-    - `[gamemode].island.level` - (default: `true`) - Allows player to use the `/[player_command] level` command.
-    - `[gamemode].island.top` - (default: `true`) - Allows player to use the `/[player_command] top` command.
-    - `[gamemode].island.value` - (default: `true`) - Allows player to use the `/[player_command] value` command.
-    - `[gamemode].island.level.details.blocks` - (default: `true`) - Allows player to see detailed list of blocks for island.
-    - `[gamemode].island.level.details.spawners` - (default: `false`) - Allows player to see detailed list of spawners for island.
-    - `[gamemode].island.level.details.underwater` - (default: `false`) - Allows player to see detailed list of underwater blocks for island.
-    - `[gamemode].island.level.details.above-sea-level` - (default: `false`) - Allows player to see detailed list of above the sea level blocks for island.
+=== "玩家权限"
+    - `[gamemode].intopten` - (默认: `true`) - 让玩家出现在前 10 名面板中。
+    - `[gamemode].island.level` - (默认: `true`) - 允许玩家使用 `/[player_command] level` 命令。
+    - `[gamemode].island.top` - (默认: `true`) - 允许玩家使用 `/[player_command] top` 命令。
+    - `[gamemode].island.value` - (默认: `true`) - 允许玩家使用 `/[player_command] value` 命令。
+    - `[gamemode].island.level.details.blocks` - (默认: `true`) - 允许玩家查看岛屿的详细方块列表。
+    - `[gamemode].island.level.details.spawners` - (默认: `false`) - 允许玩家查看岛屿的详细刷怪笼列表。
+    - `[gamemode].island.level.details.underwater` - (默认: `false`) - 允许玩家查看岛屿的详细水下方块列表。
+    - `[gamemode].island.level.details.above-sea-level` - (默认: `false`) - 允许玩家查看岛屿海平面以上的详细方块列表。
 
-=== "Admin permissions"
-    - `[gamemode].admin.level` - (default: `op`) - Let the player use the `/[admin_command] level <player>` command.
-    - `[gamemode].admin.levelstatus` - (default: `op`) - Let the player use the `/[admin_command] levelstatus` command.
-    - `[gamemode].admin.level.sethandicap` - (default: `op`) - Let the player use the `/[admin_command] sethandicap <player> <number>` command.
-    - `[gamemode].admin.top` - (default: `op`) - Allows the access to `/[admin_command] top` command.
-    - `[gamemode].admin.top.remove` - (default: `op`) - Allows the access to `/[admin_command] top remove <player>` command.
+=== "管理员权限"
+    - `[gamemode].admin.level` - (默认: `op`) - 允许玩家使用 `/[admin_command] level <player>` 命令。
+    - `[gamemode].admin.levelstatus` - (默认: `op`) - 允许玩家使用 `/[admin_command] levelstatus` 命令。
+    - `[gamemode].admin.level.sethandicap` - (默认: `op`) - 允许玩家使用 `/[admin_command] sethandicap <player> <number>` 命令。
+    - `[gamemode].admin.top` - (默认: `op`) - 允许访问 `/[admin_command] top` 命令。
+    - `[gamemode].admin.top.remove` - (默认: `op`) - 允许访问 `/[admin_command] top remove <player>` 命令。
 
-??? question "Something is missing?"
-    You can find the comprehensive list of permissions in the [addon.yml](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/resources/addon.yml) file of this addon.  
-    If something is indeed missing from the list below, please let us know!
+??? question "有缺失的内容吗?"
+    你可以在此插件的 [addon.yml](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/resources/addon.yml) 文件中找到完整的权限列表。
+    如果下面的列表中确实缺少了什么,请告诉我们!
 
-
-## Placeholders
+## 占位符
 
 {{ placeholders_source(source="Level") }}
 
-## FAQ
+## 常见问题
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/Level/issues).
+??? question "你能添加 X 功能吗?"
+    请将其添加到[这里](https://github.com/BentoBoxWorld/Level/issues)的列表中。
 
-??? question "How to make that `level-cost` increases after each level?"
-    You cannot do it directly because BentoBox level calculation happens at once, and not iterative for each level.
+??? question "如何让 `level-cost` 在每个等级后增加?"
+    你不能直接这样做,因为 BentoBox 等级计算是一次性完成的,而不是每个等级迭代的。
 
-    However, this can be done using the `level-calc` formula, if you know what formula you need. If we use your example of making each level 50% harder to reach than the previous level, then the approximate formula for that is:
-    
+    但是,如果你知道所需的公式,这可以使用 `level-calc` 公式完成。如果我们使用你的示例,让每个等级比前一个等级难 50%,那么近似公式为:
+
     `level-calc: 2.4661 * log(blocks) - (2.4661 * log(level_cost) - 1)`
-    
-    where `level_cost` is the cost in blocks to get to level 1. e.g., if level 1 costs 100 blocks, the level 2 costs 150 blocks, level 3 costs 225, etc.
-    
-    Here's the graph:
+
+    其中 `level_cost` 是达到 1 级所需的方块数。例如,如果 1 级需要 100 个方块,2 级需要 150 个方块,3 级需要 225 个,以此类推。
+
+    这是图表:
 
     ![template](https://user-images.githubusercontent.com/4407265/212771452-edc943fe-c861-4ba1-b581-8ec987e52f94.png){: loading=lazy }
- 
-    Note that that particular formula does start to asymptote around level 25, i.e., it becomes really hard to get to level 26 or 27 because so many blocks are required, so having that particular rule might not be that good an approach because eventually almost everyone will end up with the same level.
-     
-    Anyway, although I understand what you're asking, the `level-calc` formula should actually be able to provide what you want so long as it supports the right formula. Having the `next-levelcost` is problematic from a programming standpoint because the level calculations would have to be done iteratively instead of by just applying a single formula to the blocks counted. I can't quite work out how to do that right now but I do know that the current method of having a formula for how you want levels increased does work for sure.
-    
-    How can I work out a formula for levels?
 
-    The best way is to start with a formula and plot it to see if it makes sense, e.g., by using something like Excel. If you want to work out what formula you need from say a table of values, then Excel (or maybe some other spreadsheet) can do that too: make a graph of levels and how many blocks for each level and then plot a graph of the table (X Y Plot). Right click the graph to add a trend line, select the approximation, e.g., linear, log, exponential, etc. that best fits, and then select "Display equation on chart" to display the formula and substitute `blocks` for `x`. Here's some screenshots of what I did you find out the equation for increasing by 50% each time with a starting cost of 100 blocks.
-    
+    请注意,该特定公式在 25 级左右开始渐近,即达到 26 或 27 级变得非常困难,因为需要太多方块,所以这种特定规则可能不是一个好方法,因为最终几乎每个人都会以相同的等级结束。
+
+    无论如何,虽然我理解你的问题,但 `level-calc` 公式实际上应该能够提供你想要的东西,只要它支持正确的公式。拥有 `next-levelcost` 从编程的角度来看是有问题的,因为等级计算必须迭代完成,而不是仅应用单一公式计算所计数的方块。我现在还不能完全弄清楚如何做到这一点,但我确实知道,目前拥有一个公式来确定你想要如何增加等级的方法肯定是有效的。
+
+    我如何计算等级的公式?
+
+    最好的方法是从一个公式开始,绘制图表看它是否有意义,例如使用 Excel 之类的工具。如果你想根据一个值表计算出需要什么公式,那么 Excel(或其他电子表格)也可以做到:制作一个等级图和每个等级需要多少方块,然后绘制表格的图形(X Y 图)。右键单击图表以添加趋势线,选择最适合的近似值,例如线性、对数、指数等。然后选择"在图表上显示方程",显示公式并用 `blocks` 替换 `x`。以下是我为了找出每次增加 50% 且起始成本为 100 个方块的等式所做的一些截图。
+
     ![template](https://user-images.githubusercontent.com/4407265/212773894-6f635ed4-f337-4936-b50f-3b616b6bf041.png){: loading=lazy }
     ![template](https://user-images.githubusercontent.com/4407265/212773929-b51ae6b3-5df3-43ae-b35f-bc6fcb42d78f.png){: loading=lazy }
- 
-    So, for that, it would be:
-    
+
+    所以,对于这种情况,它应该是:
+
     `level-calc: 2.4661 * log(blocks) - 10.357`
-    
-    I hope that helps.
 
+    希望这有帮助。
 
-
-## Translations
+## 翻译
 
 {{ translations(3013, ["cs", "de", "es", "fr", "hu", "id", "lv", "pl", "ro", "tr", "zh-CN", "ko", "pt", "vi", "ru"]) }}
 
-
-
 ## API
 
-Since Level 2.7.2 and BentoBox 1.17 other plugins can access to the Level addon data directly. However, addon requests are still a good solution for a plugins that do not want to use too many dependencies.
+从 Level 2.7.2 和 BentoBox 1.17 开始,其他插件可以直接访问 Level 插件数据。但是,对于不想使用太多依赖项的插件来说,插件请求仍然是一个很好的解决方案。
 
-### Maven Dependency
-Level provides an API for other plugins. This covers Level 2.8.1 and onwards.
+### Maven 依赖
+Level 为其他插件提供了 API。这涵盖了 Level 2.8.1 及更高版本。
 
 !!! note
-    Add the Level dependency to your Maven POM.xml:
+    将 Level 依赖项添加到你的 Maven POM.xml 中:
 
     ```xml
         <repositories>
@@ -424,26 +417,26 @@ Level provides an API for other plugins. This covers Level 2.8.1 and onwards.
             </dependency>
         </dependencies>
     ```
-Use the latest Level version.
+使用最新的 Level 版本。
 
-Then you can obtain the level for a player by asking Level once you have the world that the island is in and confirming that the player is the owner of an island in that world.
+然后,一旦你拥有岛屿所在的世界,并确认玩家是该世界中岛屿的所有者,你就可以通过询问 Level 来获得玩家的等级。
 
-The JavaDocs for Level can be found [here](https://ci.codemc.io/job/BentoBoxWorld/job/Level/ws/target/apidocs/index.html).
+Level 的 JavaDoc 可以在[这里](https://ci.codemc.io/job/BentoBoxWorld/job/Level/ws/target/apidocs/index.html)找到。
 
-### Events
+### 事件
 
 === "IslandLevelCalculatedEvent"
-    !!! summary "Description"
-        Event that is triggered when player level is calculated.
+    !!! summary "描述"
+        当玩家等级被计算时触发的事件。
 
-        Link to the class: [IslandLevelCalculatedEvent](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/java/world/bentobox/level/events/IslandLevelCalculatedEvent.java)
+        链接到类: [IslandLevelCalculatedEvent](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/java/world/bentobox/level/events/IslandLevelCalculatedEvent.java)
 
-    !!! question "Variables"
-        - `Island island` - the island object.
-        - `UUID targetPlayer` - id of the player who calculated level.
-        - `Results results` - the calculated island results.
+    !!! question "变量"
+        - `Island island` - 岛屿对象。
+        - `UUID targetPlayer` - 计算等级的玩家的 ID。
+        - `Results results` - 计算出的岛屿结果。
         
-    !!! example "Code example"
+    !!! example "代码示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onLevelCalculated(IslandLevelCalculatedEvent event) {
@@ -451,37 +444,37 @@ The JavaDocs for Level can be found [here](https://ci.codemc.io/job/BentoBoxWorl
             Island island = event.getIsland();
             Results results = event.getResults();
             
-            // death handicap from results.
+            // 来自结果的死亡惩罚。
             int deathHandicap = event.getDeathHandicap();
 
-            // the island initial level from results.
+            // 来自结果的岛屿初始等级。
             long initialLevel = event.getInitialLevel();
             
-            // the island level from results.
+            // 来自结果的岛屿等级。
             long level = event.getLevel();
 
-            // this will overwrite island level to 100.
+            // 这将覆盖岛屿等级为 100。
             event.setLevel(100);
             
-            // number of points required to next level
+            // 达到下一级所需的点数
             long pointsToNextLevel = event.getPointsToNextLevel();
 
-            // the report text from results.
+            // 来自结果的报告文本。
             List<String> report = event.getReport();
         }
         ``` 
 
 === "IslandPreLevelEvent "
-    !!! summary "Description"
-        Event that is triggered before player level is calculated.
+    !!! summary "描述"
+        在计算玩家等级之前触发的事件。
 
-        Link to the class: [IslandPreLevelEvent](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/java/world/bentobox/level/events/IslandPreLevelEvent.java)
+        链接到类: [IslandPreLevelEvent](https://github.com/BentoBoxWorld/Level/blob/develop/src/main/java/world/bentobox/level/events/IslandPreLevelEvent.java)
 
-    !!! question "Variables"
-        - `Island island` - the island object.
-        - `UUID targetPlayer` - id of the player who calculated level.
+    !!! question "变量"
+        - `Island island` - 岛屿对象。
+        - `UUID targetPlayer` - 计算等级的玩家的 ID。
         
-    !!! example "Code example"
+    !!! example "代码示例"
         ```java
         @EventHandler(priority = EventPriority.LOW)
         public void beforeLevelCalculated(IslandPreLevelEvent event) {
@@ -490,36 +483,34 @@ The JavaDocs for Level can be found [here](https://ci.codemc.io/job/BentoBoxWorl
         }
         ```
 
-### Addon Request Handlers
+### 插件请求处理程序
 
-Till BentoBox 1.17 we had an issue with accessing data outside BentoBox environment doe to the class loader we used to load addons.
-This meant that data was accessible only from other addons. But BentoBox implemented PlAddon functionality, which means that request
-handlers are not necessary anymore.
+直到 BentoBox 1.17,由于我们用于加载插件的类加载器,我们在访问 BentoBox 环境之外的数据时遇到了问题。
+这意味着数据只能从其他插件访问。但是 BentoBox 实现了 PlAddon 功能,这意味着请求处理程序不再是必需的。
 
-More information about addon request handlers can be found [here](/en/latest/BentoBox/Request-Handler-API---How-plugins-can-get-data-from-addons/)
+有关插件请求处理程序的更多信息可以在[这里](/en/latest/BentoBox/Request-Handler-API---How-plugins-can-get-data-from-addons/)找到。
 
 === "island-level"
-    !!! summary "Description"
-        Returns the level of this player's island in the given world.
+    !!! summary "描述"
+        返回给定世界中玩家的岛屿等级。
 
-    !!! question "Input"
-        - `world-name`: String - the name of the world.
-        - `player`: UUID - the UUID of the player.
+    !!! question "输入"
+        - `world-name`: String - 世界名称。
+        - `player`: UUID - 玩家的 UUID。
 
-    !!! success "Output"
-        The player's island level or `0L` if the input was invalid or if this player does not have an island in this world.
+    !!! success "输出"
+        玩家的岛屿等级,如果输入无效或该玩家在此世界中没有岛屿,则为 `0L`。
 
     !!! failure
-        This handler will return `0L` if the `world-name` has not been provided or if the `world-name` does not exist or is not a gamemode world.
+        如果未提供 `world-name` 或 `world-name` 不存在或不是游戏模式世界,此处理程序将返回 `0L`。
 
-    !!! example "Code example"
+    !!! example "代码示例"
         ```java
             /**
-             * Returns the level of this player's island in the given world.
-             * @param playerUUID UUID of the player, not null.
-             * @param worldName Name of the world (Overworld) the island is in, not null.
-             * @return the player's island level or {@code 0L} if the input was invalid or
-             *         if this player does not have an island in this world.
+             * 返回给定世界中玩家的岛屿等级。
+             * @param playerUUID 玩家的 UUID,不为 null。
+             * @param worldName 岛屿所在的世界(主世界)名称,不为 null。
+             * @return 玩家的岛屿等级,如果输入无效或该玩家在此世界中没有岛屿,则为 {@code 0L}。
              */
             public long getIslandLevel(UUID playerUUID, String worldName) {
                 return (Long) new AddonRequestBuilder()
@@ -532,25 +523,25 @@ More information about addon request handlers can be found [here](/en/latest/Ben
         ```
 
 === "top-ten-level"
-    !!! summary "Description"
-        Returns the players whose island they own is in the Top 10 mapped to the level of their island.
+    !!! summary "描述"
+        返回拥有的岛屿位于前 10 名的玩家,映射到他们岛屿的等级。
 
-    !!! question "Input"
-        - `world-name`: String - the name of the world.
+    !!! question "输入"
+        - `world-name`: String - 世界名称。
 
-    !!! success "Output"
-        `Map<UUID, Long>` containing the UUIDs of the island owners whose island is in the Top 10, mapped to the level of their island.
+    !!! success "输出"
+        `Map<UUID, Long>`,包含拥有的岛屿位于前 10 名的岛主的 UUID,映射到他们岛屿的等级。
 
-    !!! failure
-        This handler will return empty map if the `world-name` has not been provided or if the `world-name` does not exist or is not a gamemode world.
+    !!! failure 
+        如果未提供 `world-name` 或 `world-name` 不存在或不是游戏模式世界,此处理程序将返回空 map。
 
-    !!! example "Code example"
+    !!! example "代码示例"
         ```java
             /**
-             * Returns the players whose island they own is in the Top 10 mapped to the level of their island.
-             * @param worldName Name of the world (Overworld) the island is in, not null.
-             * @return a Map containing the UUIDs of the island owners whose island is in the Top 10, mapped to the level of their island,
-             *         or an empty map if the specified world doesn't exist or doesn't contain islands.
+             * 返回拥有的岛屿位于前 10 名的玩家,映射到他们岛屿的等级。
+             * @param worldName 岛屿所在的世界(主世界)名称,不为 null。
+             * @return 一个 Map,包含拥有的岛屿位于前 10 名的岛主的 UUID,映射到他们岛屿的等级,
+             *         如果指定的世界不存在或不包含岛屿,则返回一个空 map。
              */
             public Map<UUID, Long> getTopTen(String worldName) {
                 return (Map<UUID, Long>) new AddonRequestBuilder()

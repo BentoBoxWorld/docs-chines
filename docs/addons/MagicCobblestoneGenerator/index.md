@@ -1,473 +1,195 @@
-# MagicCobblestoneGenerator
+# 魔法圆石发生器
 
-**MagicCobblestoneGenerator** turns the plain and boring cobblestone generators to an awesome and reliable source of configurable blocks!
+**魔法圆石发生器**将平凡无聊的圆石发生器变成了一个棒极了的、可配置的方块来源！
 
-Created and maintained by [BONNe](https://github.com/BONNe).
+由[BONNe](https://github.com/BONNe)创建和维护。
 
 {{ addon_description("MagicCobblestoneGenerator") }}
 
-## Installation
+## 安装
 
-1. Place the addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. Run the `/[admincmd] generator` command to configure the addon
+1. 将插件jar文件放入BentoBox插件的addons文件夹中
+2. 重启服务器
+3. 运行`/[admincmd] generator`命令来配置插件
 
-## Configuration
+## 配置
 
-By default, the addon tries to import all data from template file, to simplify first setup. A lot of addon settings are exposed in Admin GUI, however, some of them are not.
-The latest config options, and their detailed explanations can be found [here](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/blob/develop/src/main/resources/config.yml).
+默认情况下，插件试图从模板文件中导入所有数据，以简化首次设置。许多插件设置在Admin GUI中公开，然而，有些设置不是。
+最新的配置选项及其详细解释可以在[这里](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/blob/develop/src/main/resources/config.yml)找到。
 
-Template file are mostly for users who do not like to use ingame editing GUI. However, template file is not automatically imported on each change. It requires importing via command or Admin GUI.
+模板文件主要是为那些不喜欢使用游戏内编辑GUI的用户准备的。然而，模板文件在每次更改时不会自动导入。需要通过命令或Admin GUI导入。
 
-??? question "Template File Structure"
+??? question "模板文件结构"
     ```
-    # Start the listing of all generator tiers.
+    # 开始所有生成器等级的列表。
     tiers:
-      # Unique Id for generator. Used in internal storage and accessing to each generator data.
+      # 生成器的唯一ID。用于内部存储和访问每个生成器数据。
       generator_unique_id: 
-        # Display name for users. Supports colour codes.
-        # Default value: generator_unique_id without _
+        # 用户的显示名称。支持颜色代码。
+        # 默认值: 生成器唯一ID去掉下划线
         name: "Something fancy"
-        # Description in lore message. Supports colour codes.
-        # Can be defined empty by replacing eveything with [].
-        # Default value: []
+        # 说明文字信息。支持颜色代码。
+        # 可以通过用[]替换一切来定义为空。
+        # 默认值: []
         description: -|
-          First Line Of lore Message
-          &2Second Line Of lore Message
-        # Icon used in GUI's. Number at the end allows to specify stack size for item.
-        # Default value: Paper.
+          第一行说明信息
+          &2第二行说明信息
+        # GUI中使用的图标。数字在末尾允许指定项目的堆叠大小。
+        # 默认值: Paper.
         icon: "PAPER:1"
-        # Generator type: COBBLESTONE, STONE or BASALT. Self explanatory.
-        # Default value: COBBLESTONE
+        # 生成器类型: COBBLESTONE, STONE 或 BASALT。自解释。
+        # 默认值: COBBLESTONE
         type: COBBLESTONE
-        # Indicates if genertor is default generator. Default generators ignores requirement section.
-        # It is activated for each new island. Can be only one per each generator type.
-        # Default value: false
+        # 指示生成器是否为默认生成器。默认生成器忽略要求部分。
+        # 对每种生成器类型只能有一个默认生成器。
+        # 默认值: false
         default: false
-        # Users selects active generators.
-        # Priority indicates which generator will be used
-        # if multiple of them fulfills requirements.
-        # Default value: 1
+        # 用户选择激活的生成器。
+        # 优先级指示如果多个生成器满足要求，
+        # 将使用哪个生成器。
+        # 默认值: 1
         priority: 1
-        # There are several requirements that can be defined here.
+        # 这里可以定义几个要求。
         requirements:
-          # Can define minimal island level for generator to work. Required Level Addon.
-          # Default value: 0
+          # 可以定义生成器工作所需的最小岛屿等级。需要等级插件。
+          # 默认值: 0
           island-level: 10
-          # List of required permissions for users to select this generator.
-          # Default value: []
+          # 列出用户选择此生成器所需的权限列表。
+          # 默认值: []
           required-permissions: []
-          # List of required biomes for generator to work.
-          # Empty means that there is no limitation in which biome generator works.
-          # Default value: [].
+          # 列出生成器工作所需的生物群系列表。
+          # 空意味着没有限制生物群系生成器工作。
+          # 默认值: []。
           required-biomes: []
-          # Cost for purchasing this generator. Requires Vault and any economy plugin.
-          # Currently implemented by clicking on purchase icon in generator view GUI.
-          # Default value: 0
+          # 购买此生成器的费用。需要Vault和任何经济插件。
+          # 通过在生成器视图GUI中点击购买图标来实现。
+          # 默认值: 0
           purchase-cost: 5.0
-        # Cost for activating current generator tier. Requires Vault and any economy plugin.
-        # Will be payed only on active switching between generators.
-        # Default value: 0.
+        # 激活当前生成器等级的费用。需要Vault和任何经济插件。
+        # 只有在生成器之间主动切换时才会支付。
+        # 默认值: 0。
         activation-cost: 0.0
-        # Materials and their chances. Use actual blocks please.
-        # Chance supports any positive number, including double value.
-        # Everything in the end will be normalized.
-        # Default value: []
+        # 材料及其几率。请使用实际的方块。
+        # 几率支持任何正数，包括双精度值。
+        # 最终所有内容将被规范化。
+        # 默认值: []
         blocks:
           FIRST_BLOCK_NAME_ID: NUMBER
           SECOND_BLOCK_NAME_ID: NUMBER
-        # Treasure that has a chance to be dropped when block is generated.
-        # ONLY on generation, not on block break.
-        # Default value: []
+        # 在
+
+方块生成时有机会掉落的宝藏。
+        # 仅在生成时，而非方块破坏时。
+        # 默认值: []
         treasure:
-          # Chance from 0 till 1. 0 - will not be possible to get a treasure.
-          # Default value: 0
+          # 从0到1的几率。0 - 不可能获得宝藏。
+          # 默认值: 0
           chance: 0.001
-          # Materials that can be dropped. Applies to the same rules as block section.
-          # Default value: []
+          # 可以掉落的材料。适用于与方块部分相同的规则。
+          # 默认值: []
           material:
             FIRST_BLOCK_NAME_ID: NUMBER
             SECOND_BLOCK_NAME_ID: NUMBER
-          # Maximal amount of items dropped.
-          # It will be from 1 till defined amount.
-          # Default value: 1
+          # 掉落项目的最大数量。
+          # 将从1到定义的数量之间。
+          # 默认值: 1
           amount: 1
     
-    # Start the listing of all bundles
+    # 开始所有套餐的列表
     bundles:
-      # bundle_id
+      # 套餐id
       bundle_unique_id:
-        # Display name for users
+        # 用户的显示名称
         name: "Something fancy"
-        # Description in lore message. Supports colour codes.
-        # Can be defined empty by replacing eveything with [].
-        # Default value: []
+        # 说明文字信息。支持颜色代码。
+        # 可以通过用[]替换一切来定义为空。
+        # 默认值: []
         description: -|
-          First Line Of lore Message
-          &2Second Line Of lore Message
-        # Icon used in GUI's. Number at the end allows to specify stack size for item.
-        # Default value: Paper.
+          第一行说明信息
+          &2第二行说明信息
+        # GUI中使用的图标。数字在末尾允许指定项目的堆叠大小。
+        # 默认值: Paper.
         icon: "PAPER:1"
-        # List of generators that bundle will work have access.
+        # 套餐将工作有访问权限的生成器列表。
         generators:
           - generator_id_1
           - generator_id_2
     ```
 
-## Commands
+## 命令
 
-!!! tip
-    `[player_command]` and `[admin_command]` are commands that differ depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify these values.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`, and the default `[admin_command]` is `bsbadmin`.
-    Be aware, that this addon allows changing player commands aliases in addon `config.yml` file. 
+!!! 小贴士
+    `[player_command]` 和 `[admin_command]` 是根据你运行的游戏模式而不同的命令。
+    游戏模式的`config.yml`文件包含允许你修改这些值的选项。
+    例如，在BSkyBlock上，默认的`[player_command]`是`island`，默认的`[admin_command]`是`bsbadmin`。
+    注意，这个插件允许在插件`config.yml`文件中更改玩家命令别名。
 
-=== "Player commands"
-    - `/[player_command] generator`: Access to generator Selection GUI. 
-    - `/[player_command] generator view <generator>`: Access to specific generator detailed view. 
-    - `/[player_command] generator activate <generator> [false]`: Allows to activate (or deactivate) specific generator.
-    - `/[player_command] generator buy <generator>`: Allows to buy specific generator.
+=== "玩家命令"
+    - `/[player_command] generator`：访问生成器选择GUI。
+    - `/[player_command] generator view <generator>`：访问特定生成器的详细视图。
+    - `/[player_command] generator activate <generator> [false]`：允许激活（或停用）特定生成器。
+    - `/[player_command] generator buy <generator>`：允许购买特定生成器。
 
-=== "Admin commands"
-    - `/[admin_command] generator`: Access to addon Admin GUI
-    - `/[admin_command] generator import`: Imports default template file - `/plugins/BentoBox/addons/MagicCobblestoneGenerator/generatorTemplate.yml`.
-    - `/[admin_command] generator database import <file>`: Ability to import database exported <file>.
-    - `/[admin_command] generator database export <file>`: Ability to export database into <file> saved in `/plugins/BentoBox/addons/MagicCobblestoneGenerator/` folder.
-    - `/[admin_command] generator why <player>`: A debugging command that allows finding issues with generators for each player.
+=== "管理员命令"
+    - `/[admin_command] generator`：访问插件的管理员GUI
+    - `/[admin_command] generator import`：导入默认模板文件 - `/plugins/BentoBox/addons/MagicCobblestoneGenerator/generatorTemplate.yml`。
+    - `/[admin_command] generator database import <file>`：能够导入导出的数据库<file>。
+    - `/[admin_command] generator database export <file>`：能够将数据库导出到保存在`/plugins/BentoBox/addons/MagicCobblestoneGenerator/`文件夹中的<file>。
+    - `/[admin_command] generator why <player>`：一个调试命令，允许为每个玩家找到生成器问题。
 
-## Permissions
+## 权限
 
-!!! tip
-    `[gamemode]` is a prefix that differs depending on the gamemode you are running.
-    The prefix is the lowercased name of the gamemode, i.e. if you are using BSkyBlock, the prefix is `bskyblock`.
-    Similarly, if you are using AcidIsland, the prefix is `acidisland`.
+!!! 小贴士
+    `[gamemode]` 是一个根据你运行的游戏模式而不同的前缀。
+    前缀是游戏模式的小写名称，即如果你使用BSkyBlock，前缀是`bskyblock`。
+    类似地，如果你使用AcidIsland，前缀是`acidisland`。
 
-=== "Player permissions"
-    - `[gamemode].stone-generator` - Let the player use the '/[player_command] generator' command and its subcommands.
-    - `[gamemode].stone-generator.active-generators.3` - Sets the maximum number of active generators the island owner can have. 3 can be replaced with any positive integer. This is just an example.
-    - `[gamemode].stone-generator.max-range.30` - Sets the maximum distance from the generator so it continues to work. 30 can be replaced with any positive integer. This is just an example.
-    - `[gamemode].stone-generator.bundle.[bundle_id]` - Specifies which bundle will be used for user owned island.
+=== "玩家权限"
+    - `[gamemode].stone-generator` - 让玩家使用`/[player_command] generator`命令及其子命令。
+    - `[gamemode].stone-generator.active-generators.3` - 设置岛屿所有者可以拥有的最大活跃生成器数量。3可以被任何正整数替换。这只是一个例子。
+    - `[gamemode].stone-generator.max-range.30` - 设置生成器继续
+
+工作的最大距离。30可以被任何正整数替换。这只是一个例子。
+    - `[gamemode].stone-generator.bundle.[bundle_id]` - 指定将用于用户拥有的岛屿的套餐。
+
+=== "管理员权限"
+    - `[gamemode].admin.stone-generator` - 让玩家使用`/[admin_command] generator`命令及其子命令。
+    - `[gamemode].admin.stone-generator.why` - 让玩家使用调试命令`/[admin_command] why generator <player>`。
+    - `[gamemode].admin.stone-generator.database` - 让玩家使用`/[admin_command] generator database`命令及其子命令。
     
-=== "Admin permissions"
-    - `[gamemode].admin.stone-generator` - Let the player use the '/[admin_command] generator' command and its subcommands.
-    - `[gamemode].admin.stone-generator.why` - Let the player use a debug command '/[admin_command] why generator <player>'.
-    - `[gamemode].admin.stone-generator.database` - Let the player use the '/[admin_command] generator database' command and its subcommands.
-    
-??? question "Something is missing?"
-    You can find the comprehensive list of permissions in the [addon.yml](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/blob/develop/src/main/resources/addon.yml) file of this addon.  
-    If something is indeed missing from the list below, please let us know!
+??? question "缺少什么？"
+    你可以在这个插件的[addon.yml](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/blob/develop/src/main/resources/addon.yml)文件中找到权限的综合列表。  
+    如果下面的列表确实缺少了什么，请告诉我们！
 
 
-## Placeholders
+## 占位符
 
 {{ placeholders_source(source="MagicCobblestoneGenerator") }}
 
 
-## FAQ
+## 常见问题解答
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/issues).
+??? question "你能添加功能X吗？"
+    请在[这里](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/issues)添加。
 
-??? question "How can I add a new generator tier?"
-    Currently, addon supports 3 ways how to add a new generator:
+??? question "如何添加新的生成器等级？"
+    目前，插件支持3种添加新生成器的方式：
     
-    - By using ingame GUI that is available via `/[admin] generator` command.
-    - By adding generator to a template file. 
-    - By adding generator to the exported database file.
+    - 通过使用游戏内GUI，可通过`/[admin] generator`命令访问。
+    - 通过向模板文件添加生成器。
+    - 通过向导出的数据库文件添加生成器。
 
-??? question "I added generator to the template/database file, but it does not shows up in game."
-    For easier configuration with multiple gamemodes, generators are stored in the internal database. After editing template or database file, you need to import them into that memory. You can do it via Admin GUI by clicking on `Import Template` or `Import Database` buttons.
-    
-    ![template](resources/import_template.png){: loading=lazy }
-    ![database](resources/import_database.png){: loading=lazy }
+??? question "我在模板/数据库文件中添加了生成器，但它在游戏中不显示。"
+    为了更容易地配置多个游戏模式，生成器存储在内部数据库中。编辑模板或数据库文件后，您需要将它们导入到内存中。您可以通过点击Admin GUI中的`导入模板`或`导入数据库`按钮来完成。
 
-??? question "I have a generator that shows up in Admin GUI, but players do not see it."
-    Most likely it is because of "deployment" status. To avoid with issues when players starts to activate generators while an admin is adding them, generators are undeployed and noone can use them. You can activate them by editing generator via Admin GUI and clicking on lever in Edit Generator GUI.
-    ![deployed](resources/deployed.png){: loading=lazy }
+??? question "我有一个生成器显示在Admin GUI中，但玩家看不到它。"
+    最有可能是由于“部署”状态。为了避免在管理员添加它们时玩家开始激活生成器的问题，生成器是未部署的，没有人可以使用它们。您可以通过编辑Admin GUI中的生成器并点击编辑生成器GUI中的开关来激活它们。
 
-??? question "What is treasures?"
-    Treasures are things that are dropped uppon block generation. It allows to give an extra customization for each generator.
+??? question "什么是宝藏？"
+    宝藏是在生成方块时掉落的东西。它允许为每个生成器提供额外的自定义。
 
-??? question "What is bundles?"
-    Bundles is a feature that allows customizing experience for each island even more. If bundle is assigned to an island, then players on that island will be able to use only generators from that bundle. 
+??? question "什么是套餐？"
+    套餐是一项功能，允许为每个岛屿提供更多的自定义体验。如果岛屿分配了套餐，那么该岛屿上的玩家将只能使用该套餐中的生成器。
 
-??? question "Can I disable showing required permissions in generator description?"
-    Yes, addon provides a lot of customization options for displaying each generator. It is located in locales file:
-    ```
-          # Generator lore message generator. All elements in generator lore is generated
-          # based on section below.
-          generator:
-            # Main lore element content. If you do not want to display treasures at all,
-            # just remove them from [treasures] section.
-            # [description] comes from each generator tier.
-            # Lore does not supports colour codes. Each object separate supports.
-            lore: |-
-              [description]
-              [blocks]
-              [treasures]
-              [type]
-              [requirements]
-              [status]
-            # Generates [blocks] section
-            blocks:
-              # First line in blocks section. Empty line will not be displayed.
-              title: "&7&l Blocks:"
-              # Each block and its value under title. Cannot be empty.
-              # Supports [number], [#.#], [#.##], [#.###], [#.####], [#.#####]
-              value: "&8 [material] - [#.##]%"
-            # Generates [treasures] section
-            treasures:
-              # First line in blocks section. Empty line will not be displayed.
-              title: "&7&l Treasures:"
-              # Each treasure and its value under title. Cannot be empty.
-              # Supports [number], [#.#], [#.##], [#.###], [#.####], [#.#####]
-              value: "&8 [material] - [#.####]%"
-            # Generates [requirements] section
-            requirements:
-              # Allows to change order and content of requirements message.
-              description: |-
-                [biomes]
-                [level]
-                [missing-permissions]
-              # Generates [level] message.
-              level: "&c&l Required Level: &r&c [number]"
-              # Generates [missing-permission] message title.
-              permission-title: "&c&l Missing Permissions:"
-              # Generates [missing-permission] message values.
-              permission: "&c  -[permission]"
-              # Generates [biomes] message title.
-              biome-title: "&7&l Operates in:"
-              # Generates [biomes] message values.
-              biome: "&8 [biome]"
-              # Generates [biomes] message for All Biomes.
-              any: "&7&l Operates in &e&o all &r&7&l biomes"
-            # Generates [status] section
-            status:
-              # Message that is showed for Locked generators.
-              locked: "&c Locked!"
-              # Message that is showed for generators that is not deployed.
-              undeployed: "&c Not Deployed!"
-              # Message that is showed for Active generators.
-              active: "&2 Active"
-              # Message that is showed for generators that required purchasing.
-              purchase-cost: "&e Purchase Cost: $[number]"
-              # Message that is showed for generators that has activation cost.
-              activation-cost: "&e Activation Cost: $[number]"
-            # Generates [type] section
-            type:
-              title: "&7&l Supports:"
-              cobblestone: "&8 Cobblestone Generators"
-              stone: "&8 Stone Generators"
-              basalt: "&8 Basalt Generators"
-              any: "&7&l Supports &e&o all &r&7&l generators"
-    ```
-
-## Translations
-
-{{ translations(2972, ["de", "es", "lv", "zh-CN", "zh-TW", "fr", "ru", "pl", "tr", "vi"]) }}
-
-## API
-
-Since MagicCobblestoneGenerator 2.4.0 and BentoBox 1.17 other plugins can access to the MagicCobblestoneData addon data directly. However, addon requests are still a good solution for a plugins that do not want to use too many dependencies.
-
-### Maven Dependency
-MagicCobblestoneGenerator provides an API for other plugins. This covers version 2.5.0 and onwards.
-
-!!! note
-    Add the MagicCobblestoneGenerator dependency to your Maven POM.xml:
-
-    ```xml
-        <repositories>
-            <repository>
-                <id>codemc-repo</id>
-                <url>https://repo.codemc.io/repository/maven-public/</url>
-            </repository>
-        </repositories>
-        
-        <dependencies>
-            <dependency>
-                <groupId>world.bentobox</groupId>
-                <artifactId>magiccobblestonegenerator</artifactId>
-                <version>2.5.0</version>
-                <scope>provided</scope>
-            </dependency>
-        </dependencies>
-    ```
-Use the latest MagicCobblestoneGenerator version.
-
-The JavaDocs for MagicCobblestoneGenerator can be found [here](https://ci.codemc.io/job/BentoBoxWorld/job/MagicCobblestoneGenerator/ws/target/apidocs/index.html).
-
-### Events
-
-=== "GeneratorActivationEvent"
-    !!! summary "Description"
-        Event that is triggered when player activates/deactivates a generator on their island.
-        This event is cancellable.
-
-        Link to the class: [GeneratorActivationEvent](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/blob/develop/src/main/java/world/bentobox/magiccobblestonegenerator/events/GeneratorActivationEvent.java)
-
-    !!! question "Variables"
-        - `String islandUUID` - the targeted island id.
-        - `UUID targetPlayer` - id of the player who triggered generator activation.
-        - `String generator` - the name of activated generator.
-        - `String generatorID` - the id of activated generator.
-        - `boolean activate` - the boolean that indicates if generator is activated or deactivated.
-
-        
-    !!! example "Code example"
-        ```java
-        @EventHandler(priority = EventPriority.LOW)
-        public void onGeneratorActivationChange(GeneratorActivationEvent event) {
-            UUID user = event.getTargetPlayer();
-            String island = event.getIslandUUID();
-
-            String generator = event.getGenerator();
-            String generatorID = event.getGeneratorID();
-            boolean activate = event.isActivate();
-        }
-        ```
-
-=== "GeneratorUnlockEvent"
-    !!! summary "Description"
-        Event that is triggered when player unlocks a new generator on their island.
-        This event is cancellable.
-
-        Link to the class: [GeneratorUnlockEvent](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/blob/develop/src/main/java/world/bentobox/magiccobblestonegenerator/events/GeneratorUnlockEvent.java)
-
-    !!! question "Variables"
-        - `String islandUUID` - the targeted island id.
-        - `UUID targetPlayer` - id of the player who triggered generator unlock.
-        - `String generator` - the name of unlocked generator.
-        - `String generatorID` - the id of unlocked generator.
-
-        
-    !!! example "Code example"
-        ```java
-        @EventHandler(priority = EventPriority.LOW)
-        public void onGeneratorUnlock(GeneratorUnlockEvent event) {
-            UUID user = event.getTargetPlayer();
-            String island = event.getIslandUUID();
-
-            String generator = event.getGenerator();
-            String generatorID = event.getGeneratorID();
-        }
-        ```
-
-=== "GeneratorBuyEvent"
-    !!! summary "Description"
-        Event that is triggered when player buys a new generator on their island.
-        This event is NOT cancellable.
-
-        Link to the class: [GeneratorBuyEvent](https://github.com/BentoBoxWorld/MagicCobblestoneGenerator/blob/develop/src/main/java/world/bentobox/magiccobblestonegenerator/events/GeneratorBuyEvent.java)
-
-    !!! question "Variables"
-        - `String islandUUID` - the targeted island id.
-        - `UUID targetPlayer` - id of the player who bought generator.
-        - `String generator` - the name of bought generator.
-        - `String generatorID` - the id of bought generator.
-
-        
-    !!! example "Code example"
-        ```java
-        @EventHandler(priority = EventPriority.LOW)
-        public void onGeneratorBuy(GeneratorBuyEvent event) {
-            UUID user = event.getTargetPlayer();
-            String island = event.getIslandUUID();
-
-            String generator = event.getGenerator();
-            String generatorID = event.getGeneratorID();
-        }
-        ```
-
-### Addon Request Handlers
-
-Till BentoBox 1.17 we had an issue with accessing data outside BentoBox environment doe to the class loader we used to load addons.
-This meant that data was accessible only from other addons. But BentoBox implemented PlAddon functionality, which means that request
-handlers are not necessary anymore.
-
-More information about addon request handlers can be found [here](/en/latest/BentoBox/Request-Handler-API---How-plugins-can-get-data-from-addons/)
-
-=== "active-generator-names"
-    !!! summary "Description"
-        Returns the names of active generators for the player.
-
-        Since 2.4.0 version.
-
-    !!! question "Input"
-        - `world-name`: String - the name of the world.
-        - `player`: String - the UUID of the player.
-
-    !!! success "Output"
-        The output is a `List<String>` which contains names of active generators.
-
-    !!! failure
-        This handler will return null if the `world-name` has not been provided or if the `world-name` does not exist or `player` is not provided.
-
-    !!! example "Code example"
-        ```java
-        public List<String> getActiveGeneratorNames(String worldName, UUID playerUUID) {
-            return (List<String>) new AddonRequestBuilder()
-                .addon("MagicCobblestoneGenerator")
-                .label("active-generator-names")
-                .addMetaData("world-name", worldName)
-                .addMetaData("player", playerUUID)
-                .request();
-        }
-        ```
-
-
-=== "generator-data"
-    !!! summary "Description"
-        Returns the raw data stored for the requested generator object. 
-
-        Since 2.4.0 version.
-
-    !!! question "Input"
-        - `generator`: String - the UUID of the generator.
-
-    !!! success "Output"
-        The output is a `Map<String, Object>` which contains raw generator data.
-        
-        Output map contains:
-
-        - `uniqueId`: String - the unique ID of the generator. Should be the same as in input.
-        - `friendlyName`: String - the display name of the generator (unformatted).
-        - `description`: List<String> - the list of strings for the lore message (unformatted).
-        - `generatorType`: String - the type of the generator. Available types:
-
-            - COBBLESTONE
-            - STONE
-            - BASALT
-            - COBBLESTONE_OR_STONE
-            - BASALT_OR_COBBLESTONE
-            - BASALT_OR_STONE
-            - ANY
-
-        - `generatorIcon`: ItemStack - the itemStack of the generator icon.
-        - `lockedIcon`: ItemStack - the itemStack of the locked generator icon.
-        - `defaultGenerator`: boolean - the boolean that indicates if generator is default or not.
-        - `priority`: int - the priority vaule of the generator.
-        - `requiredMinIslandLevel`: int - the minimal island level for generator to work.
-        - `requiredBiomes`: Set<Biome> - the set of required biomes for generator to work.
-        - `requiredPermissions`: Set<String> - the set of required permissions for generator to be purchasable.
-        - `generatorTierCost`: double - the price of the generator.
-        - `activationCost`: double - the activation price of the generator.
-        - `deployed`: boolean - the boolean that indicates if generator is available for players.
-        - `blockChanceMap`: TreeMap<Double, Material> - the map that contains raw data for block chances.
-        - `treasureItemChanceMap`: TreeMap<Double, ItemStack> - the map that contains raw data for treasure chances.
-        - `treasureChance`: double - the value of the treasure to be dropped from generating block.
-        - `maxTreasureAmount`: int - the maximal amount of treasures to be dropped at once.
-
-    !!! failure
-        This handler will return null if the `generator` has not been provided or an empty map if `generator` does not exist.
-
-    !!! example "Code example"
-        ```java
-        public Map<String, Object> getGeneratorData(String generatorId) {
-            return (List<String>) new AddonRequestBuilder()
-                .addon("MagicCobblestoneGenerator")
-                .label("generator-data")
-                .addMetaData("generator", generatorId)
-                .request();
-        }
-        ```
+??? question "我可以禁用在生成器描述中显示所需权限吗？"
+    是的，插件为显示每个生成器提供了许多自定义选项。它位于locales文件中：

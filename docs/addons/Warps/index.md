@@ -1,77 +1,75 @@
-# Warps
+# 传送点
 
-**Warps** enables players to add a personal warp signs to their island.
+**Warps** 允许玩家在他们的岛屿上添加个人传送标志。
 
-Created and maintained by [tastybento](https://github.com/tastybento).
+由 [tastybento](https://github.com/tastybento) 创建和维护。
 
 {{ addon_description("Warps") }}
 
-## Installation
+## 安装
 
-1. Place the Warps addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. The addon will create a data folder and inside the folder will be a config.yml
-4. Edit the config.yml how you want.
-5. Restart the server if you make a change
+1. 将 Warps 插件 jar 文件放入 BentoBox 插件的 addons 文件夹
+2. 重启服务器
+3. 插件将创建一个数据文件夹,里面有一个 config.yml
+4. 根据需要编辑 config.yml。
+5. 如果进行了更改,请重启服务器
 
-## Configuration
+## 配置
 
 ### config.yml
 
-After addon is successfully installed, it will create config.yml file. Every option in this file comes with comments about them. Please check file for more information.
-You can find the latest config file: [config.yml](https://github.com/BentoBoxWorld/Warps/blob/develop/src/main/resources/config.yml)
+插件成功安装后,它将创建 config.yml 文件。此文件中的每个选项都带有关于它们的注释。请查看文件以获取更多信息。
+你可以找到最新的配置文件: [config.yml](https://github.com/BentoBoxWorld/Warps/blob/develop/src/main/resources/config.yml)
 
-??? question "What is warp restriction?"
-    This limits warp sign creation to players who have at least a certain level of island. It requires the Level addon
-    and the default level is 10.
+??? question "什么是传送限制?"
+    这限制了对至少拥有一定岛屿等级的玩家创建传送标志。它需要 Level 插件,默认等级为 10。
 
-??? question "What is welcome text"
-    This is the text that player must put on sign to make it a warp sign, e.g., [Welcome]. It is not case sensitive!
-    
-    This text must be in the top line.
+??? question "什么是欢迎文本?"
+    这是玩家必须放在标志上以使其成为传送标志的文本,例如 [Welcome]。它不区分大小写!
 
-??? question "What is disabled GameModes?"
-    This list stores GameModes in which Warps addon should not work.
+    此文本必须在顶行。
 
-    To disable addon it is necessary to write its name in new line that starts with -. Example:
+??? question "什么是禁用的游戏模式?"
+    此列表存储 Warps 插件不应在其中工作的游戏模式。
+
+    要禁用插件,必须在以 - 开头的新行中写入其名称。示例:
     ```
       disabled-gamemodes:
        - BSkyBlock
     ```
 
-??? question "What is lore format?"
-    Lore format allows changing default color for description lines in sign. Description lines are used in GUI. 
+??? question "什么是 lore 格式?"
+    Lore 格式允许更改标志中描述行的默认颜色。描述行用于 GUI 中。
 
-    Description lines contains sign lines that are bellow [welcome] text.
+    描述行包含在 [welcome] 文本下方的标志行。
 
-??? question "What is doing allow in other worlds?"
-    This enables warp signs to be placed in *any* world, even non-BentoBox worlds. 
+??? question "什么是允许在其他世界中?"
+    这允许在*任何*世界中放置传送标志,即使是非 BentoBox 世界。
 
-    Players must have the `welcomewarpsigns.warp` permission to use.
+    玩家必须拥有 `welcomewarpsigns.warp` 权限才能使用。
 
-??? question "What is warp and warps?"
-    The command `warp` requires `<player>` to which warp should happen, while `warps` opens menu that allows to choose a player.
+??? question "什么是 warp 和 warps?"
+    命令 `warp` 需要 `<player>` 来指定应该传送到哪里,而 `warps` 打开一个菜单,允许选择玩家。
 
-    If you have enabled `allow in other worlds` then it will be as a main command `/warp`
-    
-    While for each BentoBox GameMode it still will be `/[player_cmd] warp`
-    
+    如果你启用了 `allow in other worlds`,那么它将作为主命令 `/warp`
 
-### Customizable GUI's
+    而对于每个 BentoBox 游戏模式,它仍将是 `/[player_cmd] warp`
 
-BentoBox 1.17 API introduced a function that allows to implement customizable GUI's. This addon is one of the first one which uses this functionality. We tried to be as simple as possible for customization, however, some features requires explanation.
-You can find more information how BentoBox custom GUI's works here: [Custom GUI's](/en/latest/Tutorials/generic/Customizable-GUI/)
+### 可自定义 GUI
 
-??? question "How can I customize GUI's"
-    To customize Addon GUI's you need to have version 1.12. This is a first version that has implemented them. Addon will create a new directory under `/plugins/BentoBox/addons/Warps` with a name `panels`
+BentoBox 1.17 API 引入了一个允许实现可自定义 GUI 的功能。此插件是最早使用此功能的插件之一。我们尽量让自定义变得简单,但有些功能需要解释。
+你可以在这里找到更多关于 BentoBox 自定义 GUI 如何工作的信息: [Custom GUI's](/en/latest/Tutorials/generic/Customizable-GUI/)
 
-??? question "What does `PREVIOUS`|`NEXT` button type?"
-    The PREVIOUS and NEXT button types allows creating automatic paging, when you have more islands than spaces in GUI.
-    These types have extra parameters under data:
- 
-    - `indexing` - indicates if button will show page number.
+??? question "我如何自定义 GUI?"
+    要自定义插件 GUI,你需要 1.12 版本。这是第一个实现它们的版本。插件将在 `/plugins/BentoBox/addons/Warps` 下创建一个名为 `panels` 的新目录
 
-    Example: 
+??? question "`PREVIOUS`|`NEXT` 按钮类型是什么?"
+    PREVIOUS 和 NEXT 按钮类型允许在岛屿多于 GUI 中的空间时创建自动分页。
+    这些类型在 data 下有额外的参数:
+
+    - `indexing` - 指示按钮是否显示页码。
+
+    示例:
     ```yaml
         icon: tipped_arrow{CustomPotionColor:11546150}
         title: warps.gui.buttons.previous.name
@@ -85,11 +83,11 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: warps.gui.tips.click-to-previous
     ```
 
-??? question "What is `RANDOM` button type?"
-    This button allows players teleporting to a random warp.
-    It is available only if there are more than 1 warp.
+??? question "`RANDOM` 按钮类型是什么?"
+    此按钮允许玩家传送到随机传送点。
+    仅当有多个传送点时才可用。
 
-    Example: 
+    示例:
     ```yaml
         icon: DROPPER
         title: warps.gui.buttons.random.name
@@ -102,14 +100,14 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: warps.gui.tips.click-to-warp
     ```
 
-??? question "What is `WARP` button type?"
-    The WARP button creates a dynamic entry for a warp object.
+??? question "`WARP` 按钮类型是什么?"
+    WARP 按钮为传送点对象创建一个动态条目。
 
-    Specifying title, description and icon will overwrite dynammic generation based on sign and database data. By default these values will be generated from database entries.
-    
-    Icon PLAYER_HEAD will be replaced with owner player head. However, currently there is no option to specify differnet player head.
+    指定标题、描述和图标将覆盖基于标志和数据库数据的动态生成。默认情况下,这些值将从数据库条目生成。
 
-    Example: 
+    图标 PLAYER_HEAD 将被所有者玩家头替换。但是,目前没有指定不同玩家头的选项。
+
+    示例:
     ```yaml
         warp_button:
           icon: PLAYER_HEAD
@@ -123,55 +121,54 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
               tooltip: warps.gui.tips.click-to-warp
     ```
 
-
-## Commands
-
-!!! tip
-    `[player_command]` is command that differ depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify these values.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`.
-    Be aware, that this addon allows changing player commands aliases in addon `config.yml` file. 
-
-=== "Player commands"
-    - `/[player_command] warp <player>`: warps player to targeted sign.
-    - `/[player_command] warps`: opens GUI that allows to view all available warp signs.
-
-## Permissions
+## 命令
 
 !!! tip
-    `[gamemode]` is a prefix that differs depending on the gamemode you are running.
-    The prefix is the lowercased name of the gamemode, i.e. if you are using BSkyBlock, the prefix is `bskyblock`.
-    Similarly, if you are using AcidIsland, the prefix is `acidisland`.
+    `[player_command]` 是根据你运行的游戏模式而不同的命令。
+    游戏模式的 `config.yml` 文件包含允许你修改这些值的选项。
+    例如,在 BSkyBlock 中,默认的 `[player_command]` 是 `island`。
+    请注意,此插件允许在插件 `config.yml` 文件中更改玩家命令别名。
 
-=== "Player permissions"
-    - `[gamemode].island.warp` - Player can use `/[player_command] warp` and `/[player_command] warps` commands. Enabled by default.
-    - `[gamemode].island.addwarp` - Players can create warp signs. Enabled by default.
-    - `welcomewarpsigns.warp` - Player can use `/warp` and `/warps` commands. Disabled by default. Requires `allow-in-other-worlds`.
-    - `welcomewarpsigns.addwarp` - Players can create warp signs. Disabled by default. Requires `allow-in-other-worlds`.
- 
-??? question "Something is missing?"
-    You can find the comprehensive list of permissions in the [addon.yml](https://github.com/BentoBoxWorld/Warps/blob/develop/src/main/resources/addon.yml) file of this addon.  
-    If something is indeed missing from the list below, please let us know!
+=== "玩家命令"
+    - `/[player_command] warp <player>`: 将玩家传送到目标标志。
+    - `/[player_command] warps`: 打开允许查看所有可用传送标志的 GUI。
 
-## FAQ
+## 权限
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/Warps/issues).
+!!! tip
+    `[gamemode]` 是一个根据你运行的游戏模式而不同的前缀。
+    前缀是游戏模式的小写名称,即如果你使用 BSkyBlock,前缀就是 `bskyblock`。
+    类似地,如果你使用 AcidIsland,前缀就是 `acidisland`。
 
-??? question "I have a bug, where should I report it?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/Warps/issues).
+=== "玩家权限"
+    - `[gamemode].island.warp` - 玩家可以使用 `/[player_command] warp` 和 `/[player_command] warps` 命令。默认启用。
+    - `[gamemode].island.addwarp` - 玩家可以创建传送标志。默认启用。
+    - `welcomewarpsigns.warp` - 玩家可以使用 `/warp` 和 `/warps` 命令。默认禁用。需要 `allow-in-other-worlds`。
+    - `welcomewarpsigns.addwarp` - 玩家可以创建传送标志。默认禁用。需要 `allow-in-other-worlds`。
 
-## Translations
+??? question "有缺失的内容吗?"
+    你可以在此插件的 [addon.yml](https://github.com/BentoBoxWorld/Warps/blob/develop/src/main/resources/addon.yml) 文件中找到完整的权限列表。
+    如果下面的列表中确实缺少了什么,请告诉我们!
+
+## 常见问题
+
+??? question "你能添加 X 功能吗?"
+    请将其添加到[这里](https://github.com/BentoBoxWorld/Warps/issues)的列表中。
+
+??? question "我发现了一个错误,应该在哪里报告它?"
+    请将其添加到[这里](https://github.com/BentoBoxWorld/Warps/issues)的列表中。
+
+## 翻译
 
 {{ translations(2973, ["cs", "de", "es", "fr", "hu", "ja", "lv", "pl", "tr", "zh-CN", "zh-TW", "id", "it", "ru", "vi", "uk"]) }}
 
 ## Api
 
-### Events
+### 事件
 
-Since BentoBox 1.17 API implemented a feature that solved an issue with classloaders. Plugins that wants to use events directly, now can do it.
+自 BentoBox 1.17 API 实现了解决类加载器问题的功能。现在想直接使用事件的插件可以这样做。
 
-You just need to add Visit to your project as dependency. You can use Maven for that:
+你只需要将 Visit 添加到你的项目作为依赖。你可以使用 Maven 来做到这一点:
 
 ```xml
 <dependency>
@@ -183,16 +180,16 @@ You just need to add Visit to your project as dependency. You can use Maven for 
 ```
 
 === "WarpInitiateEvent"
-    !!! summary "Description"
-        Event that is triggered after player created a new warp sign.
+    !!! summary "描述"
+        玩家创建新的传送标志后触发的事件。
 
-        Link to the class: [WarpInitiateEvent](https://github.com/BentoBoxWorld/Warps/blob/develop/src/main/java/world/bentobox/warps/event/WarpInitiateEvent.java)
+        链接到类: [WarpInitiateEvent](https://github.com/BentoBoxWorld/Warps/blob/develop/src/main/java/world/bentobox/warps/event/WarpInitiateEvent.java)
 
-    !!! question "Variables"
-        - `UUID player` - id of the player who creates warp sign.
-        - `Location warpLoc` - the location of warp sign.
- 
-    !!! example "Code example"
+    !!! question "变量"
+        - `UUID player` - 创建传送标志的玩家的 ID。
+        - `Location warpLoc` - 传送标志的位置。
+
+    !!! example "代码示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onWarpInitiate(WarpInitiateEvent event) {
@@ -202,17 +199,17 @@ You just need to add Visit to your project as dependency. You can use Maven for 
         ```
 
 === "WarpRemoveEvent"
-    !!! summary "Description"
-        Event that is triggered after player created a new warp sign.
+    !!! summary "描述"
+        玩家创建新的传送标志后触发的事件。
 
-        Link to the class: [WarpRemoveEvent](https://github.com/BentoBoxWorld/Warps/blob/develop/src/main/java/world/bentobox/warps/event/WarpRemoveEvent.java)
+        链接到类: [WarpRemoveEvent](https://github.com/BentoBoxWorld/Warps/blob/develop/src/main/java/world/bentobox/warps/event/WarpRemoveEvent.java)
 
-    !!! question "Variables"
-        - `UUID owner` - id of the player who owns warp sign.
-        - `UUID remover` - id of the player who removes warp sign.
-        - `Location warpLoc` - the location of warp sign.
- 
-    !!! example "Code example"
+    !!! question "变量"
+        - `UUID owner` - 拥有传送标志的玩家的 ID。
+        - `UUID remover` - 移除传送标志的玩家的 ID。
+        - `Location warpLoc` - 传送标志的位置。
+
+    !!! example "代码示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onWarpRemove(WarpRemoveEvent event) {

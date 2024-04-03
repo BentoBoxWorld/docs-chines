@@ -1,24 +1,9 @@
-<h2><b>Limits</b> (addon.yml)</h2>
-Replace [gamemode] with the name of the game mode, e.g., bskyblock, acidiland, etc.
-<table align='center'>
-<tr>
-<td align='left'><b>Permission</b></td>
-<td align='left'><b>Enable For</b></td>
-<td align='left'><b>Description</b></td>
-</tr>
-<tr>
-<td align='left' nowrap=nowrap>[gamemode].mod.bypass</td>
-<td align='left' nowrap=nowrap>op</td>
-<td align='left' nowrap=nowrap>Player can bypass limits</td>
-</tr>
-<tr>
-<td align='left' nowrap=nowrap>[gamemode].limits.admin.limits</td>
-<td align='left' nowrap=nowrap>op</td>
-<td align='left' nowrap=nowrap>Player can use admin limits command</td>
-</tr>
-<tr>
-<td align='left' nowrap=nowrap>[gamemode].limits.player.limits</td>
-<td align='left' nowrap=nowrap>true</td>
-<td align='left' nowrap=nowrap>Player can use limits command</td>
-</tr>
-</table>
+## 限制 (addon.yml)
+
+将[gamemode]替换为游戏模式的名称，例如bskyblock, acidiland等。
+
+| 权限                                  | 启用对于 | 描述                   |
+|--------------------------------------|---------|-----------------------|
+| [gamemode].mod.bypass                | op      | 玩家可以绕过限制        |
+| [gamemode].limits.admin.limits       | op      | 玩家可以使用管理员限制命令 |
+| [gamemode].limits.player.limits      | true    | 玩家可以使用限制命令     |

@@ -1,42 +1,55 @@
-# InvSwitcher
+**\# InvSwitcher**
 
-**InvSwitcher** separates player inventories and other aspects between the various worlds.
+**InvSwitcher** 在不同世界之间分离玩家物品栏和其他方面。
 
-Created and maintained by [tastybento](https://github.com/tastybento).
+由 \[tastybento\](https://github.com/tastybento) 创建和维护。
 
-{{ addon_description("InvSwitcher") }}
+{{ addon\_description("InvSwitcher") }}
 
-The following are switched per-world:
+以下内容在每个世界之间独立:
 
-* Inventory & armor
-* Advancements
-* Food level
-* Experience
-* Health
-* Game mode (creative, survival, etc.)
+\* 物品栏和盔甲  
 
-## How to use
+\* 进度
 
-1. Place the addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. Done!
+\* 饥饿度  
 
-## Config.yml
+\* 经验值
 
-There is no config.yml.
+\* 生命值
 
-## Commands
+\* 游戏模式(创造、生存等)
 
-There are no commands.
+**\## 如何使用**
 
-## What it does
-This addon will give players a separate inventory, health, food level, advancements and experience for each gamemode installed and their corresponding worlds. It enables players to play each gamemode independently of each other.
+1\. 将插件 jar 文件放入 BentoBox 插件的 addons 文件夹
 
-## An example
-**BSkyBlock**'s Inventory, Health, Food level, Advancements and Experience are shared only between its corresponding worlds:
-- BSkyBlock_world
-- BSkyBlock_world_nether
-- BSkyBlock_world_the_end
+2\. 重启服务器
 
-**Please note:**
-- It is not limited to just BentoBox worlds. It applies to all worlds on the server (right now).
+3\. 完成!
+
+**\## Config.yml**
+
+没有 config.yml。
+
+**\## 命令**
+
+没有命令。
+
+**\## 它的作用**
+
+这个插件将为玩家在每个已安装的游戏模式及其对应的世界中提供独立的物品栏、生命值、饥饿度、进度和经验值。它使玩家能够独立地玩每个游戏模式。
+
+**\## 一个例子**
+
+**BSkyBlock** 的物品栏、生命值、饥饿度、进度和经验值仅在其相应的世界之间共享: 
+
+\- BSkyBlock\_world
+
+\- BSkyBlock\_world\_nether
+
+\- BSkyBlock\_world\_the\_end
+
+**请注意:**
+
+\- 它不仅限于 BentoBox 世界。它适用于服务器上的所有世界(目前)。

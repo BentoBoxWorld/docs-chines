@@ -1,84 +1,84 @@
 # CauldronWitchery
 
-**CauldronWitchery** lets your players **summon any kind of mob or item using a cauldron** filled with water, lava or snow and a magic stick.
+**CauldronWitchery** 允许你的玩家 **使用装满水、岩浆或雪的炼药锅和一根魔法棒来召唤任何种类的生物或物品**。
 
-Created and maintained by [BONNe](https://github.com/BONNe).
+由 [BONNe](https://github.com/BONNe) 创建和维护。
 
 {{ addon_description("CauldronWitchery", beta=True) }}
 
-## Installation
+## 安装
 
-1. Place the addon jar in the addons folder of the BentoBox plugin
-2. Start the server
-3. Run the admin command, e.g., `/[admin_cmd] witchery` to configure the addon
+1. 将插件 jar 文件放入 BentoBox 插件的 addons 文件夹
+2. 启动服务器 
+3. 运行管理员命令,例如 `/[admin_cmd] witchery` 来配置插件
 
-## Configuration
+## 配置
 
-Similar to the challenges, biomes and generators, Cauldron Witchery stores all data inside the database. The config file contains generic option about the addon and how it should operate, while everything else, like magic sticks and player data are stored into database.
+与挑战、生物群系和生成器类似,Cauldron Witchery 将所有数据存储在数据库中。配置文件包含有关插件及其运行方式的通用选项,而其他所有内容,如魔法棒和玩家数据都存储在数据库中。
 
 ### config.yml
 
-The latest config.yml can be found [here](https://github.com/BentoBoxWorld/CauldronWitchery/blob/develop/src/main/resources/config.yml).
+最新的 config.yml 可以在[这里](https://github.com/BentoBoxWorld/CauldronWitchery/blob/develop/src/main/resources/config.yml)找到。
 
-### Template
+### 模板
 
-CauldronWitchery addon contains a template file which can be used to import magic sticks into database. This file is useful for bulk data adding for people that do not like to use ingame-gui. However, be aware, that not all functions are available for the template file, and some items/options can be added only via GUI.
-You can have as many template files as you want. Admin GUI will allow choosing which one you want to import.
-The example template file: [template.yml](https://github.com/BentoBoxWorld/CauldronWitchery/blob/develop/src/main/resources/template.yml)
+CauldronWitchery 插件包含一个模板文件,可用于将魔法棒导入数据库。这个文件对于不喜欢使用游戏内 GUI 的人来说,批量添加数据非常有用。但是请注意,模板文件并非支持所有功能,有些物品/选项只能通过 GUI 添加。
+你可以拥有任意数量的模板文件。管理员 GUI 将允许选择要导入的文件。
+示例模板文件: [template.yml](https://github.com/BentoBoxWorld/CauldronWitchery/blob/develop/src/main/resources/template.yml)
 
 !!! tip
-    The template file must contain `magic-sticks`.
+    模板文件必须包含 `magic-sticks`。
 
-??? question "Can I specify an enchantment for magic stick?"
-    Unfortunately Spigot does not have a general item parsing mechanics. So plugin authors need to create their own. CauldronWitchery addon uses BentoBox [Item Parser](/en/latest/BentoBox/ItemParser/). If function is not supported by it, then you cannot. 
+??? question "我可以为魔法棒指定附魔吗?"
+    不幸的是,Spigot 没有通用的物品解析机制。所以插件作者需要自己创建。CauldronWitchery 插件使用 BentoBox 的[物品解析器](/en/latest/BentoBox/ItemParser/)。如果它不支持某个功能,那么你就不能使用。
 
-    However, you can always use in-game admin GUI to set any items you want. There is not any limitation.
+    但是,你始终可以使用游戏内管理员 GUI 来设置你想要的任何物品。没有任何限制。
 
-??? question "The recipe I added is not picked up. What could be the reason?"
-    There could be several reasons for that. If there is obvious error, log file should contain the error message with it.
-    
-    However, you can start with checking if all recipes starts with `- ` and every item (ingredient, cauldron, level, etc) are alligned by the left side.
-    
-    Another reason could be that the entity, item or book does not exist. You should check if the input for them are correct.
+??? question "我添加的配方没有被识别。可能是什么原因?"
+    可能有几个原因。如果有明显的错误,日志文件应该包含相应的错误消息。
 
-### Books
+    但是,你可以先检查所有配方是否以 `- ` 开头,以及每个物品(原料、炼药锅、等级等)是否与左侧对齐。
 
-Books are the way how players could find recipes. The books are very customizable, however, be aware that title, author and pages has limitation of characters. I would suggest trying creating book in game with written book, and only after that put it in translation files.
+    另一个原因可能是实体、物品或书籍不存在。你应该检查它们的输入是否正确。
 
-??? question "Can add my own translations for books?"
-    Yes, definitely you can. You can add it via [book_id]-[locale_code].yml or changing existing one. 
+### 书籍 
 
-??? question "Can I disable automatic recipe generation?"
-    Yes, just remove `recipe` section from the book.
+书籍是玩家如何找到配方的方式。书籍是非常可定制的,但请注意,标题、作者和页面有字符限制。我建议先在游戏中用成书尝试创建书籍,然后再将其放入翻译文件中。
 
-??? question "Can I add more books?"
-    Yes, just create a new file under `books` directory. File must be named `[book_id]-[locale_code].yml` and it must start with `[book_id]:`.
+??? question "我可以为书籍添加自己的翻译吗?"
+    是的,你当然可以。你可以通过 [book_id]-[locale_code].yml 添加,或者更改现有的文件。
 
-## Customizable GUI's
+??? question "我可以禁用自动生成配方吗?"
+    可以,只需从书籍中删除 `recipe` 部分即可。
 
-BentoBox 1.17 API introduced a function that allows to implement customizable GUI's. This addon is one of the first one which uses this functionality. We tried to be as simple as possible for customization, however, some features requires explanation.
-You can find more information how BentoBox custom GUI's works here: [Custom GUI's](/en/latest/Tutorials/generic/Customizable-GUI/)
+??? question "我可以添加更多书籍吗?"
+    可以,只需在 `books` 目录下创建一个新文件。文件必须命名为 `[book_id]-[locale_code].yml`,并且必须以 `[book_id]:` 开头。
 
-??? question "How can I customize GUI's"
-    To customize Addon GUI's you need to have version 2.0. This is a first version that has implemented them. Addon will create a new directory under `/plugins/BentoBox/addons/CauldronWitchery` with a name `panels`
+## 可自定义的 GUI
 
-    Currently you can customize 2 GUI's:
+BentoBox 1.17 API 引入了一个允许实现可自定义 GUI 的功能。这个插件是最早使用此功能的插件之一。我们尽量让自定义变得简单,但有些功能需要解释。
+你可以在这里找到更多关于 BentoBox 自定义 GUI 如何工作的信息: [自定义 GUI](/en/latest/Tutorials/generic/Customizable-GUI/)
 
-    - Stick Panel: `stick_panel` - panel that contains all magic sticks and users can purchase or get them.
-    - Recipe Panel: `recipe_panel` - panel that contains all recipes that are available for the magic stick.
+??? question "我如何自定义 GUI?"
+    要自定义插件的 GUI,你需要 2.0 版本。这是第一个实现它们的版本。插件会在 `/plugins/BentoBox/addons/CauldronWitchery` 下创建一个名为 `panels` 的新目录。
 
-    Each GUI contains functions that is supported only by itself.
+    目前你可以自定义 2 个 GUI:
 
-??? question "What does `PREVIOUS`|`NEXT` button type?"
-    The PREVIOUS and NEXT button types allows creating automatic paging, when you have more sticks or recipes than spaces in GUI.
-    These types have extra parameters under data:
- 
-    - `indexing` - indicates if button will show page number.
+    - 魔法棒面板: `stick_panel` - 包含所有魔法棒的面板,用户可以购买或获得它们。
+    - 配方面板: `recipe_panel` - 包含魔法棒可用的所有配方的面板。 
 
-    Example: 
+    每个 GUI 都包含仅由其自身支持的功能。
+
+??? question "`PREVIOUS`|`NEXT` 按钮类型是什么?"
+    PREVIOUS 和 NEXT 按钮类型允许在魔法棒或配方多于 GUI 中的空间时创建自动分页。
+    这些类型在 data 下有额外的参数:
+
+    - `indexing` - 指示按钮是否显示页码。
+
+    示例:
     ```yaml
         icon: tipped_arrow{CustomPotionColor:11546150}
-        title: cauldron-witchery.gui.buttons.previous.name
+        title: cauldron-witchery.gui.buttons.previous.name  
         description: cauldron-witchery.gui.buttons.previous.description
         data:
           type: PREVIOUS
@@ -88,10 +88,10 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: cauldron-witchery.gui.tips.click-to-previous
     ```
 
-??? question "What does `RETURN` button type?"
-    The RETURN button type is available in recipe_panel. It allows returning to the sticks panel.
+??? question "`RETURN` 按钮类型是什么?"
+    RETURN 按钮类型在 recipe_panel 中可用。它允许返回到魔法棒面板。
 
-    Example: 
+    示例:
     ```yaml
         icon: OAK_DOOR
         title: cauldron-witchery.gui.buttons.return.name
@@ -103,25 +103,25 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: cauldron-witchery.gui.tips.click-to-return
     ```
 
-??? question "What is `STICK` button type?"
-    This button is available in stick_panel.
-    The STICK button creates a dynamic entry for a magic stick. Button will be filled only if there exist a magic stick. F.e. if you have only 3 magic sticks, but defined 7 spots for them in the GUI, then only 3 spots will be filled. Other spots will be left empty.
+??? question "`STICK` 按钮类型是什么?"
+    此按钮在 stick_panel 中可用。
+    STICK 按钮为魔法棒创建一个动态条目。只有存在魔法棒时,按钮才会被填充。例如,如果你只有 3 根魔法棒,但在 GUI 中为它们定义了 7 个位置,那么只有 3 个位置会被填充。其他位置将保持为空。
 
-    By default sticks will be ordered by their order numbers, however, you can specify a specific stick to be in a specific slot with `id` parameter under data.
-    
+    默认情况下,魔法棒将按照它们的顺序号排序,但是,你可以使用 data 下的 `id` 参数指定特定的魔法棒放在特定的位置。
+
     ```yaml
       data:
         type: STICK
         id: example_stick
     ```
 
-    Specifying title, description and icon will overwrite dynammic generation based on database data. By default these values will be generated from database entries.
-    This button supports 2 different action types:
+    指定标题、描述和图标将覆盖基于数据库数据的动态生成。默认情况下,这些值将从数据库条目生成。
+    此按钮支持 2 种不同的操作类型:
 
-    - RECIPES - opens a recipe view panel
-    - PURCHASE - purchases or gives the magic stick for a player.
+    - RECIPES - 打开配方视图面板
+    - PURCHASE - 为玩家购买或给予魔法棒。
 
-    Example: 
+    示例:
     ```yaml
       data:
         type: STICK
@@ -130,67 +130,66 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
           type: RECIPES
           tooltip: cauldron-witchery.gui.tips.left-click-to-view
         right:
-          type: PURCHASE
+          type: PURCHASE  
           tooltip: cauldron-witchery.gui.tips.right-click-to-buy
     ```
 
+??? question "`RECIPE` 按钮类型是什么?"
+    此按钮在 recipe_panel 中可用。
+    RECIPE 按钮为配方创建一个动态条目。只有存在配方时,按钮才会被填充。例如,如果你只有 3 个配方,但在 GUI 中为等级定义了 7 个位置,那么只有 3 个位置会被填充。其他位置将保持为空。
 
-??? question "What is `RECIPE` button type?"
-    This button is available in recipe_panel.
-    The RECIPE button creates a dynamic entry for a recipe. Button will be filled only if there exist a recipe. F.e. if you have only 3 recipes, but defined 7 spots for level in the GUI, then only 3 spots will be filled. Other spots will be left empty.
+    默认情况下,配方将按照它们的顺序号排序,然后按照奖励物品名称排序。
+    指定标题、描述和图标将覆盖基于数据库数据的动态生成。默认情况下,这些值将从数据库条目生成。
 
-    By default recipes will be ordered by their order number and then by their reward item name.
-    Specifying title, description and icon will overwrite dynammic generation based on database data. By default these values will be generated from database entries.
-    
-    Example: 
+    示例:
     ```yaml
       data:
         type: RECIPE
     ```
 
-## FAQ
+## 常见问题
 
-??? question "How does recipes works?"
-    All recipes require 3 things:
-    
-    - Magic Stick in the player main hand
-    - Main Ingredient in the player offhand
-    - Extra Ingredients
+??? question "配方如何工作?"
+    所有配方都需要 3 样东西:
 
-    Extra Ingredients must be dropped into cauldron or kept in inventory. This depends on addon config option: `mix-in-cauldron`. If option is disabled, then items must be in player inventory.
-    
-    If nothing is missing, recipe will work.
+    - 玩家主手中的魔法棒
+    - 玩家副手中的主要原料
+    - 额外原料
 
-??? question "Can I add custom magic stick item?"
-    Yes, as long as Spigot supports them. However, you will not be able to do it via template file. Only Admin GUI supports custom item adding.
+    额外原料必须丢入炼药锅或保存在物品栏中。这取决于插件的配置选项: `mix-in-cauldron`。如果禁用该选项,则物品必须在玩家的物品栏中。
 
-??? question "How players can get magic sticks?"
-    Players can buy magic sticks using `/[player_cmd] witchery` command. 
+    如果没有任何缺失,配方就会生效。
 
-    Admins can also create their own way how to distribute sticks. There is an admin command to generate them:
-   
+??? question "我可以添加自定义魔法棒物品吗?"
+    可以,只要 Spigot 支持它们。但是,你无法通过模板文件来实现。只有管理员 GUI 支持添加自定义物品。
+
+??? question "玩家如何获得魔法棒?"
+    玩家可以使用 `/[player_cmd] witchery` 命令购买魔法棒。
+
+    管理员也可以创建自己的分发魔法棒的方式。有一个管理员命令可以生成它们:
+
     `/[admin_cmd] witchery get stick <stick_id>`
 
-??? question "What is the difference between main ingredient and extra ingredient?"
-    The main ingredient is always the "last" item player needs to have for recipe. It is always an item in player offhand.
+??? question "主要原料和额外原料有什么区别?"
+    主要原料始终是玩家需要的"最后"一个物品。它始终是玩家副手中的物品。
 
-    Extra ingredients are items that must be either in player inventory or dropped into cauldron (depending on config).
+    额外原料是必须在玩家物品栏中或丢入炼药锅中的物品(取决于配置)。
 
-??? question "Items are not burning in lava cauldron, and they are not despawning?"
-    If `mix-in-cauldron` option is enabled in addon settings, then no items will burn in lava cauldron and they will not despawn.
-    It is necessary for addon operation, as there can be recipes that requires lava cauldron. These recipes would not be possible
-    to fulfill if items were burning off. Item depsawning inside cauldron is disabled just as protective measure. 
+??? question "物品在岩浆炼药锅中不会燃烧,也不会消失?"
+    如果在插件设置中启用了 `mix-in-cauldron` 选项,那么岩浆炼药锅中的物品不会燃烧,也不会消失。
+    这对插件的运行是必要的,因为可能有需要岩浆炼药锅的配方。如果物品会燃烧掉,这些配方就无法完成。
+    仅作为保护措施禁用了炼药锅内物品消失。
 
-??? question "Anyone on my island can use magic sticks. Can I prevent it?"
-    Yes, you can limit which user groups can use the sticks using Island Protection Flags.
-    CauldronWitchery adds `CAULDRON_WITCHERY_ISLAND_PROTECTION` which can be toggled from island visitor till owner.
+??? question "我岛上的任何人都可以使用魔法棒。我可以阻止吗?"
+    可以,你可以使用岛屿保护标志限制哪些用户组可以使用魔法棒。
+    CauldronWitchery 添加了 `CAULDRON_WITCHERY_ISLAND_PROTECTION`,可以从岛屿访客切换到所有者。
 
-    Users outside member group will not be able to use magic sticks on island.
+    不属于成员组的用户将无法在岛上使用魔法棒。
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/CauldronWitchery/issues).
+??? question "你能添加 X 功能吗?"
+    请将其添加到[这里](https://github.com/BentoBoxWorld/CauldronWitchery/issues)的列表中。
 
 
-## Translations
+## 翻译
 
 {{ translations(2976, ["lv", "zh-CN"]) }}

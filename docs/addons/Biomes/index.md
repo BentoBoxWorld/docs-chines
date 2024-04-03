@@ -1,93 +1,95 @@
-# Biomes
+# 生态区
 
-**Biomes** lets your players **change the biome** on their island.
+**生态区**允许您的玩家在他们的岛屿上**改变生态区**。
 
-Created and maintained by [BONNe](https://github.com/BONNe).
+由[BONNe](https://github.com/BONNe)创建和维护。
 
 {{ addon_description("Biomes", beta=True) }}
 
-## Installation
+## 安装
 
-1. Put the addon jar in the `plugins/BentoBox/addons` folder.
-2. Start and stop the server to let Biomes generate its configuration files.
-3. Edit the [`config.yml`](#config.yml) and [`biomesTemplate.yml`](#Template) files (you can find them in the `plugins/BentoBox/addons/Biomes` folder).
-4. Restart the server.
-5. Import the biomes into the gamemode.
+1. 将插件 jar 文件放到 `plugins/BentoBox/addons` 文件夹中。
+2. 启动并停止服务器，让生态区生成其配置文件。
+3. 编辑[`config.yml`](#config.yml)和[`biomesTemplate.yml`](#Template)文件（你可以在`plugins/BentoBox/addons/Biomes`文件夹中找到它们）。
+4. 重启服务器。
+5. 将生态区导入到游戏模式中。
 
-## Configuration
+## 配置
 
 ### config.yml
 
-After addon is successfully installed, it will create config.yml file. Every option in this file comes with comments about them. Please check file for more information.
-You can find the latest config file: [config.yml](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/resources/config.yml)
+插件安装成功后，它将创建config.yml文件。这个文件中的每个选项都附有注释。请查阅文件以获取更多信息。
+你可以在这里找到最新的配置文件：[config.yml](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/resources/config.yml)
 
-### Template
+### 模板
 
-!!! warning
-    Unlike usual configuration files, the changes you make to the `biomesTemplate.yml` file are not automatically taken into account when starting the server.  
-    You must import manually the changes you made and eventually override them if you already imported a previous configuration.
+!!! 警告
+    与通常的配置文件不同，你对`biomesTemplate.yml`文件所做的更改在启动服务器时不会自动被考虑。  
+    你必须手动导入所做的更改，并最终覆盖之前已导入的配置。
 
-This file contains all necessary information about default biomes.
-If you change values in biomes.yml, then to apply them, you must run **/[admin_command] biomes**.
+此文件包含有关默认生态区的所有必要信息。
+如果你在biomes.yml中更改了值，那么要应用它们，你必须运行 **/[admin_command] biomes**。
 
-Default template file can be found here: [biomesTemplate.yml](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/resources/biomesTemplate.yml)
+默认模板文件可以在这里找到：[biomesTemplate.yml](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/resources/biomesTemplate.yml)
 
-!!! info "Useful resources about biomes"
-    - [Comprehensive list of available biomes on Spigot](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Biome.html)
-    - ["Biome" page on the official Minecraft wiki](https://minecraft.gamepedia.com/Biome)
+!!! 信息 "关于生态区的有用资源"
+    - [Spigot上可用生态区的综合列表](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/Biome.html)
+    - [官方Minecraft wiki上的“生态区”页面](https://minecraft.gamepedia.com/Biome)
 
-??? Template file Structure
+??? 模板文件结构
     ```
-    biomes:                                      # Internal Data Structure. DO NOT CHANGE!
-      <unique_name>:                             # Unique name for the biome. Required!
-        biome: <BIOME>                           # Spigot BIOME TYPE. Valid values can be found in link below. Required!
-        environment: <ENVIRONMENT>               # Spigot WORLD ENVIRONMENT TYPE. World environment value. Default Normal.
-        name: <String>                           # String. Custom name for biome. Default <unique_name>.
-        description: <String>                    # String. Some extra description in icon lore. Default empty.
-        icon: <Item>                             # BentoBox ItemParser type. Write format can be found in: https://docs.bentobox.world/en/latest/BentoBox/ItemParser/. Default Paper.
-        order: <Integer>                         # Integer. Order of current biome. Default -1.
-        unlock:                                  # Section that configures biomes unlock/buy options. Not required.
-          level: <Long>                          # Minimal island level for biome to be unlockable. Requires Level addon. Default 0.
-          permissions: [<String>]                # Set of permissions for biome to be unlockable. Default empty.
-          cost: <Double>                         # Purchase cost (once) for biome. Requires Vault and Economy plugins. Default 0.
-          items: [<Item>]                        # Set of items for purchasing biome (once). Write format for each item can be found in: https://docs.bentobox.world/en/latest/BentoBox/ItemParser/. Default empty.
-        change:                                  # Section that configures cost for each biome usage. Not required.
-          mode: <Mode>                           # Mode how cost is applied. Supported values: STATIC - price never changes, PER_BLOCK - cost is applied for each block in area, PER_USAGE - cost increases by [increment] after each usage. Default STATIC.
-          cost: <Double>                         # Biome change cost. Requires Vault and Economy plugins. Default 0.
-          items: [<Item>]                        # Set of items for changing biome. Write format for each item can be found in: https://docs.bentobox.world/en/latest/BentoBox/ItemParser/. Default empty.
-          increment: <Double>                    # Increment for all costs (money and items) if usage is set to PER_USAGE. Default 0. (works as static)
-    # Here starts the Bundle List
-    bundles:                                     # Internal Data Structure.
-      <unique_name>:                             # Unique name for the bundle. Required!
-        name: <String>                           # String. Custom name for bundle. Default <unique_name>.
-        description: <String>                    # String. Some extra description in icon lore. Default empty.
-        icon: <Item>                             # BentoBox ItemParser type. Write format can be found in: https://docs.bentobox.world/en/latest/BentoBox/ItemParser/. Default Paper.
-        biomes: [<String>]                       # Set of <unique_names> that you used in biomes section. Default empty.
+    biomes:                                      # 内部数据结构。不要更改！
+      <unique_name>:                             # 生态区的唯一名称。必需！
+        biome: <BIOME>                           # Spigot生态区类型。有效值可以在下面的链接中找到。必需！
+        environment: <ENVIRONMENT>               # Spigot世界环境类型。默认为Normal。
+        name: <String>                           # 生态区的自定义名称。默认为<unique_name>。
+        description: <String>                    # 图标描述中的一些额外描述。默认为空。
+        icon: <Item>                             # BentoBox ItemParser类型。写入格式可以在：https://docs.bentobox.world/en/latest/BentoBox/ItemParser/ 中找到。默认为纸。
+        order: <Integer>                         # 当前生态区的顺序。默认为-1。
+        unlock:                                  # 配置生态区解锁/购买选项的部分。不是必需的。
+          level: <Long>                          # 解锁生态区所需的最小岛屿等级。需要等级插件。默认为0。
+          permissions: [<String>]                # 解锁生态区所需的权限集。默认为空。
+          cost: <Double>                         # 购买生态区的费用（一次性）。需要Vault和经济插件。默认为0。
+          items: [<Item>]                        # 购买生态区所需的物品集（一次性）。每个物品的写入格式可以在：https://docs.bentobox.world/en/latest/BentoBox/ItemParser/ 中找到。默认为空。
+        change:                                  # 配置每次使用生态区的成本的部分。不是必需的。
+          mode: <Mode>                           # 应用成本的模式。支持的值：STATIC - 价格永远不变，PER_BLOCK - 每个区域内的方
+
+块都应用成本，PER_USAGE - 每次使用后成本增加[increment]。默认为STATIC。
+          cost: <Double>                         # 更改生态区的成本。需要Vault和经济插件。默认为0。
+          items: [<Item>]                        # 更改生态区所需的物品集。每个物品的写入格式可以在：https://docs.bentobox.world/en/latest/BentoBox/ItemParser/ 中找到。默认为空。
+          increment: <Double>                    # 如果使用设置为PER_USAGE，则所有成本（金钱和物品）的增量。默认为0。（作为静态）
+    # 这里开始捆绑包列表
+    bundles:                                     # 内部数据结构。
+      <unique_name>:                             # 捆绑包的唯一名称。必需！
+        name: <String>                           # 捆绑包的自定义名称。默认为<unique_name>。
+        description: <String>                    # 图标描述中的一些额外描述。默认为空。
+        icon: <Item>                             # BentoBox ItemParser类型。写入格式可以在：https://docs.bentobox.world/en/latest/BentoBox/ItemParser/ 中找到。默认为纸。
+        biomes: [<String>]                       # 在生态区部分中使用的<unique_names>集。默认为空。
     ```
 
-### Customizable GUI's
+### 可自定义的GUI
 
-BentoBox 1.17 API introduced a function that allows to implement customizable GUI's. This addon is one of the first one which uses this functionality. We tried to be as simple as possible for customization, however, some features requires explanation.
-You can find more information how BentoBox custom GUI's works here: [Custom GUI's](/en/latest/Tutorials/generic/Customizable-GUI/)
+BentoBox 1.17 API引入了一个功能，允许实现可自定义的GUI。这个插件是第一个使用这个功能的插件之一。我们试图尽可能简单地进行自定义，然而，一些功能需要解释。
+你可以在这里找到更多关于BentoBox自定义GUI如何工作的信息：[自定义GUI](/en/latest/Tutorials/generic/Customizable-GUI/)
 
-??? question "How can I customize GUI's"
-    To customize Addon GUI's you need to have version 2.0. This is a first version that has implemented them. Addon will create a new directory under `/plugins/BentoBox/addons/Biomes` with a name `panels`
+??? 问题 "如何自定义GUI"
+    要自定义插件GUI，你需要拥有2.0版本。这是第一个实现它们的版本。插件将在`/plugins/BentoBox/addons/Biomes`下创建一个名为`panels`的新目录
 
-    Currently you can customize 3 GUI's:
+    目前你可以自定义3个GUI：
 
-    - Main Panel: `main_panel` - panel that contains all biomes that users can purchase or use them.
-    - Advanced Panel: `advanced_panel` - panel that contains different ways how biome can be applied on island.
-    - Buy Panel: `buy_panel` - panel that contains biomes which player can buy.
+    - 主面板：`main_panel` - 包含所有用户可以购买或使用的生态区的面板。
+    - 高级面板：`advanced_panel` - 包含不同方式的面板，生态区可以在岛屿上应用。
+    - 购买面板：`buy_panel` - 包含玩家可以购买的生态区的面板。
 
-    Each GUI contains functions that is supported only by itself.
+    每个GUI包含只有它自己支持的函数。
 
-??? question "What does `PREVIOUS`|`NEXT` button type?"
-    The PREVIOUS and NEXT button types allows creating automatic paging, when you have more biomes than spaces in GUI.
-    These types have extra parameters under data:
+??? 问题 "什么是`PREVIOUS`|`NEXT`按钮类型？"
+    PREVIOUS和NEXT按钮类型允许创建自动分页，当你的生态区多于GUI中的空间时。
+    这些类型在数据下有额外的参数：
  
-    - `indexing` - indicates if button will show page number.
+    - `indexing` - 表示按钮是否会显示页码。
 
-    Example: 
+    示例： 
     ```yaml
         icon: tipped_arrow{CustomPotionColor:11546150}
         title: biomes.gui.buttons.previous.name
@@ -100,21 +102,23 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: biomes.gui.tips.click-to-previous
     ```
 
-??? question "What is `RETURN` button type?"
-    This button is available in all panels.
-    It creates a button that allows to return to previous menu or exit the gui. Description is generated by addon, however, like with all buttons, you can specify your own text in panel.
+??? 问题 "什么是`RETURN`按钮类型？"
+    这个按钮在所有面板中都可用。
+    它创建一个允许返回到上一个菜单或退出gui的按钮。描述由插件生成，但像所有按钮一样，你可以在面板中指定你自己的文本。
 
-    Example: 
+    示例： 
     ```yaml
         data:
           type: RETURN
     ```
 
-??? question "What is `BIOME` button type?"
-    This button is available in main_panel and buy_panel.
-    The BIOME button creates a dynamic entry for a biomes object. Button will be filled only if there exist a biome. F.e. if you have only 3 biomes, but defined 7 spots for them in the GUI, then only 3 spots will be filled. Other spots will be left empty.
+??? 问题 "什么是`BIOME`按钮类型？"
+    这个按钮在main_panel和buy_panel中可用。
+    BIOME按钮为生态区对象创建一个动态条目。只有当存在生态区时，按钮才会被填充。例如，如果你只有3个生态区，但在GUI中为它们定义了7个位置，那么只有3个位置会被填充。其余位置将
 
-    By default biomes will be ordered by their order numbers, however, you can specify a specific biome to be in a specific slot with `id` parameter under data.
+保持空白。
+
+    默认情况下，生态区将根据它们的顺序编号进行排序，然而，你可以使用`id`参数在数据下指定特定生态区在特定插槽中。
     
     ```yaml
       data:
@@ -122,21 +126,21 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
         id: example_biome
     ```
 
-    Specifying title, description and icon will overwrite dynammic generation based on database data. By default these values will be generated from database entries.
-    This button supports 3 different action types:
+    指定标题、描述和图标将覆盖基于数据库数据的动态生成。默认情况下，这些值将从数据库条目中生成。
+    这个按钮支持3种不同的操作类型：
 
-    - CHANGE - changes biome based on default update mode and default range values. Available in main_panel.
-    - ADVANCED_PANEL - opens advanced panel that allows to choose different biome update modes. Available in main_panel.
-    - BUY - purchases selected biome. Available in buy_panel.
+    - CHANGE - 根据默认更新模式和默认范围值更改生态区。在main_panel中可用。
+    - ADVANCED_PANEL - 打开允许选择不同生态区更新模式的高级面板。在main_panel中可用。
+    - BUY - 购买选定的生态区。在buy_panel中可用。
 
-    Example: 
+    示例： 
     ```yaml
       data:
         type: BIOME
       actions:
         left:
           type: CHANGE
-          # Supports ISLAND | CHUNK:NUMBER | RANGE:NUMBER
+          # 支持ISLAND | CHUNK:NUMBER | RANGE:NUMBER
           content: ISLAND
           tooltip: biomes.gui.tips.left-click-to-apply
         right: 
@@ -144,11 +148,11 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
           tooltip: biomes.gui.tips.right-click-to-open
     ```
 
-??? question "What is `PURCHASE` button type?"
-    This button is available in main_panel.
-    It creates a button that opens a new panel that contains biomes which player can buy.
+??? 问题 "什么是`PURCHASE`按钮类型？"
+    这个按钮在main_panel中可用。
+    它创建一个打开新面板的按钮，该面板包含玩家可以购买的生态区。
 
-    Example: 
+    示例： 
     ```yaml
         data:
           type: PURCHASE
@@ -158,11 +162,11 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
     ```
 
 
-??? question "What is `INCREASE|REDUCE` button type?"
-    This button is available in advanced_panel.
-    It creates a button that increases/reduces "range" for changing biome. The number by how much it increases/reduces, can be defined alongside with the button type.
+??? 问题 "什么是`INCREASE|REDUCE`按钮类型？"
+    这个按钮在advanced_panel中可用。
+    它创建一个增加/减少更改生态区“范围”的按钮。增加/减少的数字可以与按钮类型一起定义。
 
-    Example: 
+    示例： 
     ```yaml
         data:
           type: INCREASE
@@ -172,11 +176,11 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: biomes.gui.tips.click-to-increase
     ```
 
-??? question "What is `MODE` button type?"
-    This button is available in advanced_panel.
-    It creates a button that allows to change biome update mode between ISLAND, CHUNK and RANGE modes. Mode is defined alongside with button type.
+??? 问题 "什么是`MODE`按钮类型？"
+    这个按钮在advanced_panel中可用。
+    它创建一个允许在ISLAND、CHUNK和RANGE模式之间更改生态区更新模式的按钮。模式与按钮类型一起定义。
 
-    Example: 
+    示例： 
     ```yaml
         data:
           type: MODE
@@ -186,14 +190,14 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: biomes.gui.tips.click-to-choose
     ```
 
-??? question "What is `ACCEPT` button type?"
-    This button is available in advanced_panel.
-    It creates a button that allows to start biome update with selected settings. It has two actions: 
+??? 问题 "什么是`ACCEPT`按钮类型？"
+    这个按钮在advanced_panel中可用。
+    它创建一个允许使用选定设置开始生态区更新的按钮。它有两个动作： 
       
-       - ACCEPT: starts biome update
-       - INPUT: allows to manually input number via chat.
+       - ACCEPT: 开始生态区更新
+       - INPUT: 允许通过聊天手动输入数字。
 
-    Example: 
+    示例： 
     ```yaml
         data:
           type: ACCEPT
@@ -206,74 +210,78 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: biomes.gui.tips.right-click-to-write
     ```
 
-## Commands
+## 命令
 
-!!! tip
-    `[player_command]` and `[admin_command]` are commands that differ depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify these values.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`, and the default `[admin_command]` is `bsbadmin`.
+!!! 小贴士
+    `[player_command]`和`[admin_command]`是根据你运行的游戏模式而变化的命令。
+    游戏模式的`config.yml`文件包含允许你修改这些值的选项。
+    例如，在BSkyBlock上，默认的`[player_command]`是`island`，默认的`[admin_command]`是`bsbadmin`。
 
-!!! info
-    Biomes Addon player commands is completely configurable. You can change them in the Biomes Addon config file. Bellow is just default names for these commands.
+!!! 信息
+    生态区插件玩家命令是完全可配置的。你可以在生态区插件配置文件中更改它们。下面仅是这些命令的默认名称。
 
-=== "Player commands"
-    - `/[player_command] biomes`: This method opens GUI that allows to change biome on User island.
-    - `/[player_command] biomes help`: Show help for all the commands
-    - `/[player_command] biomes set <biome> [<type>] [<size>]`: This command allows to change biome on island without opening GUI. If prarameters < type> and < size> are not provided, command uses default values from addon config.
-    - `/[player_command] biomes buy <biome>`: This command allows to buy biome without opening GUI.
+=== "玩家命令"
+    - `/[player_command] biomes`: 此方法打开GUI，允许在用户岛屿上更改生态区。
+    - `/[player_command] biomes help`: 显示所有
 
-    !!! info
-        - `<biome>` may not be the actual Minecraft biome name. It is defined by the admin.
-        - `<type>` is one of the three biome change types. It offers to change biome on whole island (`ISLAND`), in current chunk(s) (`CHUNK`) or by distance around player (`RANGE`).
+命令的帮助
+    - `/[player_command] biomes set <biome> [<type>] [<size>]`: 此命令允许在不打开GUI的情况下更改岛屿上的生态区。如果参数<type>和<size>未提供，命令将使用插件配置中的默认值。
+    - `/[player_command] biomes buy <biome>`: 此命令允许在不打开GUI的情况下购买生态区。
+
+    !!! 信息
+        - `<biome>`可能不是实际Minecraft生态区名称。它是由管理员定义的。
+        - `<type>`是三种生态区更改类型之一。它提供在整个岛屿(`ISLAND`)、当前区块(`CHUNK`)或围绕玩家的距离(`RANGE`)上更改生态区。
 
 
-=== "Admin commands"
-    - `/[admin_command] biomes`: opens the Admin Biomes GUI.
-    - `/[admin_command] biomes help`: displays the help for all the Biomes-related admin commands.
-    - `/[admin_command] biomes import [<file>]`: imports biomes from the `biomesTemplate.yml` configuration file, or from provided file.
-    - `/[admin_command] biomes set <player> <biome> [<type>] [<size>]`: works the same as user biome set command, but it is necessary to provide also player, which island biome will be updated.
-    - `/[admin_command] biomes migrate`: migrates biomes addon data. Usually used when upgrade from older version to a new version.
-    - `/[admin_command] biomes unlock <player> <biome_id> [true]`: unlocks (and buys if added `true` at the end) passed biome for a player island.
+=== "管理员命令"
+    - `/[admin_command] biomes`: 打开管理员生态区GUI。
+    - `/[admin_command] biomes help`: 显示所有与生态区相关的管理员命令的帮助。
+    - `/[admin_command] biomes import [<file>]`: 从`biomesTemplate.yml`配置文件或提供的文件中导入生态区。
+    - `/[admin_command] biomes set <player> <biome> [<type>] [<size>]`: 与用户生态区设置命令相同，但需要提供玩家，其岛屿生态区将被更新。
+    - `/[admin_command] biomes migrate`: 迁移生态区插件数据。通常用于从旧版本升级到新版本时使用。
+    - `/[admin_command] biomes unlock <player> <biome_id> [true]`: 解锁（如果在最后添加`true`则购买）传递的生态区给玩家岛屿。
 
-## Permissions
+## 权限
 
-!!! tip
-    `[gamemode]` is a prefix that differs depending on the gamemode you are running.
-    The prefix is the lowercased name of the gamemode, i.e. if you are using BSkyBlock, the prefix is `bskyblock`.
-    Similarly, if you are using AcidIsland, the prefix is `acidisland`.
+!!! 小贴士
+    `[gamemode]`是一个前缀，根据你运行的游戏模式而变化。
+    前缀是游戏模式的小写名称，即如果你使用BSkyBlock，前缀是`bskyblock`。
+    类似地，如果你使用AcidIsland，前缀是`acidisland`。
 
-??? question "Something is missing?"
-    You can find the comprehensive list of permissions in the [addon.yml](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/resources/addon.yml) file of this addon.  
-    If something is indeed missing from the list below, please let us know!
+??? 问题 "缺少什么？"
+    你可以在这个插件的[addon.yml](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/resources/addon.yml)文件中找到权限的综合列表。  
+    如果下面的列表确实缺少了什么，请告诉我们！
 
-=== "Player permissions"
-    - `[gamemode].biomes` (default: `true`): player can use biomes command that opens GUI.
-    - `[gamemode].biomes.info` (default: `true`): player can use biomes info command.
-    - `[gamemode].biomes.set` (default: `true`): player can use biomes set command.
-    - `[gamemode].biomes.buy` (default: `true`): player can use biomes buy command.
+=== "玩家权限"
+    - `[gamemode].biomes`（默认：`true`）：玩家可以使用打开GUI的生态区命令。
+    - `[gamemode].biomes.info`（默认：`true`）：玩家可以使用生态区信息命令。
+    - `[gamemode].biomes.set`（默认：`true`）：玩家可以使用生态区设置命令。
+    - `[gamemode].biomes.buy`（默认：`true`）：玩家可以使用生态区购买命令。
 
-=== "Admin permissions"
-    - `[gamemode].admin.biomes` (default: `op`): player can use admin biomes command that opens GUI.
+=== "管理员权限"
+    - `[gamemode].admin.biomes`（默认：`op`）：玩家可以使用打开GUI的管理员生态区命令。
 
-## Translations
+## 翻译
 
 {{ translations(2894, ["lv", "zh-CN", "fr", "pl", "es", "uk"]) }}
 
 ## API
 
-Since Biomes 2.0 and BentoBox 1.17 other plugins can access to the Biomes addon data directly. However, addon requests are still a good solution for a plugins that do not want to use too many dependencies.
+自从生态区2.0和BentoBox 1.17以来，其他插件可以直接访问生态区插件数据。然而，插件请求仍然是对于不想使用太多依赖的插件来说是一个好的解决方案。
 
-### Maven Dependency
+### Maven依赖
 
-Biomes provides an API for other plugins. This covers version 2.1.0 and onwards.
+生态区提供了一个用于其他插件的API。这涵盖了2.1.0及之后的版本。
 
-!!! note
-Add the Biomes dependency to your Maven POM.xml:
+!!! 注意
+添加生态区依赖到你的Maven POM.xml中：
 
     ```xml
         <repositories>
             <repository>
                 <id>codemc-repo</id>
+
+
                 <url>https://repo.codemc.io/repository/maven-public/</url>
             </repository>
         </repositories>
@@ -288,29 +296,29 @@ Add the Biomes dependency to your Maven POM.xml:
         </dependencies>
     ```
 
-Use the latest Biomes version.
+使用最新的生态区版本。
 
-The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWorld/job/Biomes/ws/target/apidocs/index.html).
+生态区的JavaDocs可以在[这里](https://ci.codemc.io/job/BentoBoxWorld/job/Biomes/ws/target/apidocs/index.html)找到。
 
-### Events
+### 事件
 
 === "BiomeUnlockedEvent"
-    !!! summary "Description"
-        Event that is triggered when player unlocks a new biome.
+    !!! 摘要 "描述"
+        当玩家解锁新生态区时触发的事件。
 
-        Event is cancellable. Cancelling evnet will prevent user from unlocking the biomesObject.
+        事件是可取消的。取消事件将阻止用户解锁生态区对象。
 
-        Link to the class: [BiomeUnlockedEvent](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/java/world/bentobox/biomes/events/BiomeUnlockedEvent.java)
+        类链接：[BiomeUnlockedEvent](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/java/world/bentobox/biomes/events/BiomeUnlockedEvent.java)
 
-    !!! summary "Since"
-        Event is added in Biomes 2.0 version.
+    !!! 摘要 "自"
+        事件在生态区2.0版本中添加。
 
-    !!! question "Variables"
-        - `@NotNull BiomesObject biomesObject` - the biomesOjbect that is unlocked.
-        - `@Nullable User user` - the user who unlocks the biomesObject.
-        - `@NotNull Island island` - the island on which biomesObject is unlocked.
+    !!! 问题 "变量"
+        - `@NotNull BiomesObject biomesObject` - 被解锁的生态区对象。
+        - `@Nullable User user` - 解锁生态区对象的用户。
+        - `@NotNull Island island` - 生态区对象被解锁的岛屿。
         
-    !!! example "Code example"
+    !!! 示例 "代码示例"
         ```java
         @EventHandler(priority = EventPriority.LOW)
         public void onBiomesUnlock(BiomeUnlockedEvent event) {
@@ -318,7 +326,7 @@ The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWor
             BiomesObject biomesOjbect = event.getBiomesObject();
             Island island = event.getIsland();
             
-            // There is also converted methods, that do not use Biomes Addon objects.
+            // 还有转换方法，不使用生态区插件对象。
             UUID userUUID = event.getUserUUID();
             String islandUUID = event.getIslandUUID();
             String biomeId = event.getBiomeId();
@@ -329,22 +337,22 @@ The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWor
         ```
 
 === "BiomePurchasedEvent"
-    !!! summary "Description"
-        Event that is triggered when player purchases a new biome.
+    !!! 摘要 "描述"
+        当玩家购买新生态区时触发的事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [BiomePurchasedEvent](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/java/world/bentobox/biomes/events/BiomePurchasedEvent.java)
+        类链接：[BiomePurchasedEvent](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/java/world/bentobox/biomes/events/BiomePurchasedEvent.java)
 
-    !!! summary "Since"
-        Event is added in Biomes 2.0 version.
+    !!! 摘要 "自"
+        事件在生态区2.0版本中添加。
 
-    !!! question "Variables"
-        - `@NotNull BiomesObject biomesObject` - the biomesOjbect that is purchased.
-        - `@NotNull User user` - the user who purchase the biomesObject.
-        - `@NotNull Island island` - the island on which biomesObject is purchased.
+    !!! 问题 "变量"
+        - `@NotNull BiomesObject biomesObject` - 被购买的生态区对象。
+        - `@NotNull User user` - 购买生态区对象的用户。
+        - `@NotNull Island island` - 生态区对象被购买的岛屿。
         
-    !!! example "Code example"
+    !!! 示例 "代码示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onBiomesPurchase(BiomePurchasedEvent event) {
@@ -352,7 +360,7 @@ The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWor
             BiomesObject biomesOjbect = event.getBiomesObject();
             Island island = event.getIsland();
             
-            // There is also converted methods, that do not use Biomes Addon objects.
+            // 还有转换方法，不使用生态区插件对象。
             UUID userUUID = event.getUserUUID();
             String islandUUID = event.getIslandUUID();
             String biomeId = event.getBiomeId();
@@ -361,24 +369,26 @@ The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWor
         ```
 
 === "BiomePreChangeEvent"
-    !!! summary "Description"
-        Event that is triggered before withdrawing items and changing biome in area.
+    !!! 摘要 "描述"
+        在从项目中提取物品并更改区域生态区之前触发的事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [BiomePreChangeEvent](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/java/world/bentobox/biomes/events/BiomePreChangeEvent.java)
+        类链接：[BiomePreChangeEvent](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/java/world/bentobox/biomes/events/BiomePreChangeEvent.java)
 
-    !!! summary "Since"
-        Event is added in Biomes 2.0 version.
+    !!! 摘要 "自"
+        事件在生态区2.0版本中添加。
 
-    !!! question "Variables"
-        - `@NotNull BiomesObject biomesObject` - the biomesOjbect that is used.
-        - `@Nullable User user` - the user who triggered biome change.
-        - `@NotNull Island island` - the island on which biome is changed.
-        - `@NotNull BlockVector minCoordinate` - the minimal coordinate for biome change.
-        - `@NotNull BlockVector maxCoordinate` - the maximal coordinate for biome change.
+    !!! 问题 "变量"
+        - `@NotNull BiomesObject biomesObject` - 被使用的生态区对象。
+        - `@Nullable User user` - 触发生态区更改的用户。
+        - `@NotNull Island island` - 生态区发生变化的岛屿。
+        - `@NotNull BlockVector min
+
+Coordinate` - 生态区更改的最小坐标。
+        - `@NotNull BlockVector maxCoordinate` - 生态区更改的最大坐标。
         
-    !!! example "Code example"
+    !!! 示例 "代码示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onBiomesPreChange(BiomePreChangeEvent event) {
@@ -389,7 +399,7 @@ The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWor
             BlockVector minCoordinate = event.getMinCoordinate();
             BlockVector maxCoordinate = event.getMaxCoordinate();
             
-            // There is also converted methods, that do not use Biomes Addon objects.
+            // 还有转换方法，不使用生态区插件对象。
             UUID userUUID = event.getUserUUID();
             String islandUUID = event.getIslandUUID();
             String biomeId = event.getBiomeId();
@@ -407,28 +417,28 @@ The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWor
 
 
 === "BiomeChangedEvent"
-    !!! summary "Description"
-        Event that is triggered after biome is changed on whole area. It is triggered even if biome change failed.
+    !!! 摘要 "描述"
+        在整个区域的生态区改变后触发的事件。即使生态区更改失败，也会触发事件。
 
-        Event is only informative. Cannot be cancelled.
+        事件仅为信息性质。不能被取消。
 
-        Link to the class: [BiomeChangedEvent](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/java/world/bentobox/biomes/events/BiomeChangedEvent.java)
+        类链接：[BiomeChangedEvent](https://github.com/BentoBoxWorld/Biomes/blob/develop/src/main/java/world/bentobox/biomes/events/BiomeChangedEvent.java)
 
-    !!! summary "Since"
-        Event is added in Biomes 2.0 version.
+    !!! 摘要 "自"
+        事件在生态区2.0版本中添加。
 
-    !!! question "Variables"
-        - `@NotNull BiomesObject biomesObject` - the biomesOjbect that was used.
-        - `@Nullable User user` - the user who triggered biome change.
-        - `@NotNull Island island` - the island on which biome was changed.
-        - `@NotNull BlockVector minCoordinate` - the minimal coordinate for biome change.
-        - `@NotNull BlockVector maxCoordinate` - the maximal coordinate for biome change.
-        - `@Nullable Result result` - the result value after biome change. The result values may be:
-                                        - FINISHED: biomes change was succesfull.
-                                        - TIMEOUT: biomes change took longer then timeout value and failed.
-                                        - FAILED: biomes change failed for some other reason.
+    !!! 问题 "变量"
+        - `@NotNull BiomesObject biomesObject` - 被使用的生态区对象。
+        - `@Nullable User user` - 触发生态区更改的用户。
+        - `@NotNull Island island` - 生态区发生变化的岛屿。
+        - `@NotNull BlockVector minCoordinate` - 生态区更改的最小坐标。
+        - `@NotNull BlockVector maxCoordinate` - 生态区更改的最大坐标。
+        - `@Nullable Result result` - 生态区更改后的结果值。结果值可能为：
+                                        - FINISHED: 生态区更改成功。
+                                        - TIMEOUT: 生态区更改超过超时值，失败。
+                                        - FAILED: 生态区更改由于其他原因失败。
 
-    !!! example "Code example"
+    !!! 示例 "代码示例"
         ```java
         @EventHandler(priority = EventPriority.MONITOR)
         public void onBiomeChanged(BiomeChangedEvent event) {
@@ -441,7 +451,7 @@ The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWor
             
             Result result = event.getResult();            
 
-            // There is also converted methods, that do not use Biomes Addon objects.
+            // 还有转换方法，不使用生态区插件对象。
             UUID userUUID = event.getUserUUID();
             String islandUUID = event.getIslandUUID();
             String biomeId = event.getBiomeId();
@@ -456,118 +466,5 @@ The JavaDocs for Biomes can be found [here](https://ci.codemc.io/job/BentoBoxWor
             int maxZ = event.getMaxZ();
 
             String resultName = event.getResultName();
-        }
-        ```
-
-### Addon Request Handlers
-
-Till BentoBox 1.17 we had an issue with accessing data outside BentoBox environment doe to the class loader we used to load addons. 
-This meant that data was accessible only from other addons. But BentoBox implemented PlAddon functionality, which means that request
-handlers are not necessary anymore.
-
-
-=== "biome-data"
-    !!! summary "Description"
-        Returns a `Map<String, Object>` containing all the information about the requested biome.
-
-    !!! question "Input"
-        - `biomeId`: String - the unique ID of the requested biome.
-
-    !!! success "Output"
-        The output is a `Map<String, Object>` with the following keys:
-
-        - `uniqueId`: String - the unique ID of the requested biome.
-        - `world`: String - the name of the world where the biome is available.
-        - `biome`: String - the name of the corresponding Minecraft biome.
-        - `name`: String - the display name for the biome.
-        - `deployed`: Boolean - `true` if the biome is deployed, `false` otherwise.
-        - `description`: List&lt;String&gt; - the description for the biome.
-        - `icon`: ItemStack - the item that represents the biome in GUIs.
-        - `order`: Integer - the order number for the given biome.
-        - `cost`: Integer - the cost to use the biome.
-        - `level`: Long - the minimum Island Level required in order to use the biome.
-        - `permissions`: Set&lt;String&gt; - the list of permissions required in order to use the biome.
-
-    !!! failure
-        This handler will return an empty map if the `biomeId` has not been provided or if the `biomeId` could not be found in the database.
-
-    !!! example "Code example"
-        ```java
-        public Map<String, Object> getBiomeData(String biomeId) {
-            return (Map<String, Object>) new AddonRequestBuilder()
-                .addon("Biomes")
-                .label("biome-data")
-                .addMetaData("biomeId", biomeId)
-                .request();
-        }
-        ```
-
-=== "biomes-list"
-    !!! summary "Description"
-        Returns a list of all biomes' uniqueIds that are defined in a given world.
-
-    !!! question "Input"
-        - `world-name`: String - the name of the world.
-
-    !!! success "Output"
-        The output is a `List<String>` containing the list of the uniqueIds of the biomes that are defined for the specified world.
-
-    !!! failure
-        This handler will return an empty list if the `world-name` has not been provided or if the `world-name` does not exist or is not a gamemode world.
-
-    !!! example "Code example"
-        ```java
-        public List<String> getBiomesList(String worldName) {
-            return (List<String>) new AddonRequestBuilder()
-                .addon("Biomes")
-                .label("biomes-list")
-                .addMetaData("world-name", worldName)
-                .request();
-        }
-        ```
-
-=== "biome-request-change"
-    !!! summary "Description"
-        Requests a biome change with the provided parameters.
-
-    !!! question "Input"
-        - Mandatory parameters:
-            - `player`: UUID - the UUID of the targetted player.
-            - `world-name`: String - the name of the world where the biome will be changed.
-            - `biomeId`: String - the uniqueId of the biome.
-        - Optional parameters:
-            - `updateMode`: String - the mode to use when changing the biome.
-                                     Can be either ISLAND, RANGE or CHUNK.
-                                     (Default: config)
-            - `range`: Integer - the range within which the biome will be changed.
-                                 (Default: config)
-            - `checkRequirements`: Boolean - if `true`, the player will have to fulfill all the requirements for the specified biome.
-                                   (Default: true)
-            - `withdraw`: Boolean - if `true`, the money will be withdrawn from the player's bank account.
-                          (Default: true)
-
-    !!! success "Output"
-        The output is a `Map<String, Object>` with the following keys:
-
-        - `status`: Boolean - `true` if the biome was changed successfully, `false` otherwise.
-        - `reason`: String - message explaining what happened (whether the change was successful or not).
-
-    !!! failure
-        This handler will return `false` as its status with an appropriate reason if it failed.
-
-    !!! example "Code example"
-        ```java
-        public Map<String, Object> requestBiomeChange(UUID player, String worldName, String biomeId, String mode, int range, boolean requirements, boolean withdraw) {
-            return (Map<String, Object>) new AddonRequestBuilder()
-                .addon("Biomes")
-                .label("biome-request-change")
-                .addMetaData("player", player)
-                .addMetaData("world-name", worldName)
-                .addMetaData("biomeId", biomeId)
-                .addMetaData("updateMode", mode)
-                .addMetaData("range", range)
-                .addMetaData("checkRequirements", requirements)
-                .addMetaData("withdraw", withdraw)
-                .request();
         }
         ```

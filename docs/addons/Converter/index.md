@@ -1,60 +1,62 @@
-# ASkyBlock to BSkyBlock Converter Addon
+# ASkyBlock到BSkyBlock转换器插件
 
-## Compatibility
+## 兼容性
 
-The converter should be used with the latest version of BentoBox and BSkyBlock. The converter is an addon that you download and place in the addons folder of BentoBox. To run the conversion, read all of these instructions.
+转换器应与BentoBox和BSkyBlock的最新版本一起使用。转换器是一个插件，你需要下载并放置在BentoBox的addons文件夹中。要运行转换，请阅读所有这些说明。
 
-## Introduction
+## 介绍
 
-The converter takes the ASkyBlock data files and creates new versions in the BSkyBlock/BentoBox database. The following items are converted:
+转换器会取ASkyBlock的数据文件并在BSkyBlock/BentoBox数据库中创建新版本。以下项目会被转换：
 
-* Players and teams
-* Islands
-* Warps
-* Most Config.yml settings
-* Challenges
+* 玩家和团队
+* 岛屿
+* 传送点
+* 大多数Config.yml设置
+* 挑战
 
-The following are not converted:
+以下内容不会被转换：
 
-* Schematics - not supported in BSkyBlock. Use BentoBox blueprints instead.
-* Biomes - not supported in BSkyBlock itself. Use the Biome addon instead.
-* Magic Cobblestone - not supported in BSkyBlock itself. An addon for this is in progress
-* Acid water or rain settings - not supported in BSkyBlock.
-* Team chat - not supported in BSkyBlock.
-* Coop conversion - coops are handled differently in BSkyBlock so they will need redoing manually by players.
-* Level related settings - not supported in BSkyBlock itself. Use the Level addon.
+* 图纸 - BSkyBlock不支持。请改用BentoBox蓝图。
+* 生态区 - BSkyBlock本身不支持。请改用生态区插件。
+* 魔法圆石 - BSkyBlock本身不支持。此功能的插件正在开发中
+* 酸性水或雨设置 - BSkyBlock不支持。
+* 团队聊天 - BSkyBlock不支持。
+* 合作转换 - 合作在BSkyBlock中的处理方式不同，玩家需要手动重新进行。
+* 与等级相关的设置 - BSkyBlock本身不支持。请改用等级插件。
 
-## Backup
+## 备份
 
-**Warning!** This software is provided AS-IS without warranty. Use at your own risk and make sure you make a backup copy of your server files and folders. It is very important to do this!
+**警告！** 此软件按“现状”提供，不附带任何保证。使用风险自负，请确保你备份了服务器的文件和文件夹。这非常重要！
 
-## Conversion Preparation
+## 转换准备
 
-**Note:** No changes are made to the ASkyBlock world except by the server upgrading to the latest version. You will use the same world as you did before with BSkyBlock after conversion. That means it will have the same name.
+**注意：** 对ASkyBlock世界的更改仅通过服务器升级到最新版本。转换后你将使用与之前相同的世界与BSkyBlock。这意味着它将拥有相同的名称。
 
-If your current server runs on 1.12.2 then you must upgrade your server to the latest version of Minecraft.
+如果你当前的服务器运行在1.12.2上，那么你必须将服务器升级到Minecraft的最新版本。
 
-## Steps
+## 步骤
 
-**Note:** that if you world is LARGE then you will need to change the timeout of the server so that the watchdog timer does not stop the server during conversion.
+**注意：** 如果你的世界很大，那么你需要更改服务器的超时时间，以便在转换期间看门狗计时器不会停止服务器。
 
-*You remembered to make a backup of your data right?*
+*你记得备份你的数据了吧？*
 
-0. Edit spigot.yml and change **timeout-time:** to something large, like 60000 to prevent the watchdog timer stopping the server during conversion.
-1. Stop the server and add the Spigot 1.14.4 (or later) server jar to your server folder.
-2. Remove the ASkyBlock.jar from your plugins folder. Do NOT remove the ASkyBlock folder or worlds.
-3. Install BentoBox Version 1.12.0 (or higher) to your plugins folder.
-4. Start the new server with the **--forceUpgrade** option. This will upgrade all your worlds to the new format.
-5. After everything is fully loaded and you see the BentoBox logo, stop the server.
-6. Place the **BSkyBlock** addon, the **Challenges** addon, the **Warps** addon and the **Converter** addon into the BentoBox addons folder.
-7. Restart the server, again with the **--forceUpgrade** option.
-8. Once the server is loaded and you see the BentoBox logo, start conversion in the console by entering: **bsb convert**.
-9. After the conversion is complete, stop the server. **VERY IMPORTANT. STOP THE SERVER! DO NOT RELOAD!!!** This will register the correct world generator.
-10. Edit the BSkyBlock config.yml as you see fit in the settings.
-11. Edit spigot.yml and return **timeout-time:** to something small, like 60.
-12. Remove the converter addon and the default BSkyBlock world folders that were created.
-13. Restart the server. You do not need to use the forceUpgrade option any more. BSkyBlock addon will use the ASkyBlock world.
+0. 编辑spigot.yml并将**timeout-time:**更改为较大的数值，如60000，以防止看门狗计时器在转换期间停止服务器。
+1. 停止服务器，并将Spigot 1.14.4（或更高版本）的服务器jar添加到你的服务器文件夹中。
+2. 从你的插件文件夹中移除ASkyBlock.jar。不要移除ASkyBlock文件夹或世界。
+3. 将BentoBox版本1.12.0（或更高）安装到你的插件文件夹中。
+4. 用**--forceUpgrade**选项启动新服务器。这将升级你所有的世界到新格式。
+5. 在完全加载并看到BentoBox标志后，停止服务器。
+6. 将**BSkyBlock**插件、**Challenges**插件、**Warps**插件和**Converter**插件放入BentoBox的addons文件夹中。
+7. 再次使用**--forceUpgrade**选项重启服务器。
+8. 服务器加载完毕并看到BentoBox标志后，在控制台开始转换，输入：**bsb convert**。
+9. 转换完成后，停止服务器。**非常重要。停止服务器！不要重新加载！！！** 这将注册正确的世界生成器。
+10. 根据需要编辑BSkyBlock的config.yml设置。
+11. 编辑spigot.yml并将**timeout-time:**返回到较小的数值，如60。
+12. 移除转换器插件和创建的默认BSkyBlock世界文件夹。
+13. 重启服务器。你不再需要使用forceUpgrade选项。BSkyBlock插件将使用ASkyBlock世界。
 
-**Note:** Bentobox uses PAPI or MVdW for placeholders. If you are interested in using placeholders, read the docs on placeholders.
+**注意：** Bent
 
-**Note:** Challenges and Warps are not required. Converter can work without them, but data will not be converted.
+obox使用PAPI或MVdW作为占位符。如果你有兴趣使用占位符，请阅读占位符文档。
+
+**注意：** 挑战和传送点不是必需的。转换器可以在没有它们的情况下工作，但数据不会被转换。

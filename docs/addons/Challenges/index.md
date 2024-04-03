@@ -1,80 +1,82 @@
-# Challenges
+# 挑战
 
-**Challenges** lets your players **complete various customizable challenges and receive rewards**!
+**Challenges** 插件允许你的玩家 **完成各种可自定义的挑战并获得奖励**!
 
-Created and maintained by [BONNe](https://github.com/BONNe).
+由 [BONNe](https://github.com/BONNe) 创建和维护。
 
 {{ addon_description("Challenges") }}
 
-## Installation
+## 安装
 
-1. Place the addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. Run the admin challenges command, e.g., `/bsbadmin challenges` to configure the addon
+1. 将插件 jar 文件放入 BentoBox 插件的 addons 文件夹
+2. 重启服务器
+3. 运行管理员挑战命令,例如 `/bsbadmin challenges` 来配置插件
 
-## Configuration
+## 配置
 
-By default, the challenges addon comes without any challenge or levels. On first runtime only the Admin GUI will be accessible.
-Admins can create their own challenges or load a set of default challenges. Default challenges contains 5 levels and 57 challenges.
-There also exist a Web Library, where admins can download public challenges. It is accessible via the Admin GUI by clicking on the Web icon.
+默认情况下,挑战插件没有任何挑战或等级。首次运行时只有管理员 GUI 可以访问。
+管理员可以创建自己的挑战或加载一组默认挑战。默认挑战包含 5 个等级和 57 个挑战。
+还有一个网络库,管理员可以在其中下载公共挑战。可以通过点击管理员 GUI 中的网络图标访问它。
 
 ### config.yml
 
-Config file contains main functions for the addon.
+配置文件包含插件的主要功能。
 
-The latest config.yml can be found [here](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/config.yml).
+最新的 config.yml 可以在[这里](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/config.yml)找到。
 
-### Template
+### 模板
 
-Challenges addon contains a template file which can be used to import challenges into database. This file is useful for bulk challenge adding for people that do not like to use ingame-gui. However, be aware, that not all functions are available for the template file, and some items/options can be added only via GUI.
-You can have as many template files as you want. Admin GUI will allow choosing which one you want to import.
-The example template file: [template.yml](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/template.yml)
+挑战插件包含一个模板文件,可用于将挑战导入数据库。这个文件对于不喜欢使用游戏内 GUI 的人来说,批量添加挑战非常有用。但是请注意,模板文件并非支持所有功能,有些物品/选项只能通过 GUI 添加。
+你可以拥有任意数量的模板文件。管理员 GUI 将允许选择要导入的文件。
+示例模板文件: [template.yml](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/template.yml)
 
 !!! tip
-    The template file must contain both: challenges and levels. Without them, it will not work.
+    模板文件必须包含挑战和等级。没有它们,模板将无法工作。
 
-??? question "What is challenge type?"
-    Challenges addon has 4 different types of challenges. Each type offers different things to be tested for challenge to be marked as completed. These types are:
+??? question "什么是挑战类型?"
+    挑战插件有 4 种不同类型的挑战。每种类型都提供了不同的东西来测试挑战是否完成。这些类型是:
+
+    - 物品栏挑战 (`INVENTORY_TYPE`) - 需要玩家物品栏中的物品才能完成的挑战。
+    - 岛屿挑战 (`ISLAND_TYPE`) - 需要玩家岛屿上的方块或实体才能完成的挑战。
+    - 其他挑战 (`OTHER_TYPE`) - 需要玩家 XP、金钱或岛屿等级才能完成的挑战。
+    - 统计挑战 (`STATISTIC_TYPE`) - 需要达到玩家统计数据中某个值才能完成的挑战。
+
+??? question "我可以为需要/奖励的物品指定附魔吗?"
+    不幸的是,Spigot 没有通用的物品解析机制。所以插件作者需要自己创建。挑战插件使用 BentoBox 的[物品解析器](/en/latest/BentoBox/ItemParser/)。如果它不支持某个功能,那么你就不能使用。
     
-    - Inventory Challenge (`INVENTORY_TYPE`) - challenge that requires items in player inventory to be completed.
-    - Island Challenge (`ISLAND_TYPE`) - challenge that requires blocks or entities on the player island to be completed.
-    - Other Challenge (`OTHER_TYPE`) - challenge that requires player XP, money or island level to be completed.
-    - Statistic Challenge (`STATISTIC_TYPE`) - challenge that requires certain value from player statistic to be completed.
+    但是,你始终可以使用游戏内管理员 GUI 来设置你想要的任何物品。没有任何限制。
 
-??? question "Can I specify an enchantment on required/reward items?"
-    Unfortunately Spigot does not have a general item parsing mechanics. So plugin authors need to create their own. Challenges addon uses BentoBox [Item Parser](/en/latest/BentoBox/ItemParser/). If function is not supported by it, then you cannot. However, you can always use in-game admin GUI to set any items you want. There is not any limitation.
+??? question "我如何知道可以在统计挑战类型中放入什么值?"
+    你可以在这里找到统计类型: [Statistic](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Statistic.html)。
 
-??? question "How I can know what values I can put in statistic challenge type?"
-    The statistic type you can find here: [Statistic](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Statistic.html).
-    
-    Some information can be found in fandom site: [minecraft.fandom](https://minecraft.fandom.com/wiki/Statistics)
-    
-    However, there is not a place where you could find out what things you can specify. I would recommend to use ingame admin GUI for creating statistic challenges, as it has more options to detect which fields can fill.
+    一些信息可以在 fandom 网站上找到: [minecraft.fandom](https://minecraft.fandom.com/wiki/Statistics)
 
-### Customizable GUI's
+    但是,没有一个地方可以找到你可以指定的所有内容。我建议使用游戏内管理员 GUI 来创建统计挑战,因为它有更多选项来检测可以填写的字段。
 
-BentoBox 1.17 API introduced a function that allows to implement customizable GUI's. Challenges addon is one of the first one which uses this functionality. We tried to be as simple as possible for customization, however, some features requires explanation.
-You can find more information how BentoBox custom GUI's works here: [Custom GUI's](/en/latest/Tutorials/generic/Customizable-GUI/)
+### 可自定义的 GUI
 
-??? question "How can I customize GUI's"
-    To customize Challenges Addon GUI's you need to have version 1.0. This is a first version that has implemented them. Addon will create a new directory under `/plugins/bentobox/addons/challenges` with a name `panels`
-    
-    Currently you can customize 3 GUI's:
+BentoBox 1.17 API 引入了一个允许实现可自定义 GUI 的功能。挑战插件是最早使用此功能的插件之一。我们尽量让自定义变得简单,但有些功能需要解释。
+你可以在这里找到更多关于 BentoBox 自定义 GUI 如何工作的信息: [自定义 GUI](/en/latest/Tutorials/generic/Customizable-GUI/)
 
-    - Main Challenges Panel: `main_panel` - panel that is opened when player can see list of challenges.
-    - Multiple Completion Panel: `multiple_panel` - panel that is opened when player wants to specify number of times challenge must be completed.
-    - Gamemode Selection Panel: `gamemode_panel` - panel that is opened when `commands.global-command` is enabled in settings and there are multiple gamemodes installed.
+??? question "我如何自定义 GUI?"
+    要自定义挑战插件的 GUI,你需要 1.0 版本。这是第一个实现它们的版本。插件会在 `/plugins/bentobox/addons/challenges` 下创建一个名为 `panels` 的新目录。
 
-    Each GUI contains functions that is supported only by itself.
+    目前你可以自定义 3 个 GUI:
 
-??? question "What does `PREVIOUS`|`NEXT` button type?"
-    This button is available in main_panel and gamemode_panel.
-    The PREVIOUS and NEXT button types allows creating automatic paging, when you have more challenges than spaces in GUI.
-    These types have extra parameters under data:
-    - `target` - indicates if button will switch `LEVEL` or `CHALLENGE` in main_panel and `GAMEMODE` in gamemode_panel.
-    - `indexing` - indicates if button will show page number.
+    - 主挑战面板: `main_panel` - 玩家可以看到挑战列表时打开的面板。
+    - 多次完成面板: `multiple_panel` - 玩家想要指定挑战必须完成的次数时打开的面板。
+    - 游戏模式选择面板: `gamemode_panel` - 当设置中启用 `commands.global-command` 并且安装了多个游戏模式时打开的面板。
 
-    Example: 
+    每个 GUI 都包含仅由其自身支持的功能。
+
+??? question "`PREVIOUS`|`NEXT` 按钮类型是什么?"
+    此按钮在 main_panel 和 gamemode_panel 中可用。
+    PREVIOUS 和 NEXT 按钮类型允许在挑战多于 GUI 中的空间时创建自动分页。
+    这些类型在 data 下有额外的参数:
+    - `target` - 指示按钮是否将在 main_panel 中切换 `LEVEL` 或 `CHALLENGE`,在 gamemode_panel 中切换 `GAMEMODE`。 
+    - `indexing` - 指示按钮是否显示页码。
+
+    示例:
     ```yaml
         icon: tipped_arrow{CustomPotionColor:11546150}
         title: challenges.gui.buttons.previous.name
@@ -84,30 +86,30 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
           target: CHALLENGE
           indexing: true
         action:
-          left:
+          left: 
             tooltip: challenges.gui.tips.click-to-previous
     ```
 
-??? question "What does `CHALLENGE` button type?"
-    This button is available in main_panel.
-    The CHALLENGE button creates a dynamic entry for a challenge. Button will be filled only if there exist a challenge. F.e. if you have only 3 challenge, but defined 7 spots for challenges in the GUI, then only 3 spots will be filled. Other spots will be left empty.
+??? question "`CHALLENGE` 按钮类型是什么?"
+    此按钮在 main_panel 中可用。
+    CHALLENGE 按钮为挑战创建一个动态条目。只有存在挑战时,按钮才会被填充。例如,如果你只有 3 个挑战,但在 GUI 中为挑战定义了 7 个位置,那么只有 3 个位置会被填充。其他位置将保持为空。
 
-    By default challenges will be ordered by their order numbers, however, you can specify a specific level to be in a specific slot with `id` parameter under data.
-    
+    默认情况下,挑战将按照它们的顺序号排序,但是,你可以使用 data 下的 `id` 参数指定特定的等级放在特定的位置。
+
     ```yaml
       data:
         type: CHALLENGE
         id: example_challenge
     ```
 
-    Specifying title, description and icon will overwrite dynammic generation based on database data. By default these values will be generated from database entries.
-    This button supports 3 different action types:
+    指定标题、描述和图标将覆盖基于数据库数据的动态生成。默认情况下,这些值将从数据库条目生成。
+    此按钮支持 3 种不同的操作类型:
 
-    - COMPLETE - just completes a challenge once.
-    - COMPLETE_MAX - completes a challenge as much as possible.
-    - MULTIPLE_PANEL - opens multiple completion panel which allows to select how many times must be completed.
+    - COMPLETE - 只完成一次挑战。
+    - COMPLETE_MAX - 尽可能多地完成挑战。
+    - MULTIPLE_PANEL - 打开多次完成面板,允许选择必须完成的次数。
 
-    Example: 
+    示例:
     ```yaml
       data:
         type: CHALLENGE
@@ -123,22 +125,21 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
           tooltip: challenges.gui.tips.shift-left-click-to-complete-all
     ```
 
+??? question "`LEVEL` 按钮类型是什么?"
+    此按钮在 main_panel 中可用。
+    LEVEL 按钮为挑战等级创建一个动态条目。只有存在等级时,按钮才会被填充。例如,如果你只有 3 个等级,但在 GUI 中为等级定义了 7 个位置,那么只有 3 个位置会被填充。其他位置将保持为空。
 
-??? question "What does `LEVEL` button type?"
-    This button is available in main_panel.
-    The LEVEL button creates a dynamic entry for a challenge level. Button will be filled only if there exist a level. F.e. if you have only 3 levels, but defined 7 spots for level in the GUI, then only 3 spots will be filled. Other spots will be left empty.
+    默认情况下,等级将按照它们的进展排序,但是,你可以使用 data 下的 `id` 参数指定特定的等级放在特定的位置。
 
-    By default levels will be ordered in their progression, however, you can specify a specific level to be in a specific slot with `id` parameter under data.
-    
     ```yaml
       data:
         type: LEVEL
         id: example_level
     ```
 
-    Specifying title, description and icon will overwrite dynammic generation based on database data. By default these values will be generated from database entries.
-    
-    Example: 
+    指定标题、描述和图标将覆盖基于数据库数据的动态生成。默认情况下,这些值将从数据库条目生成。
+
+    示例:
     ```yaml
       data:
         type: LEVEL
@@ -146,436 +147,74 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
         left:
           tooltip: challenges.gui.tips.click-to-select
     ```
-    
-??? question "What does `UNASSIGNED_CHALLENGES` button type?"
-    This button is available in main_panel.
-    The UNASSIGNED_CHALLENGES button allows to select a button for free challenges.
-    It does not have any extra functions or dynamic generations.
 
-??? question "What does `GAMEMODE` button type?"
-    This button is available in gamemode_panel
-    It generates a button for each GameMode addon that has Challenges installed.
+??? question "`UNASSIGNED_CHALLENGES` 按钮类型是什么?"
+    此按钮在 main_panel 中可用。
+    UNASSIGNED_CHALLENGES 按钮允许为自由挑战选择一个按钮。
+    它没有任何额外的功能或动态生成。
 
-??? question "What does `INCREASE`|`REDUCE` button type"
-    This button is available in multiple_panel.
-    These types allow increasing/reducing the number of challenge completion.
+??? question "`GAMEMODE` 按钮类型是什么?"
+    此按钮在 gamemode_panel 中可用。
+    它为每个安装了挑战的游戏模式插件生成一个按钮。
 
-    Specifying `value: <number>` under `data` allows to set different custom number of increment/reducement.
+??? question "`INCREASE`|`REDUCE` 按钮类型是什么?"
+    这些按钮在 multiple_panel 中可用。
+    这些类型允许增加/减少挑战完成次数。
 
-??? question "What does `ACCEPT` button type"
-    This button is available in multiple_panel.
-    This type allows accepting input number and complete challenge that much time.
+    在 `data` 下指定 `value: <number>` 允许设置不同的自定义增量/减量数。
 
-    Specifying `type: ACCEPT` under action allows to complete challenge. 
-    Specifying `type: INPUT` under action allows request player to write number in chat.
+??? question "`ACCEPT` 按钮类型是什么?"
+    此按钮在 multiple_panel 中可用。
+    此类型允许接受输入的数字并完成那么多次挑战。
 
-## Commands
+    在操作下指定 `type: ACCEPT` 允许完成挑战。
+    在操作下指定 `type: INPUT` 允许要求玩家在聊天中写入数字。
 
-!!! tip
-    `[player_command]` and `[admin_command]` are commands that differ depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify these values.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`, and the default `[admin_command]` is `bsbadmin`.
-
-=== "Player commands"
-    - `/challenges`: Access Player Challenges GUI. Contains either Challenges in current world or list of worlds where are Challenges enabled. This must be enabled in configuration.
-    - `/[player_command] challenges [challenge] [number]`: Access BSkyBlock Player Challenges GUI. If challenge name is provided, than this method will complete that challenge once. If number is provided, than it will complete challenge from 0-number times.
-
-=== "Admin commands"
-    - `/challengesadmin`: Access Admin Challenges GUI. Contains list of worlds where Challenges are enabled. This must be enabled in configuration.
-    - `/[admin_command] challenges`: Access BSkyBlock Admin Challenges GUI
-    - `/[admin_command] challenges reload [hard]`: Ability to reload Challengs addon configuration. This method clears also cache data. Parameter hard allows to reset database connection.
-
-## Permissions
+## 命令
 
 !!! tip
-    `[gamemode]` is a prefix that differs depending on the gamemode you are running.
-    The prefix is the lowercased name of the gamemode, i.e. if you are using BSkyBlock, the prefix is `bskyblock`.
-    Similarly, if you are using AcidIsland, the prefix is `acidisland`.
+    `[player_command]` 和 `[admin_command]` 是根据你运行的游戏模式而不同的命令。
+    游戏模式的 `config.yml` 文件包含允许你修改这些值的选项。
+    例如,在 BSkyBlock 中,默认的 `[player_command]` 是 `island`,默认的 `[admin_command]` 是 `bsbadmin`。
 
-=== "Player permissions"
-    - `[gamemode].challenges` - (default: `true`) - Let the player use the '/[player_command] challenges' command.
-    - `[gamemode].challenges.multiple` - (default: `true`) - Allows the player complete challenge multiple times at once.
-    - `[gamemode].challenges.complete` - (default: `false`) - Let the player use the '/[player_command] challenges complete <challenge> <number>' command.
-    - `addon.challenges` - (default: `true`) - Allows the access to '/challenges' command if it is enabled in the config.
-    - `[gamemode].command.challengeexempt` - (default: `false`) - Allows blocking reward command executing for player.
+=== "玩家命令"
+    - `/challenges`: 访问玩家挑战 GUI。包含当前世界中的挑战或启用了挑战的世界列表。必须在配置中启用。
+    - `/[player_command] challenges [challenge] [number]`: 访问 BSkyBlock 玩家挑战 GUI。如果提供了挑战名称,则此方法将完成该挑战一次。如果提供了数字,则它将完成 0-number 次挑战。
 
-=== "Admin permissions"
-    - `[gamemode].admin.challenges` - (default: `op`) - Let the player use the '/[admin_command] challenges' command.
-    - `[gamemode].admin.challenges.complete` - (default: `op`) - Let the player use the '/[admin_command] challenges complete' command.
-    - `[gamemode].admin.challenges.reset` - (default: `op`) - Let the player use the '/[admin_command] challenges reset' command.
-    - `addon.admin.challenges` - (default: `op`) - Allows the access to '/challengesadmin' command if it is enabled in the config. 
+=== "管理员命令"
+    - `/challengesadmin`: 访问管理员挑战 GUI。包含启用了挑战的世界列表。必须在配置中启用。
+    - `/[admin_command] challenges`: 访问 BSkyBlock 管理员挑战 GUI。
+    - `/[admin_command] challenges reload [hard]`: 能够重新加载挑战插件配置。此方法还会清除缓存数据。参数 hard 允许重置数据库连接。
 
-??? question "Something is missing?"
-    You can find the comprehensive list of permissions in the [addon.yml](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/addon.yml) file of this addon.  
-    If something is indeed missing from the list below, please let us know!
+## 权限
 
+!!! tip
+    `[gamemode]` 是一个根据你运行的游戏模式而不同的前缀。
+    前缀是游戏模式的小写名称,即如果你使用 BSkyBlock,前缀就是 `bskyblock`。
+    类似地,如果你使用 AcidIsland,前缀就是 `acidisland`。
 
-## Placeholders
+=== "玩家权限"
+    - `[gamemode].challenges` - (默认: `true`) - 允许玩家使用 '/[player_command] challenges' 命令。
+    - `[gamemode].challenges.multiple` - (默认: `true`) - 允许玩家一次完成挑战多次。
+    - `[gamemode].challenges.complete` - (默认: `false`) - 允许玩家使用 '/[player_command] challenges complete <challenge> <number>' 命令。
+    - `addon.challenges` - (默认: `true`) - 如果在配置中启用,允许访问 '/challenges' 命令。
+    - `[gamemode].command.challengeexempt` - (默认: `false`) - 允许阻止为玩家执行奖励命令。
+
+=== "管理员权限" 
+    - `[gamemode].admin.challenges` - (默认: `op`) - 允许玩家使用 '/[admin_command] challenges' 命令。
+    - `[gamemode].admin.challenges.complete` - (默认: `op`) - 允许玩家使用 '/[admin_command] challenges complete' 命令。
+    - `[gamemode].admin.challenges.reset` - (默认: `op`) - 允许玩家使用 '/[admin_command] challenges reset' 命令。
+    - `addon.admin.challenges` - (默认: `op`) - 如果在配置中启用,允许访问 '/challengesadmin' 命令。
+
+??? question "有缺失的内容吗?"
+    你可以在此插件的 [addon.yml](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/addon.yml) 文件中找到完整的权限列表。
+    如果下面的列表中确实缺少了什么,请告诉我们!
+
+## 占位符
 
 {{ placeholders_source(source="Challenges") }}
 
-## FAQ
+## 常见问题
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/Challenges/issues).
-
-??? question "How can I add a new challenge?"
-    The official way is to add challenge via Admin GUI or Template file.
-    Be aware, that template file is imported only after using proper icon in Admin GUI ("Import Template"). The GUI will allow choosing which template you will want to import into gamemode. 
-    
-    However, there is an option to edit exported database file. It can be done by exporting to file via: `/[admin_command] challenges` and clicking on "Export Database" button.
-
-??? question "Can I enable challenges per island? So all island members has the same challenges?"
-    Yes, you can do it via addon config file: `store-island-data: true`
-
-??? question "Can I enable challenges per player?"
-    Yes, you can do it via addon config file: `store-island-data: false`
-
-??? question "Reward commands are not working. Why?"
-    Most likely reward commands are not working because of incorrect definition. The command does not require `/` symbol before it.
-    
-    If you want to call command from player perspective, you need to add `[SELF]` before command call, f.e. `[SELF] kill` will result in player calling `/kill` command.
-
-    It also could be caused by permissions. `[gamemode].command.challengeexempt` will prevent player to execute commands. Check if player does not have this permission.
-
-??? question "How to add placeholders in reward commands?"
-    Currently, addon do not support placeholders in reward commands. If that is necessary, you can request them in gitHub.
-    
-    Only placeholder that currently is supported in reward commands is `[player]` which returns player who completed challenge name.
-
-??? question "I do not like order of elements in challenge description. Can I change it?"
-    Yes, order of elements are defined in addon locales file.
-
-    [Challenge Description](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/locales/en-US.yml#L852-L994)
-    [Level Description](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/locales/en-US.yml#L995-L1042)
-
-    Switching or removing parts of lore will change the order of elemetns displayed in it.
-
-    ```yaml
-        lore: |-
-            [description]
-            [status]
-            [cooldown]
-            [requirements]
-            [rewards]
-    ```
-
-    Each of these parts are generated by tags below, and you can change them too. F.e. [status] part is generated from:
-
-    ```yaml
-    status:
-        # Status message for completed unrepeatable challenge
-        completed: "&2&l Completed"
-        # Status message that contains number of completions for unlimited repeatable challenge
-        completed-times: "&2 Completed &7&l [number] &r&2 time(-s)"
-        # Status message that contains number of completions from max available for repeatable challenge
-        completed-times-of: "&2 Completed &7&l [number] &r&2 out of &7&l [max] &r&2 times"
-        # Status message that indicates that max completion count reached for repeatable challenge
-        completed-times-reached: "&2&l Completed all &7 [max] &2 times"
-    ```
-
-## Translations
-
-!!! info "Translations for challenges"
-    The translations do not cover the challenges.
-    Each challenge has its own "display name" and "description" which are not localized to keep the configuration process as simple as possible for the end user.  
-    You can however find or provide translations for various challenges on our [online Challenges Library](https://github.com/BentoBoxWorld/weblink/tree/master/challenges/library) on GitHub.
-
-    There is also option to translate parts via locales [file](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/resources/locales/en-US.yml#L1248-L1270)
-
-{{ translations(2896, ["lv", "zh-CN", "zh-TW", "cs", "fr", "de", "hu", "pl", "pt", "ru"]) }}
-
-## API
-
-Since Challenges 1.0 and BentoBox 1.17 other plugins can access to the Challenges addon data directly. However, addon requests are still a good solution for a plugins that do not want to use too many dependencies.
-
-### Maven Dependency
-
-Challenges provides an API for other plugins. This covers version 1.1.0 and onwards.
-
-!!! note
-    Add the Challenges dependency to your Maven POM.xml:
-
-    ```xml
-        <repositories>
-            <repository>
-                <id>codemc-repo</id>
-                <url>https://repo.codemc.io/repository/maven-public/</url>
-            </repository>
-        </repositories>
-        
-        <dependencies>
-            <dependency>
-                <groupId>world.bentobox</groupId>
-                <artifactId>challenges</artifactId>
-                <version>1.1.0</version>
-                <scope>provided</scope>
-            </dependency>
-        </dependencies>
-    ```
-
-Use the latest Challenges version.
-
-The JavaDocs for Challenges can be found [here](https://ci.codemc.io/job/BentoBoxWorld/job/Challenges/ws/target/apidocs/index.html).
-
-### Events
-
-Since BentoBox 1.17 API implemented a feature that solved an issue with classloaders. Plugins that wants to use events directly, now can do it.
-
-=== "ChallengeCompletedEvent"
-    !!! summary "Description"
-        Event that is triggered when player completes a challenge.
-
-        Event is only informative. Cannot be cancelled.
-
-        Link to the class: [ChallengeCompletedEvent](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/java/world/bentobox/challenges/events/ChallengeCompletedEvent.java)
-
-
-    !!! question "Variables"
-        - `String challengeId` - id of the challenge that was completed.
-        - `UUID user` - id of the player who completed the challenge.
-        - `Boolean admin` - indicates if challenge was completed by admin.
-        - `Integer completionCount` - count of challenge completion.
-        
-    !!! example "Code example"
-        ```java
-        @EventHandler(priority = EventPriority.MONITOR)
-        public void onLevelCompletion(ChallengeCompletedEvent event) {
-            UUID user = event.getPlayerUUID();
-            String challenge = event.getChallengeID();
-            boolean isAdmin = event.isAdmin();
-            int count = event.getCompletionCount();
-        }
-        ``` 
-
-=== "LevelCompletedEvent"
-    !!! summary "Description"
-        Event that is triggered when player completes a level.
-
-        Event is only informative. Cannot be cancelled.
-
-        Link to the class: [LevelCompletedEvent](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/java/world/bentobox/challenges/events/LevelCompletedEvent.java)
-
-
-    !!! question "Variables"
-        - `String levelId` - id of the level that was completed.
-        - `UUID user` - id of the player who completed the level.
-        - `Boolean admin` - indicates if level was completed by admin.
-        
-    !!! example "Code example"
-        ```java
-        @EventHandler(priority = EventPriority.MONITOR)
-        public void onLevelCompletion(LevelCompletedEvent event) {
-            UUID user = event.getPlayerUUID();
-            String levelId = event.getLevelID();
-            boolean isAdmin = event.isAdmin();
-        }
-        ``` 
-
-=== "ChallengeResetAllEvent"
-    !!! summary "Description"
-        Event that is triggered when all challenges are reset for player. It includes challenges level data.
-
-        Event is only informative. Cannot be cancelled.
-
-        Link to the class: [ChallengeResetAllEvent](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/java/world/bentobox/challenges/events/ChallengeResetAllEvent.java)
-
-    !!! question "Variables"
-        - `String worldName` - name of the world where challenges were reset.
-        - `UUID playerUUID` - id of the player who was targeted.
-        - `Boolean admin` - indicates if reset was done by admin.
-        - `String reason` - contains the reason for a reset.
-
-    !!! warning "Constant Values"
-        - `reason` - is set to "ISLAND_RESET" if done my player or "RESET_ALL" if done by admin.
-
-    !!! example "Code example"
-        ```java
-        @EventHandler(priority = EventPriority.MONITOR)
-        public void onLevelCompletion(ChallengeResetAllEvent event) {
-            UUID user = event.getPlayerUUID();
-            String worldName = event.getWorldName();
-            boolean isAdmin = event.isAdmin();
-            String reason = event.getReason();
-        }
-        ``` 
-
-=== "ChallengeResetEvent"
-    !!! summary "Description"
-        Event that is triggered when challenge is reset by admin.
-
-        Event is only informative. Cannot be cancelled.
-
-        Link to the class: [ChallengeResetEvent](https://github.com/BentoBoxWorld/Challenges/blob/develop/src/main/java/world/bentobox/challenges/events/ChallengeResetEvent.java)
-
-    !!! question "Variables"
-        - `String challengeID` - id of the challenge that was reset.
-        - `UUID playerUUID` - id of the player who was targeted.
-        - `Boolean admin` - indicates if challenge was reset by admin.
-        - `String reason` - contains the reason for a reset.
-
-    !!! warning "Constant Values"
-        - `admin` -  is set to true. Non-admin reset for single challenge is not implemented yet.
-        - `reason` - is set to "RESET".
-
-    !!! example "Code example"
-        ```java
-        @EventHandler(priority = EventPriority.MONITOR)
-        public void onLevelCompletion(ChallengeResetEvent event) {
-            UUID user = event.getPlayerUUID();
-            String challengeId = event.getChallengeID();
-            boolean isAdmin = event.isAdmin();
-            String reason = event.getReason();
-        }
-        ```
-
-### Addon Request Handlers
-
-Till BentoBox 1.17 we had an issue with accessing data outside BentoBox environment doe to the class loader we used to load addons.
-This meant that data was accessible only from other addons. But BentoBox implemented PlAddon functionality, which means that request
-handlers are not necessary anymore.
-
-More information about addon request handlers can be found [here](/en/latest/BentoBox/Request-Handler-API---How-plugins-can-get-data-from-addons/)
-
-=== "challenge-list"
-    !!! summary "Description"
-        Returns a list of all challenges' uniqueIds that are defined in a given world.
-
-    !!! question "Input"
-        - `world-name`: String - the name of the world.
-
-    !!! success "Output"
-        The output is a `List<String>` containing the list of the uniqueIds of the challenges that are defined for the specified world.
-
-    !!! failure
-        This handler will return an empty list if the `world-name` has not been provided or if the `world-name` does not exist or is not a gamemode world.
-
-    !!! example "Code example"
-        ```java
-        public List<String> getChallenges(String worldName) {
-            return (List<String>) new AddonRequestBuilder()
-                .addon("Challenges")
-                .label("challenge-list")
-                .addMetaData("world-name", worldName)
-                .request();
-        }
-        ```
-
-=== "challenge-data"
-    !!! summary "Description"
-        Returns a `Map<String, Object>` containing all the information about the requested challenge.
-
-    !!! question "Input"
-        - `challenge-name`: String - the unique ID of the requested challenge.
-
-    !!! success "Output"
-        The output is a `Map<String, Object>` with the following keys:
-
-        - `uniqueId`: String - the unique ID of the requested challenge.
-        - `name`: String - the display name for the challenge.
-        - `icon`: ItemStack - the item that represents the challenge in GUIs.
-        - `levelId`: String - the uniqueId of level for which requested challenge is assinged.
-        - `order`: Integer - the order number for the given challenge.
-        - `deployed`: Boolean - `true` if the challenge is deployed, `false` otherwise.
-        - `description`: List&lt;String&gt; - the description for the challenge.
-        - `type`: String - the name of requested challenge type.
-        - `repeatable`: Boolean - `true` if the challenge is repeatable, `false` otherwise.
-        - `maxTimes`: Integer - the maximal completion count for requested challenge.
-
-    !!! failure
-        This handler will return an empty map if the `challengeId` has not been provided or if the `challengeId` could not be found in the database.
-
-    !!! example "Code example"
-        ```java
-        public Map<String, Object> getChallengeDataMap(String challengeId) {
-            return (Map<String, Object>) new AddonRequestBuilder()
-                .addon("Challenges")
-                .label("challenge-data")
-                .addMetaData("challenge-name", challengeId)
-                .request();
-        }
-        ```
-
-=== "level-list"
-    !!! summary "Description"
-        Returns a list of all levels' uniqueIds that are defined in a given world.
-
-    !!! question "Input"
-        - `world-name`: String - the name of the world.
-
-    !!! success "Output"
-        The output is a `List<String>` containing the list of the uniqueIds of the levels that are defined for the specified world.
-
-    !!! failure
-        This handler will return an empty list if the `world-name` has not been provided or if the `world-name` does not exist or is not a gamemode world.
-
-    !!! example "Code example"
-        ```java
-        public List<String> getChallengeLevels(String worldName) {
-            return (List<String>) new AddonRequestBuilder()
-                .addon("Challenges")
-                .label("level-list")
-                .addMetaData("world-name", worldName)
-                .request();
-        }
-        ```
-
-=== "level-data"
-    !!! summary "Description"
-        Returns a `Map<String, Object>` containing all the information about the requested level.
-
-    !!! question "Input"
-        - `level-name`: String - the unique ID of the requested level.
-
-    !!! success "Output"
-        The output is a `Map<String, Object>` with the following keys:
-
-        - `uniqueId`: String - the unique ID of the requested level.
-        - `name`: String - the display name for the level.
-        - `icon`: ItemStack - the item that represents the level in GUIs.
-        - `world`: String - the world name where level operates.
-        - `order`: Integer - the order number for the given level.
-        - `message`: String - the unlock message for given level.
-        - `waiveramount`: Integer - the number of challenges that can be left uncompleted, before unlocking.
-        - `challenges`: List&lt;String&gt; - the list of assigned challenges' ids.
-
-    !!! failure
-        This handler will return an empty map if the `levelId` has not been provided or if the `levelId` could not be found in the database.
-
-    !!! example "Code example"
-        ```java
-        public Map<String, Object> getChallengeLevelData(String levelId) {
-            return (Map<String, Object>) new AddonRequestBuilder()
-                .addon("Challenges")
-                .label("level-data")
-                .addMetaData("level-name", levelId)
-                .request();
-        }
-        ```
-
-=== "completed-challenges"
-    !!! summary "Description"
-        Returns a list of completed challenges' uniqueIds that are defined in a given world and completed by given player.
-
-    !!! question "Input"
-        - `player`: UUID - the UUID of the player.
-        - `world-name`: String - the name of the world.
-
-    !!! success "Output"
-        The output is a `Set<String>` containing the set of the uniqueIds of the challenges that are completed by player for the specified world.
-
-    !!! failure
-        This handler will return an empty set if the `world-name` has not been provided or if the `world-name` does not exist or is not a gamemode world.
-        This handler will return an empty set if the `player` has not been provided or if the `player` does not exist.
-
-    !!! example "Code example"
-        ```java
-        public List<String> getCompletedChallenges(UUID playerUUID, String worldName) {
-            return (List<String>) new AddonRequestBuilder()
-                .addon("Challenges")
-                .label("completed-challenges")
-                .addMetaData("player", playerUUID)
-                .addMetaData("world-name", worldName)
-                .request();
-        }
-        ```
+??? question "你能添加 X 功能吗?"
+    请将其添加到[这里](https://github.com/BentoBoxWorld/Challenges/issues)的列表中。

@@ -1,29 +1,33 @@
-# ControlPanel
+**\# ControlPanel**
 
-**ControlPanel** lets you create a GUI that serves as a shortcut for players.
+**ControlPanel** 可让你创建一个用作玩家快捷方式的 GUI。
 
-Created and maintained by [BONNe](https://github.com/BONNe).
+由 \[BONNe\](https://github.com/BONNe) 创建和维护。
 
-{{ addon_description("ControlPanel") }}
+{{ addon\_description("ControlPanel") }}
 
-## Installation
+**\## 安装**
 
-1. Place the addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. Use admin command to import control panels.
+1\. 将插件 jar 文件放入 BentoBox 插件的 addons 文件夹
 
+2\. 重启服务器
 
-## FAQ
+3\. 使用管理员命令导入控制面板。
 
-??? question "How can I change ControlPanel?"
-    ControlPanel stores all GUI's in the database, but this does not mean you need to edit database file. You still can use template file, however, to see your changes, you need to import the file: `/[admin_cmd] controlpanel import <filename>`.
+**\## 常见问题**
 
-??? question "Can I have different panels for different users?"
-    Yes, ControlPanel supports the option to allow multiple different panels. To activate a certain panel for a user, you must add permission: `[gamemode].controlpanel.panel.[suffix]` where suffix is an ID name for your ControlPanel.
+??? question "如何更改 ControlPanel?"
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/ControlPanel/issues).
+ControlPanel 将所有 GUI 存储在数据库中,但这并不意味着你需要编辑数据库文件。你仍然可以使用模板文件,但是,要查看更改,你需要导入文件: `/[admin_cmd] controlpanel import <filename>`。
 
-## Translations
+??? question "我可以为不同的用户设置不同的面板吗?"
 
-{{ translations(3135, ["cs", "de", "es", "fr", "lv", "zh-CN", "zh-TW", "ko", "pl", "ru", "id", ]) }}
+是的,ControlPanel 支持允许多个不同面板的选项。要为用户激活特定面板,你必须添加权限: `[gamemode].controlpanel.panel.[suffix]`,其中 suffix 是你的 ControlPanel 的 ID 名称。
+
+??? question "你能添加 X 功能吗?"
+
+请将其添加到\[此处\](https://github.com/BentoBoxWorld/ControlPanel/issues)的列表中。
+
+**\## 翻译**
+
+{{ translations(3135, \["cs", "de", "es", "fr", "lv", "zh-CN", "zh-TW", "ko", "pl", "ru", "id", \]) }}

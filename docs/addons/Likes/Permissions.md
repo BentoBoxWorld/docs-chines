@@ -1,12 +1,12 @@
-#### LikesAddon permissions (as of 1.7.0)
+#### LikesAddon 权限（截至1.7.0版本）
 
-| Permission                      | Parent permission     | Default value | Description                                          |
-|---------------------------------|-----------------------|---------------|------------------------------------------------------|
-| [gamemode].likes                |                       | true          | Allows to use `/[gamemode_user] likes`               |
-| [gamemode].likes.top            | [gamemode].likes      | true          | Allows to use `/[gamemode_user] likes top`           |
-| [gamemode].likes.view           | [gamemode].likes      | true          | Allows to use `/[gamemode_user] likes view`          |
-| [gamemode].likes.view.others    | [gamemode].likes.view | op            | Allows to use `/[gamemode_user] likes view <player>` |
-| [gamemode].likes.bypass-cost    | [gamemode].likes      | op            | Allows to  bypass payment for liking and disliking   |
-| [gamemode].likes.admin          |                       | op            | Allows to use `/[gamemode_admin] likes`              |
-| [gamemode].likes.admin.settings | [gamemode].likes.admin| op            | Allows to use `/[gamemode_admin] likes settings`     |
-| [gamemode].likes.icon.X         |                       |               | Allows to set custom icon (x is Material) for player |
+| 权限                              | 父权限                         | 默认值        | 描述                                                    |
+|---------------------------------|-------------------------------|--------------|---------------------------------------------------------|
+| [gamemode].likes                |                               | true         | 允许使用 `/[gamemode_user] likes` 命令                    |
+| [gamemode].likes.top            | [gamemode].likes              | true         | 允许使用 `/[gamemode_user] likes top` 命令                |
+| [gamemode].likes.view           | [gamemode].likes              | true         | 允许使用 `/[gamemode_user] likes view` 命令               |
+| [gamemode].likes.view.others    | [gamemode].likes.view         | op           | 允许使用 `/[gamemode_user] likes view <player>` 命令       |
+| [gamemode].likes.bypass-cost    | [gamemode].likes              | op           | 允许绕过点赞和点踩的支付                                  |
+| [gamemode].likes.admin          |                               | op           | 允许使用 `/[gamemode_admin] likes` 命令                   |
+| [gamemode].likes.admin.settings | [gamemode].likes.admin        | op           | 允许使用 `/[gamemode_admin] likes settings` 命令          |
+| [gamemode].likes.icon.X         |                               |              | 允许为玩家设置自定义图标（X是材料）                        |

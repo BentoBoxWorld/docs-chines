@@ -1,74 +1,74 @@
 # TopBlock
 
-Add-on for BentoBox to calculate island levels for AOneBlock specifically. Ranks are determined by how many magic blocks have been mined - the count.
+为 BentoBox 专门计算 AOneBlock 岛屿等级的插件。排名由挖掘了多少魔法方块决定 - 计数。
 
-Created and maintained by [tastybento](https://github.com/tastybento).
+由 [tastybento](https://github.com/tastybento) 创建和维护。
 
 {{ addon_description("TopBlock") }}
 
-## Installation
+## 安装
 
-1. Place the top block addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. The addon will create a data folder and inside the folder will be a config.yml
-4. Edit the config.yml how you want.
-5. Restart the server if you make a change
+1. 将 top block 插件 jar 文件放入 BentoBox 插件的 addons 文件夹
+2. 重启服务器
+3. 插件将创建一个数据文件夹,里面有一个 config.yml
+4. 根据需要编辑 config.yml。
+5. 如果进行了更改,请重启服务器
 
-## Configuration
+## 配置
 
-TopBlock addon has 2 general configuration things:
+TopBlock 插件有 2 个通用配置项:
 
-- config.yml file contains default addon configuration files.
-- /panels/ contains files that manages player GUI's
+- config.yml 文件包含插件的默认配置。
+- /panels/ 包含管理玩家 GUI 的文件。
 
 ### config.yml
 
-Config file contains main functions for the addon. 
+配置文件包含插件的主要功能。
 
-The latest config.yml can be found [here](https://github.com/BentoBoxWorld/TopBlock/blob/develop/src/main/resources/config.yml).
+最新的 config.yml 可以在[这里](https://github.com/BentoBoxWorld/TopBlock/blob/develop/src/main/resources/config.yml)找到。
 
-This section defines a number of overall settings for the add-on.
+本节定义了插件的许多整体设置。
 
 ??? note "refresh-time"
-    How often the Top Ten should be refreshed in minutes. Minimum is 1 minute, default is 5.
-    Each refresh requires reading every island from the database, so this should not be done too often.
+    前十名应该以分钟为单位刷新的频率。最小值为 1 分钟,默认值为 5 分钟。
+    每次刷新都需要从数据库读取每个岛屿,因此不应过于频繁。
 
-    Default: `5`
+    默认值: `5`
 
 ??? note "shorthand"
-    Allows to show shorter island level numbers.
+    允许显示较短的岛屿等级数字。
 
-    Shows large level values rounded down, e.g., 10,345 -> 10k
+    显示向下取整的大等级值,例如 10,345 -> 10k
 
-    Default: `false`
+    默认值: `false`
 
-### Customizable GUI's
+### 可自定义 GUI
 
-BentoBox 1.17 API introduced a function that allows to implement customizable GUI's. We tried to be as simple as possible for customization, however, some features requires explanation.
-You can find more information how BentoBox custom GUI's works here: [Custom GUI's](/en/latest/Tutorials/generic/Customizable-GUI/)
+BentoBox 1.17 API 引入了一个允许实现可自定义 GUI 的功能。我们尽量让自定义变得简单,但有些功能需要解释。
+你可以在这里找到更多关于 BentoBox 自定义 GUI 如何工作的信息: [自定义 GUI](/en/latest/Tutorials/generic/Customizable-GUI/)
 
-??? question "How can I customize GUI's"
-     Addon will create a new directory under `/plugins/bentobox/addons/topblock` with a name `panels`
+??? question "我如何自定义 GUI?"
+     插件将在 `/plugins/bentobox/addons/topblock` 下创建一个名为 `panels` 的新目录
 
-    Currently you can customize GUI's:
+    目前你可以自定义 GUI:
 
-    - Top panel: `top_panel` - allows to see top 10 islands.
+    - 排行榜面板: `top_panel` - 允许查看前 10 名岛屿。
 
-??? question "What does `TOP` button type?"
-    This button is available in top_panel. It shows island at the top X by island top.
+??? question "`TOP` 按钮类型是什么?"
+    此按钮在 top_panel 中可用。它按岛屿排名前 X 显示岛屿。
     
-    The `icon` by default will be `PLAYER_HEAD` with a proper player skin. Enabling it will replace it with specified material.
+    `icon` 默认为 `PLAYER_HEAD`,带有正确的玩家皮肤。启用它将使用指定的材料替换它。
 
-    `index` in the data field allows to specify which place of Top 10 should be showed in current spot.
+    data 字段中的 `index` 允许指定当前位置应显示前 10 名中的哪个位置。
 
-    Top panel has 2 implemented actions which funstion requires extra addon:
+    排行榜面板有 2 个实现的操作,功能需要额外的插件:
     
-    - `warp` - requires Warps addon. Will be shown only if warp sign exists on players island.
-    - `visit` - requires Visit addon. Will be shown only if visiting is allowed on players island.
+    - `warp` - 需要 Warps 插件。仅当玩家岛屿上存在传送标志时才会显示。
+    - `visit` - 需要 Visit 插件。仅当玩家岛屿上允许访问时才会显示。
 
-    Fallback allows to change background icon, when there are no player in top spot.
+    Fallback 允许在排行榜位置上没有玩家时更改背景图标。
 
-    Example:
+    示例:
     ```yaml
         #icon: PLAYER_HEAD
         title: topblock.gui.buttons.island.name
@@ -88,14 +88,14 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
           title: topblock.gui.buttons.island.empty
     ```
 
-??? question "What does `VIEW` button type?"
-    This button is available in top_panel. It shows viewer island topblock value.
+??? question "`VIEW` 按钮类型是什么?"
+    此按钮在 top_panel 中可用。它显示查看者的岛屿 topblock 值。
 
-    The `icon` by default will be `PLAYER_HEAD` with a proper player skin. Enabling it will replace it with specified material.
+    `icon` 默认为 `PLAYER_HEAD`,带有正确的玩家皮肤。启用它将使用指定的材料替换它。
     
-    The action `view` allows to see detailed menu of players island.
+    `view` 操作允许查看玩家岛屿的详细菜单。
 
-    Example:
+    示例:
     ```yaml
         #icon: PLAYER_HEAD
         title: topblock.gui.buttons.island.name
@@ -108,46 +108,45 @@ You can find more information how BentoBox custom GUI's works here: [Custom GUI'
             tooltip: topblock.gui.tips.click-to-view
     ```
 
-## Commands
+## 命令
 
 !!! tip
-    `[player_command]` and `[admin_command]` are commands that differ depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify these values.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`, and the default `[admin_command]` is `bsbadmin`.
+    `[player_command]` 和 `[admin_command]` 是根据你运行的游戏模式而不同的命令。
+    游戏模式的 `config.yml` 文件包含允许你修改这些值的选项。
+    例如,在 BSkyBlock 中,默认的 `[player_command]` 是 `island`,默认的 `[admin_command]` 是 `bsbadmin`。
 
-=== "Player commands"
-    - `/[player_command] topblock`: access to the top panel. Requires `aoneblock.island.topblock` permission.
+=== "玩家命令"
+    - `/[player_command] topblock`: 访问排行榜面板。需要 `aoneblock.island.topblock` 权限。
 
-## Permissions
+## 权限
 
-=== "Player permissions"
-    - `aoneblock.island.topblock` - (default: `true`) - Allows player to use the `/[player_command] top` command.
+=== "玩家权限"
+    - `aoneblock.island.topblock` - (默认: `true`) - 允许玩家使用 `/[player_command] top` 命令。
 
-??? question "Something is missing?"
-    You can find the comprehensive list of permissions in the [addon.yml](https://github.com/BentoBoxWorld/TopBlock/blob/develop/src/main/resources/addon.yml) file of this addon.  
-    If something is indeed missing from the list below, please let us know!
+??? question "有缺失的内容吗?"
+    你可以在此插件的 [addon.yml](https://github.com/BentoBoxWorld/TopBlock/blob/develop/src/main/resources/addon.yml) 文件中找到完整的权限列表。
+    如果下面的列表中确实缺少了什么,请告诉我们!
 
-
-## Placeholders
+## 占位符
 
 {{ placeholders_source(source="TopBlock") }}
 
-## FAQ
+## 常见问题
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/TopBlock/issues).
+??? question "你能添加 X 功能吗?"
+    请将其添加到[这里](https://github.com/BentoBoxWorld/TopBlock/issues)的列表中。
 
-## Translations
+## 翻译
 
 {{ translations(3013, ["cs", "de", "es", "fr", "hu", "id", "lv", "pl", "ro", "tr", "zh-CN", "ko", "pt", "vi", "ru"]) }}
 
 ## API
 
-### Maven Dependency
-TopBlock provides an API for other plugins.
+### Maven 依赖
+TopBlock 为其他插件提供了 API。
 
 !!! note
-    Add the TopBlock dependency to your Maven POM.xml:
+    将 TopBlock 依赖项添加到你的 Maven POM.xml 中:
 
     ```xml
         <repositories>
@@ -167,4 +166,4 @@ TopBlock provides an API for other plugins.
         </dependencies>
     ```
 
-The JavaDocs for TopBlock can be found [here](https://ci.codemc.io/job/BentoBoxWorld/job/TopBlock/ws/target/apidocs/index.html).
+TopBlock 的 JavaDoc 可以在[这里](https://ci.codemc.io/job/BentoBoxWorld/job/TopBlock/ws/target/apidocs/index.html)找到。

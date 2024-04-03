@@ -1,79 +1,78 @@
-# Chat
+# 聊天
 
-**Chat** provides a **Team Chat** and **Island Chat** to let your players talk privately to their visitors or fellow island members.
+**聊天**插件提供了**团队聊天**和**岛屿聊天**功能，让玩家可以与访客或岛屿成员私密交谈。
 
-Created and maintained by [tastybento](https://github.com/tastybento).
+由[tastybento](https://github.com/tastybento)创建和维护。
 
 {{ addon_description("Chat") }}
 
-## Island chat
+## 岛屿聊天
 
-When enabled, chat is limited to just players on the island, including visitors. Admins or mods can listen into island chats using a spy command.
+启用后，聊天将仅限于岛屿上的玩家，包括访客。管理员或版主可以使用间谍命令监听岛屿聊天。
 
-## Team chat
+## 团队聊天
 
-When enabled, chats will go only to team members. Team players can toggle whether their chat will go onto the team chat channel or not. Admins can listen into all team chats using a spy command.
+启用后，聊天将仅发送给团队成员。团队玩家可以切换他们的聊天是否进入团队聊天频道。管理员可以使用间谍命令监听所有团队聊天。
 
-## Commands
-### Player commands
+## 命令
+### 玩家命令
 
-* `chat` - toggles island chat on and off
-* `teamchat` - toggles whether player's chat goes to the team channel or not
+* `chat` - 切换岛屿聊天的开启和关闭
+* `teamchat` - 切换玩家的聊天是否进入团队频道
 
-### Admin commands
+### 管理员命令
 
-* `chatspy` - toggles island chat on and off
-* `teamchatspy` - toggles whether player's chat goes to the team channel or not
+* `chatspy` - 切换岛屿聊天的开启和关闭
+* `teamchatspy` - 切换玩家的聊天是否进入团队频道
 
-The config also has settings to log all chats if required.
+配置还包含了必要时记录所有聊天的设置。
 
-## Configuration
+## 配置
 
 ```
-# Configuration file for Chat
+# 聊天插件的配置文件
 team-chat:
   gamemodes:
   - BSkyBlock
   - AcidIsland
   - CaveBlock
   - SkyGrid
-  # Log team chats to console.
+  # 将团队聊天记录到控制台。
   log: false
 island-chat:
-  # Lists the gamemodes in which you want the Chat addon to be effective.
+  # 列出你希望聊天插件生效的游戏模式。
   gamemodes:
   - BSkyBlock
   - AcidIsland
   - CaveBlock
   - SkyGrid
-  # Log island chats to console.
+  # 将岛屿聊天记录到控制台。
   log: false
 chat-listener:
-  # Sets priority of AsyncPlayerChatEvent. Change this if Chat addon
-  # is conflicting with other plugins which listen to the same event
-  # Acceptable values: lowest, low, normal, high, highest, monitor
+  # 设置AsyncPlayerChatEvent的优先级。如果聊天插件与其他监听同一事件的插件冲突，请更改此设置
+  # 可接受的值：lowest, low, normal, high, highest, monitor
   priority: normal
 ```
 
-## Permissions
+## 权限
 
 ```
 permissions:
   '[gamemode].chat.team-chat':
-    description: Player can use team chat
+    description: 玩家可以使用团队聊天
     default: true
   '[gamemode].chat.island-chat':
-    description: Player can use island chat
+    description: 玩家可以使用岛屿聊天
     default: true
   '[gamemode].chat.spy':
-    description: Player can use team or island chat spy
+    description: 玩家可以使用团队或岛屿聊天间谍
     default: op
 
 ```
 
-## Like this addon?
-You can [sponsor](https://github.com/sponsors/tastybento) to get more addons like this and make this one better!
+## 喜欢这个插件吗？
+你可以[赞助](https://github.com/sponsors/tastybento)来获得更多这样的插件并使这个插件变得更好！
 
-## Translations
+## 翻译
 
 {{ translations(3680, ["cs", "de", "es", "fr", "ja", "tr", "zh-CN", "hu", "it", "lv", "pl", "ru", "vi"]) }}

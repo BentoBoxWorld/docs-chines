@@ -1,78 +1,79 @@
-# IslandFly
+# 岛屿飞行
 
-**IslandFly** allows players to fly on their island.
+**岛屿飞行**允许玩家在他们的岛屿上飞行。
 
-Created and maintained by [tastybento](https://github.com/tastybento).
+由[tastybento](https://github.com/tastybento)创建和维护。
 
 {{ addon_description("IslandFly") }}
 
-## Installation
+## 安装
 
-0. Install BentoBox and run it on the server at least once to create its data folders.
-1. Place this jar in the addons folder of the BentoBox plugin.
-2. Restart the server.
-3. The addon will create a data folder and inside the folder will be a config.yml.
-4. Stop the server.
-5. Edit config.yml how you want.
-7. Restart the server.
+0. 安装BentoBox并至少运行一次服务器以创建其数据文件夹。
+1. 将这个jar文件放入BentoBox插件的addons文件夹中。
+2. 重启服务器。
+3. 插件将创建一个数据文件夹，并且文件夹内将有一个config.yml文件。
+4. 停止服务器。
+5. 按你想要的方式编辑config.yml文件。
+7. 重启服务器。
 
-## Configuration
+## 配置
 
-After addon is successfully installed, it will create config.yml file. Every option in this file comes with comments about them. Please check file for more information.
-You can find the latest config file: [config.yml](https://github.com/BentoBoxWorld/IslandFly/blob/develop/src/main/resources/config.yml)
+插件成功安装后，它将创建config.yml文件。这个文件中的每个选项都附有注释。请检查文件以获取更多信息。
+你可以在这里找到最新的配置文件：[config.yml](https://github.com/BentoBoxWorld/IslandFly/blob/develop/src/main/resources/config.yml)
 
 === "fly-timeout"
-    !!! summary "Description"
-        How many seconds the addon will wait before disabling fly mode when a player exit his island.
+    !!! 摘要 "描述"
+        玩家离开岛屿后插件等待多少秒才禁用飞行模式。
 
 === "logout-disable-fly"
-    !!! summary "Description"
-        If the fly mode should be disabled when a player disconnect.
+    !!! 摘要 "描述"
+        当玩家断开连接时是否应禁用飞行模式。
 
 === "disabled-gamemode"
-    !!! summary "Description"
-        This list stores GameModes in which islandFly addon should not work. To disable addon it is necessary to write its name in new line that starts with -. 
+    !!! 摘要 "描述"
+        这个列表储存了哪些游戏模式中IslandFly插件不应该工作。要禁用插件，需要在以-开头的新行中写下它的名字。
         
-    !!! example "Example"
+    !!! 示例 "示例"
         ```yaml
             disabled-gamemodes:
             - BSkyBlock
         ```   
 
 === "allow-command-outside-protection-range"
-    !!! summary "Description"
-        This allows the player to use the command outside the island protection range.
+    !!! 摘要 "描述"
+        允许玩家在岛屿保护范围外使用命令。
 
-## Commands
+## 命令
 
-!!! tip
-    `[player_command]` and `[admin_command]` are commands that differ depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify these values.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`, and the default `[admin_command]` is `bsbadmin`.
+!!! 小贴士
+    `[player_command]` 和 `[admin_command]` 是根据你运行的游戏模式而不同的命令。
+    游戏模式的`config.yml`文件包含允许你修改这些值的选项。
+    例如，在BSkyBlock上，默认的`[player_command]`是`island`，默认的`[admin_command]`是`bsbadmin`。
 
-=== "Player commands"
-    - `/[player_command] fly`: toggles flight on / off.
+=== "玩家命令"
+    - `/[player_command] fly`: 切换飞行开/关。
 
-## Permissions
+## 权限
 
-!!! tip
-    `[gamemode]` is a prefix that differs depending on the gamemode you are running.
-    The prefix is the lowercased name of the gamemode, i.e. if you are using BSkyBlock, the prefix is `bskyblock`.
-    Similarly, if you are using AcidIsland, the prefix is `acidisland`.
+!!! 小贴士
+    `[gamemode]` 是一个根据你运行的游戏模式而不同的前缀。
+    前缀是游戏模式的小写名称，即如果你使用BSkyBlock，前缀是`bskyblock`。
+    类似地，如果你使用AcidIsland，前缀是`acidisland`。
 
-=== "Permissions"
-    - `[gamemode].island.fly` - (default: `true`) - Allows the player to use '/[player_command] fly' command.
-    - `[gamemode].island.flyspawn` - (default: `op`) - Allows the player to fly at spawn island.
-    - `[gamemode].island.flybypass` - (default: `op`) - Allows the player to fly on other player islands.
+=== "权限"
+    - `[gamemode].island.fly` - (默认: `true`) - 允许玩家使用 '/[player_command] fly' 命令。
+    - `[gamemode].island.flyspawn` - (默认: `op`) - 允许玩家在出生岛上飞行。
+    - `[gamemode].island.flybypass` - (默认: `op`) - 允许玩家在其他玩家的岛屿上飞行。
 
-## FAQ
+## 常见问题解答
 
-??? question "Can you add a feature X?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/IslandFly/issues).
+??? 问题 "你可以添加功能X吗？"
+    请在[这里](https://github.com/BentoBoxWorld/IslandFly/issues)添加。
 
-??? question "I have a bug, where should I report it?"
-    Please add it to the list [here](https://github.com/BentoBoxWorld/IslandFly/issues).
+??? 问题 "我遇到了一个bug，我应该在哪里报告？"
+    请在[这里](https://github.com/BentoBoxWorld/IslandFly/issues)添加。
 
-## Translations
+## 翻译
 
 {{ translations(4728, ["cs", "de", "es", "fr", "ja", "lv", "zh-CN", "hu", "id", "it", "ko", "pl", "pt", "ro", "ru", "tr", "vi"]) }}
+

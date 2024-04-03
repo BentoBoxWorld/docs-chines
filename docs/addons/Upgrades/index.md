@@ -1,35 +1,35 @@
 # Upgrades
 
-**Upgrades** allows you to upgrade your island size, Entities/Blocks limits at the cost of money and island level.
+**Upgrades** 允许你以金钱和岛屿等级为代价升级岛屿大小、实体/方块限制。
 
-This addon was created to add a progression curve and a use of money for the island.
+此插件旨在为岛屿添加进度曲线和金钱用途。
 
-Created and maintained by [Ikkino](https://github.com/Guillaume-Lebegue)
+由 [Ikkino](https://github.com/Guillaume-Lebegue) 创建和维护。
 
 {{ addon_description("Upgrades", true) }}
 
-## Installation
+## 安装
 
-1. Place the Upgrades addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. The addon will create a data folder and inside the folder will be a config.yml
-4. Edit the config.yml how you want.
-5. Restart the server if you make a change
+1. 将 Upgrades 插件 jar 文件放入 BentoBox 插件的 addons 文件夹
+2. 重启服务器
+3. 插件将创建一个数据文件夹,里面有一个 config.yml
+4. 根据需要编辑 config.yml。
+5. 如果进行了更改,请重启服务器
 
-## Commands
+## 命令
 
 !!! tip
-    `[player_command]` is a command that differs depending on the gamemode you are running.
-    The Gamemodes' `config.yml` file contains options that allows you to modify this value.
-    As an example, on BSkyBlock, the default `[player_command]` is `island`.
+    `[player_command]` 是一个根据你运行的游戏模式而不同的命令。
+    游戏模式的 `config.yml` 文件包含允许你修改此值的选项。
+    例如,在 BSkyBlock 中,默认的 `[player_command]` 是 `island`。
 
-There is a user command to open a GUI with the upgrades.
+有一个用户命令可以打开带有升级的 GUI。
 
 `/[Player command] upgrade`
 
-## Setup - Config.yml
+## 设置 - Config.yml
 
-The config.yml has the following sections:
+config.yml 有以下部分:
 
 * range-upgrade
 * block-limits-upgrade
@@ -40,20 +40,19 @@ The config.yml has the following sections:
 * command-icon
 
 !!! tip
-    All `upgrade`, `island-min-level` and `vault-cost` fields are mathematical expression. So:
+    所有 `upgrade`、`island-min-level` 和 `vault-cost` 字段都是数学表达式。因此:
 
-    * +,-,*,/,^,(,) can be used
-    * sqrt(), sin(), cos(), tan() can be used
-    * `[level]` is replaced by the actual level for this upgrade
-    * `[islandLevel]` is replaced by the island level from level addon **(Can be 0)**
-    * `[numberPlayer]` is replaced by the number of players in the team
+    * 可以使用 +、-、*、/、^、(、)
+    * 可以使用 sqrt()、sin()、cos()、tan()
+    * `[level]` 被替换为此升级的实际等级
+    * `[islandLevel]` 被替换为来自 level 插件的岛屿等级 **(可以为 0)**
+    * `[numberPlayer]` 被替换为团队中的玩家数量
 
+### 通用
 
-### General
+一个升级按"阶段"划分,可以随意命名
 
-One upgrade is divided by "tier" that can be named at will
-
-Exemple:
+示例:
 ```yml
 tier1:
   max-level: 5
@@ -63,20 +62,19 @@ tier1:
   permission-level: 1
 ```
 
-* `max-level` is the maximum level of this tier.
-* `upgrade` is how much is given at each level.
-* `island-min-level` is the minimum island level needed to buy this upgrade. It is given by [Level Addon](/addons/Level)
-* `vault-cost` is the cost to buy this upgrade **(>= 0)**
-* `permission-level` is the level of permission needed to buy this upgrade (cf. Permission)
+* `max-level` 是此阶段的最高等级。
+* `upgrade` 是每个等级给予的数量。
+* `island-min-level` 是购买此升级所需的最低岛屿等级。它由 [Level 插件](/addons/Level) 提供。
+* `vault-cost` 是购买此升级的费用 **(>= 0)**
+* `permission-level` 是购买此升级所需的权限等级(参见权限)。
 
+### 范围升级
 
-### Range Upgrade
+此升级增加岛屿的保护范围。
 
-This upgrade increases the protection size of the island.
+范围增加在 `upgrade` 字段中给出。
 
-The size increase is given in the `upgrade` field
-
-Exemple:
+示例:
 ```yaml
 range-upgrade:
   tier1:
@@ -91,45 +89,44 @@ range-upgrade:
     vault-cost: "[level]*[numberPlayer]*200"
 ```
 
-!!! warning "Max Range"
-    You should always check that, even at the maximum upgrade, the protection size never exceeds the size between island.
+!!! warning "最大范围"
+    你应该始终检查,即使在最大升级时,保护范围也不会超过岛屿之间的大小。
 
-### Block Limits Upgrade
+### 方块限制升级
 
-This upgrade increase the limits of blocks set in the [Limits Addon](/addons/Limits)
+此升级增加 [Limits 插件](/addons/Limits) 中设置的方块限制。
 
-The number to add to the limits is given by the `upgrade` field.
+要添加到限制中的数字由 `upgrade` 字段给出。
 
-Exemple:
+示例:
 ```yaml
 block-limits-upgrade:
   HOPPER:
     tier1:
       max-level: 2
-      upgrade: "1"
+      upgrade: "1" 
       island-min-level: "2"
       vault-cost: "[level]*100"
     tier2:
       max-level: 5
       upgrade: "1"
-      island-min-level: "4"
+      island-min-level: "4"  
       vault-cost: "([level]-2)*[numberPlayer]*700"
       permission-level: 1
 ```
 
-!!! tip "Blocks"
-    A list of blocks can be found [here](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)
+!!! tip "方块"
+    方块列表可以在[这里](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)找到
 
+### 实体限制升级
 
-### Entity Limits Upgrade
+此升级增加 [Limits 插件](/addons/Limits) 中设置的实体限制。
 
-This upgrade increase the limits of entities set in the [Limits Addon](/addons/Limits)
+所有实体都需要有相应的图标(参见: [entity-icon](#entity-icon))
 
-All entities need to have a corresponding icon (CF: [entity-icon](#entity-icon))
+要添加到限制中的数字由 `upgrade` 字段给出。
 
-The number to add to the limits is given by the `upgrade` field.
-
-Exemple:
+示例:
 ```yaml
 entity-limits-upgrade:
   CHICKEN:
@@ -146,29 +143,29 @@ entity-limits-upgrade:
       permission-level: 3
 ```
 
-!!! tip "Entities"
-    A list of entities can be found [here](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html)
+!!! tip "实体"
+    实体列表可以在[这里](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html)找到
 
-### Command Upgrade
+### 命令升级
 
-This upgrade runs given command on each upgrade
+此升级在每次升级时运行给定的命令。
 
-All command upgrade needs to have a corresponding icon (CF: [command-icon](#command-icon))
+所有命令升级都需要有相应的图标(参见: [command-icon](#command-icon))
 
-In the config:
+在配置中:
 
-* The name of the section is the real name of the upgrade
-* The `name` field is only the display name. Not used in permission.
-* The `console` field specify if the command should be launched by the console or by the player
-* The `command` field is a list containing all the commands to run. They are launched in the list order
+* 部分的名称是升级的真实名称
+* `name` 字段只是显示名称。不在权限中使用。
+* `console` 字段指定命令是应由控制台启动还是由玩家启动
+* `command` 字段是包含要运行的所有命令的列表。它们按列表顺序启动
 
-!!! tip "Command Field"
-    In the command field:
+!!! tip "命令字段"
+    在命令字段中:
 
-    * `[player]` is replaced by the name of the player who bought the upgrade
-    * `[level]` is replaced with the level of the upgrade
+    * `[player]` 被替换为购买升级的玩家的名字
+    * `[level]` 被替换为升级的等级
 
-Exemple:
+示例:
 ```yaml
 command-upgrade:
   lambda-upgrade:
@@ -190,12 +187,11 @@ command-upgrade:
         - "say [player] has reached the max level"
 ```
 
-### Gamemode
+### 游戏模式
 
+可以在每个游戏模式之间设置升级差异。
 
-It is possible to set differences in upgrade between each gamemode.
-
-Exemple:
+示例:
 ```yaml
 gamemodes:
   BSkyBlock:
@@ -216,87 +212,87 @@ gamemodes:
           vault-cost: "[level]*200"
 ```
 
-### Entity Icon
+### 实体图标
 
-This section is made to link entities to icons.
+本部分用于将实体链接到图标。
 
-Here the syntax:
+语法如下:
 
 `ENTITY: MATERIAL`
 
-Exemple:
+示例:
 ```yaml
 entity-icon:
   CHICKEN: CHICKEN_SPAWN_EGG
 ```
 
-!!! tip "Entities"
-    A list of entities can be found [here](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html)
+!!! tip "实体"
+    实体列表可以在[这里](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/EntityType.html)找到
 
-!!! tip "Material"
-    A list of materials can be found [here](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)
+!!! tip "材料"
+    材料列表可以在[这里](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)找到
 
-### Command Icon
+### 命令图标
 
-This section is made to link command upgrade to icon.
+本部分用于将命令升级链接到图标。
 
-Here the syntax:
+语法如下:
 
 `NAME: MATERIAL`
 
-`NAME` being the real name of the command upgrade (!= display name)
+`NAME` 是命令升级的真实名称(!=显示名称)
 
-Exemple:
+示例:
 ```yaml
 command-icon:
   lambda-upgrade: GRASS
 ```
 
-!!! tip "Material"
-    A list of materials can be found [here](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)
+!!! tip "材料"
+    材料列表可以在[这里](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)找到
 
-## Permissions
+## 权限
 
-There can be permission for buying an upgrade.
+可以有购买升级的权限。
 
-To do so, a `permission-level` superior to 0 should be added to the upgrade. To buy the upgrade, the player need to have a level superior or equal to this level. By default, a player has a level of 0 everywhere.
+要做到这一点,应该将大于 0 的 `permission-level` 添加到升级中。要购买升级,玩家需要有一个大于或等于此等级的等级。默认情况下,玩家在任何地方都有 0 级。
 
-Here is the permission:
+权限如下:
 
 `[GAMEMODE].upgrades.[UPGRADE].[LEVEL]`
 
-Where:
+其中:
 
-* `[GAMEMODE]` is the name of the gamemode where this permission should be set
-* `[UPGRADE]` is the name of the upgrade (CF: [Name Upgrades](#name-upgrades))
-* `[LEVEL]` is the level to give to the player
+* `[GAMEMODE]` 是应设置此权限的游戏模式的名称
+* `[UPGRADE]` 是升级的名称(参见: [升级名称](#升级名称))
+* `[LEVEL]` 是要给玩家的等级
 
-Exemple:
+示例:
 
 `bskyblock.upgrades.range-upgrade.2`
 
 !!! warning
-    Permission is in lowercase
+    权限为小写
 
 !!! tip
-    Because permission is created at runtime, it won't appear in a list of permissions
+    因为权限是在运行时创建的,所以它不会出现在权限列表中
 
-### Name Upgrades
+### 升级名称
 
-**Range Upgrade**:
+**范围升级**:
 
-`rangeupgrade` | Exemple: `bskyblock.upgrades.range-upgrade.1`
+`rangeupgrade` | 示例: `bskyblock.upgrades.range-upgrade.1`
 
-**Block Limits Upgrade**:
+**方块限制升级**:
 
-`limitsupgrade-[BLOCK]` | Exemple: `bskyblock.upgrades.limitsupgrade-hopper.8`
+`limitsupgrade-[BLOCK]` | 示例: `bskyblock.upgrades.limitsupgrade-hopper.8`
 
-**Entity Limits Upgrade**:
+**实体限制升级**:
 
-`limitsupgrade-[ENTITY]` | Exemple: `bskyblock.upgrades.limitsupgrade-chicken-hopper.4`
+`limitsupgrade-[ENTITY]` | 示例: `bskyblock.upgrades.limitsupgrade-chicken-hopper.4`
 
-**Command Upgrade**:
+**命令升级**:
 
-`command-[NAME]` | Exemple: `bskyblock.upgrades.command-lambda-upgrade.6`
+`command-[NAME]` | 示例: `bskyblock.upgrades.command-lambda-upgrade.6`
 
-`NAME` being the real name of the command upgrade (!= display name)
+`NAME` 是命令升级的真实名称(!=显示名称)

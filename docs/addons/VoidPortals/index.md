@@ -1,17 +1,17 @@
-# VoidPortals
+# 虚空传送门
 
-**VoidPortals** allows players to teleport to other worlds by jumping into the void.
+**虚空传送门**允许玩家通过跳入虚空来传送到其他世界。
 
-Created and maintained by [BONNe](https://github.com/BONNe).
+由[BONNe](https://github.com/BONNe)创建和维护。
 
 {{ addon_description("VoidPortals", beta=True) }}
 
-## Installation
+## 安装
 
-1. Place the addon jar in the addons folder of the BentoBox plugin
-2. Restart the server
-3. In game you can change flags that allows to use current addon.
+1. 将插件的jar文件放入BentoBox插件的addons文件夹中
+2. 重启服务器
+3. 在游戏中你可以更改允许使用当前插件的标志。
 
-## Translations
+## 翻译
 
 {{ translations(2975, ["cs", "fr", "ja", "lv", "de", "pl", "ru", "es"]) }}
