@@ -1,12 +1,13 @@
-# Welcome to the BentoBox developer documentation!
+# 欢迎来到 BentoBox 开发者文档！
 
-BentoBox is a platform plugin that supports a suite of API's for addons that run on it. The architecture is virtually identical to the Bukkit plugin system. You can create GameModeAddons like BSkyBlock that provide players with your own game mode experience, or you can develop utility plugins, like Warps that enable players in any game mode (or even normal worlds) to use warp signs.
+BentoBox 是一个平台插件，支持一套可在其上运行的插件 API。其架构与 Bukkit 插件系统几乎相同。你可以创建像 BSkyBlock 这样的游戏模式插件，为玩家提供你自己的游戏模式体验，或者你可以开发实用程序插件，如 Warps，使任何游戏模式（甚至普通世界）中的玩家都可以使用传送牌。
 
-# JavaDocs
-Javadocs are here: [https://javadocs.bentobox.world](https://javadocs.bentobox.world)
+# JavaDocs**
 
-The core API package is world.bentobox.bentobox.api.*. Methods in those packages are kept as stable as possible over the long term. Methods and classes outside of the api package may change a lot or more frequently.
+Javadocs 在这里：[https://javadocs.bentobox.world](https://javadocs.bentobox.world)
 
-# Example Addon
+核心 API 包是 world.bentobox.bentobox.api.\*。这些包中的方法会尽可能长期保持稳定。api 包之外的方法和类可能会频繁或大幅度改变。
 
-@BONNe maintains an example addon here: [https://github.com/BONNePlayground/ExampleAddon](https://github.com/BONNePlayground/ExampleAddon)
+# 示例插件
+
+@BONNe 在这里维护了一个示例插件：[https://github.com/BONNePlayground/ExampleAddon](https://github.com/BONNePlayground/ExampleAddon)

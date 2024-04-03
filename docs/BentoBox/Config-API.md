@@ -1,142 +1,93 @@
-# BentoBox Config API
+# 并发岛屿
 
-This is an optional API that enhances the Bukkit config API for YAML files. The BentoBox Config API adds the following features:
+Bentobox 2.0.0 及更高版本允许管理员设置玩家在每个世界中拥有多个岛屿。本页将解释其工作原理以及允许多个岛屿的一些影响。
 
-1. The config file can retain comments even after saving
-2. The config file can be updated with new settings when you update your addon
-3. The config class is also where you go to get and set settings
+## 如何启用
 
-If you do not want to use this API, you can use the standard Bukkit API methods such as saveDefaultConfig(), getConfig(), etc.
+默认情况下，玩家只能拥有一个岛屿。可以通过 BentoBox 的 `config.yml` 文件中的 `island.concurrent-islands` 设置来全局增加岛屿数量。如果个别游戏模式提供此设置，则可以覆盖此值。
 
-## Getting started - an example
+## 如何使用
 
-Let's say we want to make a config file for our new plugin. Perhaps it will look like this:
+### 创建岛屿
 
-```yaml
-# This is my config.yml file
-# It is for my addon
+如果允许玩家创建多个岛屿，则可以使用 `create` 命令来创建，例如：
 
-world:
-  # This is the name of the world.
-  name: My_world_name
-  # Size - minimum is 10, max is 100
-  size: 100
-```
+`/island create`
 
-### ConfigObject
-To use the config API, we create a new class that implements `ConfigObject`:
+这与其他岛屿创建方式相同，创建后玩家通常会被传送到新的岛屿。
 
-```java
-public class Settings implements ConfigObject {
+**\### 前往岛屿**
 
-}
-```
+当玩家拥有多个岛屿后，可以使用 `go` 命令在岛屿之间传送，例如：
 
-We now must specify where this config object will be saved. The location is relative to the addon's data folder.
+`/island go`
 
-```java
-@StoreAt(filename="config.yml") // Explicitly call out what name this should have.
-public class Settings implements ConfigObject {
+此命令将显示玩家设置的任何命名家园以及玩家拥有的任何岛屿的名称。如果玩家使用 `setname` 命令为岛屿命名，则它将显示在列表中，否则岛屿将以默认岛屿名称后跟数字列出，例如"tastybento 的岛屿 2"。重启服务器时，岛屿的编号可能会发生变化，因此应鼓励玩家为岛屿命名。
 
-}
-```
+### 设置家园
 
-### @ConfigEntry
-Next, we must add the data fields we want in the config. To do that, we use the `@ConfigEntry` annotation:
+玩家可以通过运行 `sethome` 命令来设置岛屿的默认位置。如果玩家有能力设置多个家园，则可以使用 `sethome [home name]` 命令来设置。游戏世界配置中允许的最大家园数量在玩家拥有的所有岛屿之间共享。
 
-```java
-@StoreAt(filename="config.yml") // Explicitly call out what name this should have.
-public class Settings implements ConfigObject {
-    @ConfigEntry(path = "world.name")
-    private String worldName = "My_world_name";
+### 岛屿转让
 
-    @ConfigEntry(path = "world.size")
-    private int worldSize = 100;
-}
-```
+可以使用 `setowner` 命令将岛屿所有权转让给团队中的其他玩家。如果所有者已拥有允许的最大并发岛屿数量，则无法转让所有权。
 
-Note how the fields have a default value assigned to them.
+_新功能：_ 当玩家转让所有权时，现在会自动离开团队。
 
-### Getters and Setters
-Next, we must add getters and setters to access these fields. The names of the getters and setters and parameter names must meet the [JavaBeans Naming Conventions](https://www.oreilly.com/library/view/javaserver-pages-3rd/0596005636/ch20s01s01.html):
+### 团队
 
-```java
-@StoreAt(filename="config.yml") // Explicitly call out what name this should have.
-public class Settings implements ConfigObject {
-    @ConfigEntry(path = "world.name")
-    private String worldName = "My_world_name";
+- 团队是基于岛屿的，团队不能跨岛屿。
 
-    @ConfigEntry(path = "world.size")
-    private int worldSize = 100;
+- 从 BentoBox 2.3.0 开始，有一个设置允许团队成员拥有自己的岛屿，在这种情况下，玩家可以在不同的岛屿上成为多个团队的成员。
 
-    public String getWorldName() {
-        return worldName;
-    }
-    public void setWorldName(String worldName) {
-        this.worldName = worldName;
-    }
-    public int getWorldSize() {
-        return worldSize;
-    }
-    public void setWorldSize(int worldSize) {
-        this.worldSize = worldSize;
-    }
-}
-```
+## 游戏模式支持
 
-### `@ConfigComment`
-Next, we can add comments using the `ConfigComment` annotation:
+所有游戏模式都应支持并发岛屿。
 
-```java
-@StoreAt(filename="config.yml") // Explicitly call out what name this should have.
-@ConfigComment("This is my config.yml file") // Note that the comment will automatically
-@ConfigComment("It is for my addon") // be proceeded with a # and space
-public class Settings implements ConfigObject {
-    @ConfigEntry(path = "world.name")
-    @ConfigComment("This is the name of the world.")
-    private String worldName = "My_world_name";
+## 插件支持
 
-    @ConfigEntry(path = "world.size")
-    @ConfigComment("Size - minimum is 10, max is 100")
-    private int worldSize = 100;
+以下列出了插件及其与并发岛屿的兼容性。截至 2024-04-03：
 
-    public String getWorldName() {
-        return worldName;
-    }
-    public void setWorldName(String worldName) {
-        this.worldName = worldName;
-    }
-    public int getWorldSize() {
-        return worldSize;
-    }
-    public void setWorldSize(int worldSize) {
-        this.worldSize = worldSize;
-    }
-}
-```
+| 插件 | 备注 |
 
-### Loading and Saving
+|-------|-------------------|
 
-To load a config with the Addon class, do this:
+| Bank 1.7.0 | 银行是每个岛屿独立的。资金不会在岛屿之间共享 |
 
-```java
-Settings settings = new Config<>(this, Settings.class).loadConfigObject();
-```
+| Biomes 2.1.1 | 兼容 |
 
-To save a config in the Addon class, do this:
+| Border 4.1.1 | 兼容 |
 
-```java
-Settings settings = new Settings();
-new Config<>(this, Settings.class).saveConfigObject(settings);
-```
+| CauldronWitchery 2.0.1 | |
 
-It is good practice for an addon to load the settings, then save them immediately. This will keep the config file up to date with the latest options and comments. To create the initial config, use the Addon's `saveDefaultConfig()` method to save the default config.yml stored in the addon's jar. If you are using a different file that config.yml, you can use the `saveResource(resourcePath, replace)` method.
+| Challenges 1.2.0 | |
 
-### Default config file
-Set up a default config.yml file in your addon jar. Then save it to the file system in your addon using the standard `saveDefaultConfig()` method. So the overall approach is as follows:
+| Chat 1.1.4 | |
 
-1. saveDefaultConfig() - this will save the default config.yml from the jar if it does not exist.
-2. Load config using Config API to obtain the admins settings
-3. Save config using Config API to update config.yml with the latest setting options and comments
+| CheckMeOut 1.1.1 | 兼容 |
 
-That's it! Please read the JavaDocs for more information on this API.
+| DimensionalTrees 1.6.0 | |
+
+| ExtraMobs 1.12 | |
+
+| Greenhouses 1.7.3 | 兼容 |
+
+| InvSwitcher 1.11.0 | 兼容 |
+
+| IslandFly 1.11.0 | 兼容 |
+
+| Level 2.11.0 | 等级按岛屿计算。前十名将显示最后计算的岛屿的分数。如果允许在单击前十名头像时进行传送，则玩家将前往玩家的当前岛屿。|
+
+| Likes 2.3.1 | |
+
+| Limits 1.19.1 | 兼容。限制是每个岛屿独立的。|
+
+| MagicCobblestoneGenerator 2.5.1 | |
+
+| TwerkingForTrees 1.4.3 | 兼容 |
+
+| Visit 1.6.0 | |
+
+| VoidPortals 1.5.0.0 | |
+
+| Warps 1.13.0 | 与往常一样，玩家只能拥有一个活动传送牌。|

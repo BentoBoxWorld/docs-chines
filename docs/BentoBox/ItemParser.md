@@ -1,93 +1,92 @@
-# BentoBox ItemParser
+# BentoBox 物品解析器
 
-There is not a good way how to define an item stack from the config files. 
-As each item has different meta-data that can be assigned. 
-So BentoBox uses very weird format that comes from ASkyBlock times.
+没有一个好办法从配置文件中定义物品堆栈。
+因为每个物品都有不同的元数据可以分配。
+所以 BentoBox 使用一种非常奇怪的格式，这种格式来自 ASkyBlock 时代。
 
-## Quick Example
+## 快速示例
 
-### Generic Minecraft Item Translations
+### 通用 Minecraft 物品翻译
 
-Since BentoBox 2.0.0 you can use minecraft item translations like in give command:
+从 BentoBox 2.0.0 开始，你可以像 give 命令一样使用 minecraft 物品翻译：
 
-    - minecraft:diamond_sword{display:{Lore:["\"A legendary weapon\""]}}
+    - minecraft:diamond_sword{display:{Lore:["\"一把传奇武器\""]}} 
     - minecraft:stone
     - diamond_chestplate{Enchantments:[{id:mending,lvl:1},{id:protection,lvl:4},{id:unbreaking,lvl:3}]}
 
-### General Translation
+### 通用翻译
 
-By default, all items are translated in format:
-    
+默认情况下，所有物品都按以下格式翻译：
+
     - [TYPE]<:QUANTITY>
 
-Quantity is not necessary, however, if you provide it, then you need to add `:` before it.
+数量不是必需的，但是，如果你提供了数量，则需要在前面添加 `:`。
 
-All types you can find here: [Material](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)
+你可以在这里找到所有类型：[Material](https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html)
 
-However there are some exceptions that have some more customizations available. You can check them below.
+但是，有一些例外情况，它们有一些更多的自定义选项可用。你可以在下面查看它们。
 
-### Damageable Items
+### 可损坏物品
 
-You also can define damageable items following this format:
+你还可以按照以下格式定义可损坏物品：
 
     - [TYPE]:<DAMAGE_AMOUNT>:<QUANTITY>
 
-Damage Amount and quantity is optional.
+损坏量和数量是可选的。
 
-### Potions and Tipped Arrows
+### 药水和药水箭
 
-Potions, Splash Potions, Lingering Potions and Tipped Arrows follows the same pattern:
+药水、喷溅药水、滞留药水和药水箭遵循相同的模式：
 
     - [TYPE]:<POTION_TYPE>:QUANTITY
 
-[TYPE] you can replace with POTION, SPLASH_POTION, LINGERING_POTION or TIPPED_ARROW.
-All potion types you can find by this link: [PotionTypes](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)
+[TYPE] 可以替换为 POTION、SPLASH_POTION、LINGERING_POTION 或 TIPPED_ARROW。
+你可以通过以下链接找到所有药水类型：[PotionTypes](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/potion/PotionType.html)
 
-Examples:
+示例：
 
-    - POTION:STRENGTH:1 - Will create splash potion with extended strength 1 effect.
-    - SPLASH_POTION:INSTANT_DAMAGE:2 - Will create 2 splash potions with instant damage 2 effect
-    - LINGERING_POTION:STRONG_LEAPING:1 - Will create Jump 2 lingering potion.
-    - TIPPED_ARROW:WEAKNESS:1 - Will create weakness 1 tipped arrow.
+    - POTION:STRENGTH:1 - 将创建一个力量 1 的延长药水。
+    - SPLASH_POTION:INSTANT_DAMAGE:2 - 将创建 2 个瞬间伤害 2 的喷溅药水
+    - LINGERING_POTION:STRONG_LEAPING:1 - 将创建一个跳跃 2 的滞留药水。
+    - TIPPED_ARROW:WEAKNESS:1 - 将创建一个虚弱 1 的药水箭。
 
-### Banners
+### 旗帜
 
-Banners have a custom parsing options that follows scheme:
+旗帜有自定义解析选项，遵循以下方案：
 
     - [color]_BANNER:QUANTITY<:PatternType:DyeColor>
 
-You can specify as many patterns as you want, but they must follow given sequence, pattern and then dye color.
+你可以指定任意多个图案，但它们必须遵循给定的顺序，先是图案类型，然后是染料颜色。
 
-You can find all pattern types here: [PatternType](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/banner/PatternType.html)
+你可以在这里找到所有图案类型：[PatternType](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/block/banner/PatternType.html)
 
-You can find all dye colors here: [DyeColor](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/DyeColor.html)
+你可以在这里找到所有染料颜色：[DyeColor](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/DyeColor.html)
 
+### 玩家头颅
 
-### Player Heads
-
-Player Heads has a custom parsing options. It follows this scheme:
+玩家头颅有自定义解析选项。它遵循以下方案：
 
  - PLAYER_HEAD:<Name|Trimmed UUID|UUID|Texture>:<QUANTITY>
 
-PLAYER_HEAD - indicates that the item will be Player Head.
-In next part you can specify:
+PLAYER_HEAD - 表示该物品将是玩家头颅。
+在下一部分中，你可以指定：
 
-    - Player Name
-    - Player Trimmed UUID (without -)
-    - Player UUID (with -)
-    - Texture Link
+    - 玩家名称
+    - 玩家精简 UUID（不带 -）
+    - 玩家 UUID（带 -）
+    - 材质链接
 
-At the end you can specify the amount of player heads in the stack.
-As example: `PLAYER_HEAD:BONNe1704` - will give 1 player head with BONNe1704 skin.
+在最后，你可以指定堆栈中玩家头颅的数量。
+例如：`PLAYER_HEAD:BONNe1704` - 将给予 1 个带有 BONNe1704 皮肤的玩家头颅。
 
-### Custom Model Data
+### 自定义模型数据
 
-Custom Model data can be added to any parsable item stack. The custom model data text can be added at any part of parsable string. The scheme for custom model data:
+自定义模型数据可以添加到任何可解析的物品堆栈中。自定义模型数据文本可以添加到可解析字符串的任何部分。自定义模型数据的方案：
 
 - `CMD-[number]`
 
-Examples:
+示例：
 
-- IRON_INGOT:2:CMD-12345678 => Creates an item stack with 2 iron ingots and custom model data `12345678` 
-- GOLD_INGOT:CMD-12345678 => Creates an item stack with gold ingot and custom model data `12345678`
-- PLAYER_HEAD:BONNe1704:CMD-12345678 => Creates an item stack with BONNe1704 player head and custom model data `12345678` 
+- IRON_INGOT:2:CMD-12345678 => 创建一个包含 2 个铁锭和自定义模型数据 `12345678` 的物品堆栈
+- GOLD_INGOT:CMD-12345678 => 创建一个包含金锭和自定义模型数据 `12345678` 的物品堆栈
+- PLAYER_HEAD:BONNe1704:CMD-12345678 => 创建一个包含 BONNe1704 玩家头颅和自定义模型数据 `12345678` 的物品堆栈

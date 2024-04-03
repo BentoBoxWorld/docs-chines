@@ -1,6 +1,6 @@
-# What are the Flags ?
+# 什么是标志？
 
-Flags are island settings that are similar to [WorldGuard's region flags](https://worldguard.enginehub.org/en/latest/regions/flags/) : they define whether something is allowed or is likely to happen inside the island boundaries.
+标志是类似于 [WorldGuard 的区域标志](https://worldguard.enginehub.org/en/latest/regions/flags/) 的岛屿设置：它们定义了岛屿边界内是否允许某些事情发生或可能发生。
 
 {{ flags_bundle("PROTECTION") }}
 

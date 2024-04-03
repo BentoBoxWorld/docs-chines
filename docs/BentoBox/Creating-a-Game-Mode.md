@@ -1,97 +1,99 @@
-= Table of Contents
+= 目录
 :toc:
 
-= Introduction
-A game mode is an add-on like BSkyBlock or AcidIsland. What makes it a game mode add-on is that it will create and register a *world* with BentoBox and supply BentoBox with a WorldSettings class object.
+= 简介
+游戏模式是像 BSkyBlock 或 AcidIsland 这样的附加组件。将其视为游戏模式附加组件的原因是它将创建并向 BentoBox 注册一个 *世界*，并提供 BentoBox 一个 WorldSettings 类对象。
 
-Currently, worlds registered with BentoBox must be over-worlds, but once a world is registered, any associated Nether and End worlds will also belong to this game mode add-on.
+目前，向 BentoBox 注册的世界必须是主世界，但一旦一个世界被注册，任何关联的下界和末地世界也将属于此游戏模式附加组件。
 
-To show how this all works, let's look at the BSkyBlock code (some lines removed for clarity):
+为了说明这一切是如何工作的，让我们看一下 BSkyBlock 代码（为了清晰起见，删除了一些行）：
 
 [source,java]
 ----
     @Override
     public void onLoad() {
-        // Save the default config from config.yml
+        // 保存 config.yml 中的默认配置
         saveDefaultConfig();
-        // Load settings from config.yml. This will check if there are any issues with it too.
+        // 从 config.yml 中加载设置。这将检查是否存在任何问题。
         settings = new Config<>(this, Settings.class).loadConfigObject();
-        // Load or create worlds
+        // 加载或创建世界
         bsbWorlds = new BSkyBlockWorld(this);
     }
 ----
 
-The comments are pretty clear, but the first two calls are to set up the config.yml file and the settings. In this case, we are using the Config class from the BentoBox Configuration API which enables dynamic saving of YAML files with comments. This is a powerful config API. You do *not* have to use it if you do not want to. Instead, you can just use the regular Bukkit-style config system. We used it because it enables us to keep the config.yml file up to date automatically.
+注释非常清晰，但前两个调用是为了设置 config.yml 文件和设置。在这种情况下，我们使用的是来自 BentoBox 配置 API 的 Config 类，它使得动态保存带有注释的 YAML 文件成为可能。这是一个强大的配置 API。如果您不想使用它，您可以只使用常规的 Bukkit 风格配置系统。我们之所以使用它，是因为它使我们能够自动更新 config.yml 文件。
 
-= The Settings Class
+= 设置类
 
-Let's look at the Settings class (again, some lines have been removed for clarity):
+让我们看一下设置类（同样，为了清晰起见，删除了一些行）：
 
 [source,java]
 ----
-@StoreAt(filename="config.yml", path="addons/BSkyBlock") // Explicitly call out what name this should have.
-@ConfigComment("BSkyBlock Configuration [version]")
-@ConfigComment("This config file is dynamic and saved when the server is shutdown.")
-@ConfigComment("You cannot edit it while the server is running because changes will")
-@ConfigComment("be lost! Use in-game settings GUI or edit when server is offline.")
+@StoreAt(filename="config.yml", path="addons/BSkyBlock") // 明确指定应具有的名称。
+@ConfigComment("BSkyBlock 配置 [版本]")
+@ConfigComment("此配置文件是动态的，并在服务器关闭时保存。")
+@ConfigComment("在服务器运行时无法编辑它，因为更改将")
+@ConfigComment("丢失！在服务器离线时使用游戏内设置 GUI 或进行编辑。")
 @ConfigComment("")
 public class Settings implements DataObject, WorldSettings {
 
-    @ConfigComment("Allow obsidian to be scooped up with an empty bucket back into lava")
+    @ConfigComment("允许用空桶将黑曜石捡起重新变成岩浆")
     @ConfigEntry(path = "general.allow-obsidian-scooping")
     private boolean allowObsidianScooping = true;
 
 ...
 ----
 
-What you see here are a lot of notations followed by the class declaration, followed by more notations around a field declaration. Let's take these one by one:
+在这里看到的是类声明之前的许多注释，类声明后面是字段声明周围的更多注释。让我们逐一解释：
 
-. The @StoreAt annotation before the class defines where this config file will be stored. It is relative to the data folder of the BentoBox plugin. Files should only ever be stored within the BentoBox folder. It is very important that you declare this location explicitly!
-. The @Comment annotation is used to add a line of comment into the YAML file. The "[version]" placeholder is automatically replaced with the version number of the add-on.
-. The class must implement both DataObject and WorldSettings. DataObject is used so the class can be saved in the database (via BBConfig) and WorldSettings is used because this is a Game Mode add-on
-. The field "allowObsidianScooping" is declared, along with a default value and it has a comment annotation and a @ConfigEntry annotation. This one is used to define where this value will be placed in the YAML file. Note that YAML entries are generally placed in the same order as they are written in the code unless the @ConfigEntry forces them to be placed elsewhere.
-. After the field is declared, you also need to create a getter and setter for the field. (Not shown in the code)
+. 类声明之前的 @StoreAt 注释定义了该配置文件将被存储的位置。它是相对于 BentoBox 插件的数据文件夹的。文件应该只存储在 BentoBox 文件夹中。明确声明此位置非常重要！
+. @Comment 注释用于向 YAML 文件中添加注释行。"[版本]" 占位符会自动替换为附加组件的版本号。
+. 类必须同时实现 DataObject 和 WorldSettings 接口。DataObject 用于将类保存到数据库中（通过 BBConfig），WorldSettings 用于表示这是一个游戏模式附加组件。
+. 字段 "allowObsidianScooping" 被声明，以及一个默认值，它有一个注释注释和一个 @ConfigEntry 注释。此注释用于定义该值将放置在 YAML 文件中的位置。请注意，通常情况下，YAML 条目的放置顺序与它们在代码中编写的顺序相同，除非 @ConfigEntry 强制将它们放置在其他位置。
+. 在声明字段之后，您还需要为字段创建一个 getter 和 setter。（在代码中未显示）
 
-Note that by implementing the WorldSetting interface, you will have to @Override a number of getters for mandatory world settings. In the BSkyBlock Settings class almost all of these are loaded from the config file. One exception is the *Optional<Addon> getAddon()*. This must return the add-on instance. Right now, the add-on must set this. In the future, BentoBox may set it.
+请注意，通过实现 WorldSetting 接口，您将不得不 @Override 一些强制性世界设置的 getter。在 BSkyBlock 设置类中，几乎所有这些设置都是从配置文件加载的。唯一的例外是 *Optional<Addon> getAddon()*。这必须返回附加组件实例。目前，附加组件必须设置它。将来，BentoBox 可能会设置它。
 
-= Registering the World with BentoBox
+= 将世界注册到 BentoBox
 
-Now let's take a closer look at the BSkyBlockWorld class mentioned above. This class does three main things:
+现在让我们更仔细地看一下上面提到的 BSkyBlockWorld 类。这个类有三个主要功能：
 
-. Makes the worlds for BSkyBlock (creates the worlds and defines generators for them)
-. Registers the main over world and the settings class with BentoBox
-. Registers the schems that will be used when creating new islands with the IslandCreate class
+. 为 BSkyBlock 创建世界（创建世界并为其定义生成器）
+. 向 BentoBox 注册主世界和设置类
+. 注册在创建新岛屿时将使用的原理图到 IslandCreate 类中
 
-This is how it does it:
+这
+
+是它的实现方式：
 
 [source,java]
 ----
-// Create the world if it does not exist
+// 如果不存在则创建世界
 islandWorld = WorldCreator.name(worldName).type(WorldType.FLAT).environment(World.Environment.NORMAL)
     .generator(new ChunkGeneratorWorld(addon)).createWorld();
 
-// Register the world and settings with BentoBox
+// 将世界和设置与 BentoBox 注册
 addon.getPlugin().registerWorld(islandWorld, addon.getSettings());
 
-// Make the nether and end worlds if required (not shown)
+// 如有必要，创建下界和末地世界（未显示）
 
-// Load schematics
+// 加载原理图
 addon.getPlugin().getSchemsManager().loadIslands(islandWorld);
 ----
 
-In this code, *addon* is the add-on instance. getPlugin() is used to get BentoBox and registerWorld() is used to register the world. Note that you do *NOT* register the nether and end worlds with BentoBox. You only register the overworld. BentoBox will assume that any associated Nether or End are also owned by your add-on if they exist.
+在这段代码中，*addon* 是附加组件实例。getPlugin() 用于获取 BentoBox，registerWorld() 用于注册世界。请注意，您不需要向 BentoBox 注册下界和末地世界。您只需要注册主世界。BentoBox 将假定任何关联的下界或末地也属于您的附加组件，如果它们存在的话。
 
-For schems, (BentoBox's own proprietary schematics file format), you should have schems for the default island for each world in your add-on's schems folder. They must be named as follows:
+对于原理图（BentoBox 自己的专有原理图文件格式），您应该为附加组件的每个世界的默认岛屿准备原理图，并将其放在附加组件的原理图文件夹中。它们必须命名为：
 
-* island.schem (Mandatory)
-* nether-island.schem (Optional)
-* end-island.schem (Optional)
+* island.schem（必需的）
+* nether-island.schem（可选）
+* end-island.schem（可选）
 
-To make schems, use BentoBox's schem command (or BSkyBlock's or AcidIsland's schem command).
+要制作原理图，请使用 BentoBox 的 schem 命令（或 BSkyBlock 的或 AcidIsland 的 schem 命令）。
 
-= Registering commands
+= 注册命令
 
-After you have registered the world, the associated world/game mode settings and the schems, the next step is to make your add-on do something. If it requires commands, you can make them by extending CompositeCommand. Let's look at how BSkyBlock registers it's top-level command */island* and sub commands under it:
+在注册了世界、相关的世界/游戏模式设置和原理图之后，下一步是让您的附加组件执行某些操作。如果它需要命令，您可以通过扩展 CompositeCommand 来制作它们。让我们看一下 BSkyBlock 如何注册其顶级命令 */island* 和其下的子命令：
 
 [source,java]
 ----
@@ -104,11 +106,11 @@ public class IslandCommand extends CompositeCommand {
     @Override
     public void setup() {
         setOnlyPlayer(true);
-        // Permission
+        // 权限
         setPermissionPrefix("bskyblock");
         setPermission("island");
         setWorld(((BSkyBlock)getAddon()).getIslandWorld());
-        // Set up subcommands
+        // 设置子命令
         new IslandAboutCommand(this);
         new IslandCreateCommand(this);
         new IslandGoCommand(this);
@@ -121,28 +123,27 @@ public class IslandCommand extends CompositeCommand {
         new IslandBanCommand(this);
         new IslandUnbanCommand(this);
         new IslandBanlistCommand(this);
-        // Team commands
+        // 团队命令
         new IslandTeamCommand(this);
     }
 ----
 
-The key line for registering the command is:
+注册命令的关键行是：
 
 ```
 super(addon, "island", "is");
 ```
 
-This tells BentoBox that "/island" is a top-level command for BSkyBlock add-on and it has an alias of "/is". Then in the setup() method, there are a number of very important (mandatory for top-level commands) declarations:
+这告诉 BentoBox "/island" 是 BSkyBlock 附加组件的顶级命令，它的别名是 "/is"。然后在 setup() 方法中，有一些非常重要的（顶级命令必需的）声明：
 
 ```
 setWorld(((BSkyBlock)getAddon()).getIslandWorld());
 ```
 
-This is extremely important. It defines the world that this command will operate in. All sub-commands will refer to this using the getWorld() method. 
+这非常重要。它定义了该命令将在其中运行的世界。所有子命令都将使用 getWorld() 方法引用它。
 
-After that, the command instantiates a number of sub-commands, passing itself as a parameter. These classes will use that parameter as the parent in their respective super() calls.
+之后，命令实例化了一些子命令，将自身作为参数传递。这些类将使用该参数作为它们各自 super() 调用中的父类。
 
-= Conclusion
+= 结论
 
-The above describes what should be done if you are creating a new game mode type add-on. We are continuing to work on the API, so some things may become simpler in the future to accomplish.
-
+上述内容描述了如果您正在创建新的游戏模式类型附加组件应该做什么。我们正在继续开发 API，因此在未来，某些事情可能会变得更简单。

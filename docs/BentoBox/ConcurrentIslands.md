@@ -1,76 +1,71 @@
-# Concurrent Islands
+# 并发岛屿
 
-Bentobox 2.0.0 and later enable admins to allow players to have more than one island per world. This page explains about how it works and some of the implications of allowing it.
+BentoBox 2.0.0 及更高版本允许管理员允许玩家在同一世界拥有多个岛屿。本页面解释了它的工作原理以及允许它的一些影响。
 
-## How to enable
+## 如何启用
 
-By default, players have one island. The number can be increased globally via the BentoBox `config.yml` under the `island.concurrent-islands` setting. This value may be overridden by individual game mode config settings if they offer this setting too.
+默认情况下，玩家只有一个岛屿。可以通过 BentoBox 的 `config.yml` 中的 `island.concurrent-islands` 设置全局增加数量。如果各个游戏模式配置也提供了此设置，则可以覆盖此值。
 
-## How to use
+## 如何使用
 
-### Creation
+### 创建
 
-If players are allowed to make more than one island, then they can do so by using the `create` command, for example:
+如果允许玩家创建多个岛屿，则可以使用 `create` 命令进行创建，例如：
 
 `/island create`
 
-This operates the same as any other island creation and the player will usually be teleported to the island after it is created.
+这与任何其他岛屿创建操作相同，玩家通常会在创建后被传送到该岛屿。
 
-### Going to islands
+### 前往岛屿
 
-Once players have more than one island, they can teleport between them by using the `go` command, for example:
+一旦玩家拥有多个岛屿，他们可以通过使用 `go` 命令在它们之间传送，例如：
 
 `/island go`
 
-This command will show any named homes that they player has set along with the names of any islands the player has. If the player has named their island using the `setname` command, then it will be in the list, but if they have not, then the island will be listed by the default island name followed by a number, for example "tastybento's island 2". The number of the island may change when the server is restarted, so players should be encouraged to name their islands.
+此命令将显示玩家设置的任何已命名家园以及玩家拥有的任何岛屿的名称。如果玩家使用 `setname` 命令命名了他们的岛屿，则它将出现在列表中，但如果他们没有，那么岛屿将按默认岛屿名称后跟一个数字列出，例如 "tastybento 的岛屿 2"。当服务器重新启动时，岛屿的编号可能会更改，因此应鼓励玩家为他们的岛屿命名。
 
-### Setting homes
+### 设置家园
 
-Players can set the default location of their island by running the `sethome` command. If players have the ability to set multiple homes, then they can set them using the `sethome [home name]` command. The maximum number of homes allowed in the config for the game world is shared across all the islands tat the player owns.
+玩家可以通过运行 `sethome` 命令设置其岛屿的默认位置。如果玩家有设置多个家的权限，则可以使用 `sethome [home name]` 命令设置它们。游戏世界配置中允许的家的最大数量在玩家拥有的所有岛屿之间共享。
 
-### Island transfer
+### 岛屿转移
 
-Island ownership can be transfered to other players on the team using the `setowner` command. Ownership cannot be transfered if the owner already has the maximum number of concurrent islands allowed.
+可以使用 `setowner` 命令将岛屿所有权转移给团队中的其他玩家。如果所有者已经拥有了允许的最大并发岛屿数量，则无法转移所有权。
 
-*NEW:* When a player transfers ownership then now automatically leave the team.
+*新特性:* 当玩家转移所有权时，现在会自动离开团队。
 
-### Teams
+### 团队
 
-- Teams are island-based and teams do not span islands.
-- It's not possible to invite a player who is already in a team.
-- It is possible to have a team on each of your islands and be the leader of them all, but members cannot be in more than one team, and if you transfer ownership of the team to another player, you will automatically leave the team and that person will gain the island.
+- 团队是基于岛屿的，团队不跨越岛屿。
+- 截至 BentoBox 2.3.0 版，存在一个设置，允许团队成员拥有自己的岛屿，在这种情况下，玩家可以是不同岛屿上多个团队的成员。
 
-## Game Mode Support
+## 游戏模式支持
 
-All game modes should support concurrent islands.
+所有游戏模式都应支持并发岛屿。
 
-## Addon Support
+## 插件支持
 
-This lists the addons and their compatibility with concurrent islands.
+这列出了插件及其与并发岛屿的兼容性。截至 2024-04-03：
 
-| Addon | Comments          |
+| 插件 | 备注          |
 |-------|-------------------|
-| Bank 1.7.0 | Banks are per-island. Money is not pooled across islands |
-| Biomes 2.1.1 | Compatible |
-| Border 4.1.1 | Compatible  |
+| Bank 1.7.0 | 每个岛屿有一个银行。金钱不会在岛屿之间汇总 |
+| Biomes 2.1.1 | 兼容 |
+| Border 4.1.1 | 兼容  |
 | CauldronWitchery 2.0.1 |   |
 | Challenges 1.2.0 |   |
 | Chat 1.1.4 |   |
-| CheckMeOut 1.1.1 | Compatible  |
+| CheckMeOut 1.1.1 | 兼容  |
 | DimensionalTrees 1.6.0 |   |
 | ExtraMobs 1.12 |   |
-| Greenhouses 1.7.3 | Compatible  |
-| InvSwitcher 1.11.0 | Compatible  |
-| IslandFly 1.11.0 | Compatible  |
-| Level 2.11.0 | Levels are calculated by island. The Top Ten will show the score for the last calculated island. If teleporting is allowed when clicking on the Top Ten head, then players will go to the player's current island.  |
+| Greenhouses 1.7.3 | 兼容  |
+| InvSwitcher 1.11.0 | 兼容  |
+| IslandFly 1.11.0 | 兼容  |
+| Level 2.11.0 | 等级由岛屿计算。前十名将显示最后计算岛屿的分数。如果在单击前十名的头像时允许传送，则玩家将前往玩家当前的岛屿。  |
 | Likes 2.3.1 |   |
-| Limits 1.19.1 | Compatible. Limits are per-island.  |
+| Limits 1.19.1 | 兼容。限制是按岛屿计算的。  |
 | MagicCobblestoneGenerator 2.5.1 |   |
-| TwerkingForTrees 1.4.3 | Compatible  |
+| TwerkingForTrees 1.4.3 | 兼容  |
 | Visit 1.6.0 |   |
 | VoidPortals 1.5.0.0 |   |
-| Warps 1.13.0 | As usual, players may have only one active warp sign.   |
-
-
-
-
+| Warps 1.13.0 | 与往常一样，玩家只能有一个活动的传送标志。   |

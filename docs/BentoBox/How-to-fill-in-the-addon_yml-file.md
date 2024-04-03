@@ -1,95 +1,95 @@
-# How to fill in the addon.yml file?
+# 如何填写 addon.yml 文件？
 
-## What is this file?
+## 这个文件是什么？
 
-The **addon.yml** file gives precious information about your addon to BSkyBlock when it tries to load it. This file consists in a set of attributes, each one being defined on a new line and without any indentation.
+**addon.yml** 文件为 BSkyBlock 在尝试加载你的插件时提供了宝贵信息。该文件由一组属性组成，每个属性定义在新行上且不使用任何缩进。
 
-Without this file or if it isn't correctly filled in, BSkyBlock won't load your addon and mark it as `INVALID_DESCRIPTION`.
+如果没有这个文件或者没有正确填写，BSkyBlock 将不会加载你的插件，并将其标记为 `INVALID_DESCRIPTION`。
 
-## Mandatory attributes
+## 必填属性
 
 ### name
 
-**Description:** The name of this addon.
+**描述：** 这个插件的名称。
 
-**Code:**
+**代码：**
 ```yaml
 name: "MySuperAddon"
 ```
 
-**Notes:**
-1. Must consist in all alphanumeric characters and underscores (a-z,A-Z,0-9, \_).
-2. Spaces are not supported and will be automatically converted to underscores.
-3. It is used to identify the addon inside the entire BSkyBlock's API.
-4. Displayed when the user types `/bsadmin version YourSuperAddon`.
+**注释：**
+1. 必须由所有字母数字字符和下划线组成 (a-z,A-Z,0-9, \_)。
+2. 不支持空格，空格会自动转换为下划线。
+3. 它用于在整个 BSkyBlock 的 API 内部识别插件。
+4. 当用户输入 `/bsadmin version YourSuperAddon` 时显示。
 
 ### main
 
-**Description:** Address that points to the class extending `BSAddon`.
+**描述：** 指向扩展了 `BSAddon` 类的地址。
 
-**Code:**
+**代码：**
 ```yaml
 main: fr.poslovitch.myaddon.MySuperAddon
 ```
 
-**Notes:**
-1. This must contain the full namespace including the class file itself, like Bukkit. Therefore if your namespace is `fr.poslovitch.myaddon`, and your class file is called `MySuperAddon`, this must be `fr.poslovitch.myaddon.MySuperAddon`.
+**注释：**
+1. 这必须包含完整的命名空间，包括类文件本身，就像 Bukkit 一样。因此，如果你的命名空间是 `fr.poslovitch.myaddon`，并且你的类文件称为 `MySuperAddon`，那么这应该是 `fr.poslovitch.myaddon.MySuperAddon`。
 
 ### version
 
-**Description:** The version of your addon.
+**描述：** 你的插件版本。
 
-**Code:**
+**代码：**
 ```yaml
 version: 1.0.0
 ```
 
-**Notes:**
-1. Version is an arbitrary string, however the most common format is MajorRelease.MinorRelease.FixRelease (e.g: 3.6.1).
-2. Displayed when the user types `/bsadmin version YourSuperAddon`.
+**注释：**
+1. 版本是一个任意字符串，然而最常见的格式是 MajorRelease.MinorRelease.FixRelease（例如：3.6.1）。
+2. 当用户输入 `/bsadmin version YourSuperAddon` 时显示。
 
-## Optional attributes
+## 可选属性
 
-Mandatory attributes aside, there are a few more attributes that can be useful to give more information about your addon to BSkyBlock.
+除了必填属性外，还有一些其他属性可以提供更多关于你的插件给 BSkyBlock 的信息。
 
-These attributes are optional.
+这些属性是可选的。
 
 ### authors
 
-**Description:** Allows you to list all the super kind devs that made this addon, or just you.
+**描述：** 允许你列出所有参与制作这个插件的超棒开发者，或者只是你。
 
-**Code:**
+**代码：**
 ```yaml
-authors: ["Poslovitch", "Tastybento", "you, maybe? :P"]
-# Don't hesitate to add our nicknames into the authors list of your addon, we would appreciate that!
+authors: ["Poslovitch", "Tastybento", "你，也许？ :P"]
+# 不要犹豫，在你的插件的作者列表中添加我们的昵称，我们会很欣赏的！
 ```
 
-**Notes:**
-1. Gives credit to the developer(s)
-2. Displayed when the user types `/bsadmin version YourSuperAddon`.
+**注释：**
+1. 给予开发者(们)以荣誉
+2. 当用户输入 `/bsadmin version YourSuperAddon` 时显示。
 
 ### description
 
-**Description:** Chicken-friendly description of the functionality your addon provides.
+**描述：** 对你的插件提供的功能进行友好的描述。
 
-**Code:**
+**代码：**
 ```yaml
-description: "It makes you die when you jump. So 2017."
+description: "它使你在跳跃时死亡。太 2017 了。"
 ```
 
-**Notes:**
-1. The description can have multiple lines (_cause you need a lot of place to explain what your super addon is doing!_).
-2. Displayed when the user types `/bsadmin version YourSuperAddon`.
+**注释：**
+1. 描述可以有多行（_因为你需要很多地方来解释你的超级插件在做什么！_）。
+2. 当用户输入 `/bsadmin version YourSuperAddon` 时显示。
 
 ### website
 
-**Description:**  The plugin's or author's website.
+**描述：** 插件或作者的网站。
 
-**Code:**
+**代码：**
 ```yaml
 website: "https://github.com/tastybento/bskyblock"
 ```
 
-**Notes:**
-1. If you have no dedicated website, a link to the addon's GitHub repository should do the job.
-2. Displayed when the user types `/bsadmin version YourSuperAddon`.
+**注释：**
+1. 如果你没有专 dedicated dedicated website, 一个链接到插件的 GitHub 仓库应该就可以。
+2. 当用户输入 `/bsadmin version YourSuperAddon` 时显示。

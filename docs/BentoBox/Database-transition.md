@@ -1,15 +1,23 @@
-# Database transition
-The default database for BentoBox is one that stores files on the file system using JSON (it used to be YAML, but since 1.5.0 it is JSON). JSON should work for most servers. However, it may be that your server has grown to the point where having the database on another machine will help. Alternatively, you may have other software that wants to access that data, e.g., a web site. BentoBox offers the ability to migrate your data from one type of database to another seamlessly. If you wish to move from JSON to another database you can do that easily by using a transition database option such as JSON2MYSQL. 
+# 数据库转换
 
-## Steps
+BentoBox 的默认数据库是使用 JSON（以前是 YAML，但自 1.5.0 以来是 JSON）将文件存储在文件系统上的数据库。JSON 应该适用于大多数服务器。然而，您的服务器可能已经发展到将数据库放在另一台机器上会有所帮助的地步。或者，您可能有其他软件想要访问这些数据，例如，网站。BentoBox 提供了将数据从一种类型的数据库无缝迁移到另一种类型的数据库的能力。如果您想从 JSON 迁移到另一个数据库，您可以通过使用转换数据库选项（如 JSON2MYSQL）轻松实现。
 
-1. Stop the server
-2. Make a backup of your database. If it is a flat file database then this means copy the whole database folder to a safe place.
-3. Edit BentoBox's config.yml file and select a transition database option. They always have the number 2 in them, for example, JSON2MYSQL.
-4. Ensure that you have also set up the database name, login and password, if required. If you are transitioning to MYSQL then you must make sure the server has the database and it is a sufficiently recent version (5.7 or later)
-5. If you have a very large database, then a transition may take longer than your server timeout. So edit *spigot.yml* timeout-time and set it to a large number so the server does not crash out.
-6. Start the server. BentoBox will immediately transition all islands and some other files to the database because these are loaded at startup. 
-7. After the server is completely up and running, execute the *bbox migrate* command in the console. This will copy over all the players, names and all the data from the addons to the database.
-8. You are done!
-9. You can leave the database as the transition database, or you can now change it to the single database option, e.g., MYSQL.
+## 步骤
 
+1. 停止服务器
+
+2. 备份数据库。如果它是平面文件数据库，则意味着将整个数据库文件夹复制到安全的地方。
+
+3. 编辑 BentoBox 的 config.yml 文件并选择转换数据库选项。它们总是包含数字 2，例如，JSON2MYSQL。
+
+4. 确保您还设置了数据库名称、登录名和密码（如果需要）。如果要转换到 MYSQL，则必须确保服务器具有数据库，并且它是足够新的版本（5.7 或更高版本）
+
+5. 如果您有一个非常大的数据库，则转换可能需要比服务器超时更长的时间。因此，编辑 _spigot.yml_ 超时时间并将其设置为一个较大的数字，以免服务器崩溃。
+
+6. 启动服务器。BentoBox 将立即将所有岛屿和一些其他文件转换到数据库，因为这些文件是在启动时加载的。
+
+7. 服务器完全启动并运行后，在控制台中执行 _bbox migrate_ 命令。这将把所有玩家、名称和所有来自插件的数据复制到数据库。
+
+8. 您已完成！
+
+9. 您可以将数据库保留为转换数据库，或者现在可以将其更改为单个数据库选项，例如 MYSQL。

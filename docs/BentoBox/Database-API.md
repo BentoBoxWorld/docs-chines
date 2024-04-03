@@ -1,35 +1,35 @@
-# Introduction
+# 简介
 
-BentoBox provides a database API for developers so you do not have to make one yourself. The BentoBox database can be chosen to store data in a flat-file, MySQL, Mongo, SQLite, PostGreSQL, MariaDB, etc. You do not have to worry or care about which one is used. Note that YAML is no longer supported as a database, however it is used for configuration files via the Config API.
+BentoBox 为开发人员提供了数据库 API，因此您无需自己创建数据库。可以选择将 BentoBox 数据库用于存储数据的方式，包括平面文件、MySQL、Mongo、SQLite、PostGreSQL、MariaDB 等等。您不必担心或关心使用的是哪一种。请注意，YAML 不再作为数据库的支持，但是通过 Config API 用于配置文件。
 
-## Philosophy
+## 理念
 
-We have taken a "NoSQL" approach to the BentoBox database. i.e., we store serialized Java objects as JSON "blobs" in the database. Each table in the database is assigned to store a specific Java object, e.g., islands, players, challenges, etc. and each entry in the table is one object. The tables have two columns - a unique ID and the JSON object. Databases such as PostgreSQL can store these JSON objects in a binary form, which makes them handle this approach efficiently. 
+我们采用了 BentoBox 数据库的 "NoSQL" 方法。也就是说，我们将序列化的 Java 对象存储为数据库中的 JSON "blob"。数据库中的每个表都被分配为存储特定的 Java 对象，例如岛屿、玩家、挑战等，表中的每个条目都是一个对象。表有两列 - 一个唯一的 ID 和 JSON 对象。像 PostgreSQL 这样的数据库可以以二进制形式存储这些 JSON 对象，这使得它们能够有效地处理这种方法。
 
-### How do I access the data from outside BentoBox?
-Most of the supported databases, e.g., MySQL, PostgreSQL, etc. support queries on the JSON data directly. The only ones that do not are flat-file based, i.e., JSON and SQLite. Therefore, you should look up the documentation on how to make JSON queries for your database. 
+### 我如何从 BentoBox 外部访问数据？
+大多数支持的数据库，例如 MySQL、PostgreSQL 等，都支持直接在 JSON 数据上进行查询。唯一不支持的是基于平面文件的数据库，例如 JSON 和 SQLite。因此，您应该查阅关于如何在您的数据库中进行 JSON 查询的文档。
 
-## How To
+## 如何操作
 
-To store a class in the BentoBox database do the following:
+要将类存储在 BentoBox 数据库中，请执行以下操作：
 
-1. Create a class that extends DataObject
-2. Define the fields of the class
-3. One field must be a string called **uniqueId**. This is the unique id (key) of the object that will be used by the database to identify the object
-5. Expose every field you want to store in the database with an @Expose annotation
-6. Ensure the class has a [zero argument constructor](https://en.wikipedia.org/wiki/Nullary_constructor)
-7. Create a getter and setter for every field - most IDEs should be able to do that for you automatically
+1. 创建一个扩展 DataObject 的类
+2. 定义类的字段
+3. 一个字段必须是名为 **uniqueId** 的字符串。这是数据库用来标识对象的唯一 ID（键）
+4. 使用 @Expose 注释公开您想要存储在数据库中的每个字段
+5. 确保类具有 [零参数构造函数](https://en.wikipedia.org/wiki/Nullary_constructor)
+6. 为每个字段创建一个 getter 和 setter - 大多数 IDE 应该能够为您自动完成此操作
 
-**WARNING:** The full canonical name of the class is used to create the table in the database, but the maximum length of that name can only be **64 characters**. So when you define the data object class, make sure that the package and class names are short enough to fit. **ALSO** as BentoBox allows database tables to have a prefix, make sure your canonical name is less than about 60 characters in total to allow for a prefix.
+**警告：** 类的完整规范名称用于在数据库中创建表，但该名称的最大长度只能为 **64 个字符**。因此，在定义数据对象类时，请确保包和类名的长度足够短，以适应该限制。**另外**，由于 BentoBox 允许数据库表具有前缀，因此请确保您的规范名称总长度不超过约 60 个字符，以留出前缀的空间。
 
-For some field types, especially custom ones, you may have to define your own Adapter class that will handle serialization and deserialization of the field's data.
+对于某些字段类型，特别是自定义类型，您可能需要定义自己的 Adapter 类来处理字段数据的序列化和反序列化。
 
-## Example
+## 示例
 ```
 public class Names implements DataObject {
 
     @Expose
-    private String uniqueId = ""; // name
+    private String uniqueId = ""; // 名称
     @Expose
     private UUID uuid;
     
@@ -51,14 +51,14 @@ public class Names implements DataObject {
     }
 
     /**
-     * @return the uuid
+     * @return uuid
      */
     public UUID getUuid() {
         return uuid;
     }
 
     /**
-     * @param uuid the uuid to set
+     * @param uuid 要设置的 uuid
      */
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
@@ -70,85 +70,87 @@ public class Names implements DataObject {
 
 ## uniqueID
 
-The DataObject interface contract requires you to override getUniqueId() and a setUniqueID() methods. The uniqueId is a string that is used to identify the data object in the database. A typical uniqueId is the player's UUID (converted to String). If there is only ever going to be one database object, this uniqueId can be a constant, e.g., "TopTen". The uniqueId only has to be to be unique within the scope of data objects of the type you made. It does not have to be unique for every data object ever.
+DataObject 接口合同要求您重写 getUniqueId() 和 setUniqueID() 方法。uniqueId 是一个字符串，用于在数据库中标识数据对象。典型的 uniqueId 是玩家的 UUID（转换为字符串）。如果只会有一个数据库对象，此 uniqueId 可以是一个常量，例如 "TopTen"。uniqueId 只需要在您创建的类型的数据对象范围内是唯一的。它不必对每个数据对象都是唯一的。
 
-# Instantiating the database object
+# 实例化数据库对象
 
-Once you have created the data object, you must instantiate it to use it. You do that by creating a new BSBDatabase object with BSkyBlock as the first argument and your class as the second. For example:
+创建数据对象后，必须实例化它才能使用。您可以通过创建一个新的 BSBDatabase 对象，第一个参数为 BSkyBlock，第二个参数为您的类，来实现这一点。例如：
 
-`BSBDatabase<Names> names = new BSBDatabase<>(plugin, Names.class);`
+`
 
-# Saving data to the database
+BSBDatabase<Names> names = new BSBDatabase<>(plugin, Names.class);`
 
-To write data to the database, do the following:
+# 将数据保存到数据库
 
-1. Create an instance of your database object, in this example, the Names class
-2. Put data into it, either via the constructor or using the setters
-3. Save it to the database using the saveObject() method
+要将数据写入数据库，请执行以下操作：
 
-For example:
+1. 创建您的数据库对象的一个实例，在本示例中为 Names 类
+2. 将数据放入其中，可以通过构造函数或使用 setter 方法
+3. 使用 saveObject() 方法将其保存到数据库
+
+例如：
 
 `names.saveObject(new Names(user.getName(), user.getUniqueId()));`
 
-You can save multiple objects to the database by repeating the saveObject method calls. If the object has the same uniqueId as a previously saved object, it will be automatically overwritten.
+您可以通过重复调用 saveObject 方法来将多个对象保存到数据库。如果对象的唯一 ID 与先前保存的对象相同，则会自动覆盖它。
 
-# Loading data from the database
+# 从数据库加载数据
 
-There are two ways to load data - load specific records (objects) by uniqueId, or load all the objects of this type in one go.
+有两种加载数据的方法 - 按 uniqueId 加载特定记录（对象），或一次性加载此类型的所有对象。
 
-## Loading a single object
+## 加载单个对象
 
-To do this, you must know the uniqueId of the record you want. Then use the loadObject method with the uniqueId as the argument. For example:
+要做到这一点，您必须知道您想要的记录的 uniqueId。然后使用 loadObject 方法，将 uniqueId 作为参数。例如：
 
 `Names loadedName = names.loadObject("tastybento");`
 
-If you know what data you want from the loaded object and you are sure it exists, you can grab it directly:
+如果您知道您从加载的对象中需要什么数据，并且确定它存在，则可以直接获取它：
 
 `UUID uuid = names.loadObject(string).getUuid();`
 
-## Loading all the objects
+## 加载所有对象
 
-Sometimes you need to load the whole database into memory so it can be accessed all the time. Try not to do this unless you need it. To load all the objects, use the loadObjects() method. This will load them all in as a List. For example:
+有时您需要将整个数据库加载到内存中，以便随时访问。除非需要，否则尽量不要这样做。要加载所有对象，请使用 loadObjects() 方法。这将以列表的形式加载它们全部。例如：
 
 `List<UUID> uuids = names.loadObjects();`
 
-Note that loading from a database may take a long time and so should not be done on the main thread during the game. You should be able to load objects in an async thread.
+请注意，从数据库加载可能需要很长时间，因此不应在游戏过程中的主线程上执行。您应该能够在异步线程中加载对象。
 
-# Checking if an object exists in the database
+# 检查对象是否存在于数据库中
 
-To check if an object exists, you must have its uniqueId. Check it like this example:
+要检查对象是否存在，您必须知道其 uniqueId。像这样检查它：
 
-`return names.objectExists("tastybento") ? "he exists in the db" : "who?";'
+`return names.objectExists("tastybento") ? "他在数据库中存在" : "谁？";`
 
-Checking for object existence can also take a long time, so do not do this on the main thread if you can avoid it. 
+检查对象的存在也可能需要很长时间，因此如果可能，请不要在主线程上执行此操作。
 
-# Deleting an object in the database
+# 在数据库中删除对象
 
-Removing an object requires that you know the uniqueId. Delete objects like this:
+删除对象需要您知道其 uniqueId。像这样删除对象：
 
 `names.deleteObject("tastybento");`
 
-The method will log an error in the console if it cannot delete the object, but otherwise it will be silent.
+如果无法删除对象，该方法将在控制台中记录错误，否则它将保持沉默。
 
-Currently, there is no way to delete all objects in the database.
+目前，没有办法删除数据库中的所有对象。
 
-# Closing the database
+# 关闭数据库
 
-Database connections are set to auto close when the plugin is disabled, but if you wish to explicitly close the connection to save resources, use this method:
+数据库连接在禁用插件时会自动关闭，但如果您希望显式关闭连接以节省资源，请使用此方法：
 
 `names.close()`
 
-This will release the connection object's database and any JDBC resources immediately instead of waiting for them to be automatically released.
+这将立即释放连接对象的数据库和任何 JDBC 资源，而不是等待它们自动释放。
 
-# Object type support
+# 对象类型支持
 
-*YAML database is no longer supported!*
-The database uses GSON to serialize the object. This handles most generic object types and all Bukkit classes that implement the [ConfigurationSerializable](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/configuration/serialization/ConfigurationSerializable.html) interface, for example:
+*不再支持 YAML 数据库！*
+数据库使用 GSON 对对象进行序列化。这处理大多数通用对象类型以及所有实现 [ConfigurationSerializable](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/configuration/serialization/ConfigurationSerializable.html) 接口的 Bukkit 类，例如：
 
 * World
-* Location
-* Vector (Bukkit's Vector)
-* PotionEffectType
-* etc.
+* 位置（Location）
+* 向量（Vector，Bukkit 的向量）
+* 药水效果类型（PotionEffectType）
+* 等等
 
-If you implement an object that must be serialized and stored in the database then it should implement Bukkit's [ConfigurationSerializable](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/configuration/serialization/ConfigurationSerializable.html) interface. 
+如果您实现了必须序列化并存储在数据库中的对象，则应该实现 Bukkit 的 [ConfigurationSerializable](https://hub.spigotmc.org/javadocs/spigot/org/bukkit/configuration/serialization/ConfigurationSerializable.html) 接口。
