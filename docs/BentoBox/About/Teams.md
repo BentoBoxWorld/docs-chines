@@ -1,231 +1,230 @@
-# Teams
+# 团队
 
-BentoBox manages teams for game modes. Teams enable players to group together on one island. Teams have one owner, or leader, and at least one team member. 
+BentoBox 为游戏模式管理团队。团队可以让玩家在一个岛屿上组合在一起。团队有一个所有者或领导者，以及至少一个团队成员。
 
-## Team commands
-This is a list of team commands available to players. The command is used after the main player command, for example `/island team` for BSkyBlock. 
+## 团队命令
+这是玩家可用的团队命令列表。该命令在主玩家命令之后使用，例如 BSkyBlock 的 `/island team`。
 <table width="100%" align="center">
 <tr>
-<td align='left'><b>Command</b></td>
-<td align='left'><b>Description</b></td>
-<td align='left'><b>Permission</b></td>
+<td align='left'><b>命令</b></td>
+<td align='left'><b>描述</b></td>
+<td align='left'><b>权限</b></td>
 </tr>
 <tr>
 <td align='left'><b> team</b></td>
-<td align='left'>manage your team</td>
+<td align='left'>管理你的团队</td>
 <td align='left'>[gamemode].island.team</td>
 </tr>
 <tr>
 <td align='left'><b> team accept</b></td>
-<td align='left'>accept an invitation</td>
+<td align='left'>接受邀请</td>
 <td align='left'>[gamemode].island.team</td>
 </tr>
 <tr>
 <td align='left'><b> team coop <player></b></td>
-<td align='left'>make a player coop rank on your island</td>
+<td align='left'>在你的岛上给玩家合作者权限</td>
 <td align='left'>[gamemode].island.team.coop</td>
 </tr>
 <tr>
 <td align='left'><b> team demote <player></b></td>
-<td align='left'>demote a player on your island down a rank</td>
+<td align='left'>在你的岛上降低玩家一个等级</td>
 <td align='left'>[gamemode].island.team</td>
 </tr>
 <tr>
 <td align='left'><b> team leave</b></td>
-<td align='left'>leave your island</td>
+<td align='left'>离开你的岛</td>
 <td align='left'>[gamemode].island.team</td>
 </tr>
 <tr>
 <td align='left'><b> team invite</b></td>
-<td align='left'>invite a player to join your island</td>
+<td align='left'>邀请玩家加入你的岛</td>
 <td align='left'>[gamemode].island.team</td>
 </tr>
 <tr>
 <td align='left'><b> team kick <player></b></td>
-<td align='left'>remove a member from your island</td>
+<td align='left'>从你的岛上移除一个成员</td>
 <td align='left'>[gamemode].island.expel</td>
 </tr>
 <tr>
 <td align='left'><b> team promote <player></b></td>
-<td align='left'>promote a player on your island up a rank</td>
+<td align='left'>在你的岛上提升玩家一个等级</td>
 <td align='left'>[gamemode].island.team</td>
 </tr>
 <tr>
 <td align='left'><b> team reject</b></td>
-<td align='left'>reject an invitation</td>
+<td align='left'>拒绝邀请</td>
 <td align='left'>[gamemode].island.team</td>
 </tr>
 <tr>
 <td align='left'><b> team setowner <player></b></td>
-<td align='left'>transfer your island ownership to a member</td>
+<td align='left'>将你的岛屿所有权转让给一个成员</td>
 <td align='left'>[gamemode].island.team</td>
 </tr>
 <tr>
 <td align='left'><b> team trust <player></b></td>
-<td align='left'>give a player trusted rank on your island</td>
+<td align='left'>在你的岛上给玩家信任者权限</td>
 <td align='left'>[gamemode].island.team.trust</td>
 </tr>
 </table>
 
-## The Main Team Command
-The main team command is `team`. To issue this command you must have an island. If run by itself, it will provide the following information to the player:
+## 主团队命令
+主团队命令是 `team`。要使用此命令，你必须有一个岛屿。如果单独运行，它将向玩家提供以下信息：
 
- - If the player is the owner, it will tell them how many players they can invite onto their team.
- - It will show all the members of the team. This includes info on the player's ranks, online/offline status, and when they were last seen online. 
+- 如果玩家是所有者，它会告诉他们可以邀请多少玩家加入团队。
+- 它将显示团队的所有成员。这包括有关玩家等级、在线/离线状态以及他们上次在线的时间的信息。
 
-## Team Sizes
-Teams can be any size and the maximum size can be set globally on a gamemode-basis or determine by a numbered permission given to the team owner. The default max team size is 4. The maximum number of coop and trusted members is also set to 4.
+## 团队规模
+团队可以是任意大小，最大规模可以在游戏模式的基础上全局设置，或者由给予团队所有者的编号权限确定。默认的最大团队规模为 4。合作者和信任者的最大数量也设置为 4。
 
-## Team Member Ranks
-BentoBox has the following team ranks built-in:
-* Owner - this is the owner of the island. There can be only one owner.
-* Sub-Owner - this is a member rank that has almost the same permissions as the owner. There can be multiple sub-owners.
-* Member - this is the default member rank.
+## 团队成员等级
+BentoBox 内置以下团队等级：
+* 所有者 - 这是岛屿的所有者。只能有一个所有者。
+* 副所有者 - 这是一个成员等级，几乎拥有与所有者相同的权限。可以有多个副所有者。
+* 成员 - 这是默认的成员等级。
 
-### Non-team member ranks
-Islands have other ranks that are related to teams but are not team members:
-* Trusted - this is a non-team member who has permanent permissions on the island, i.e., they have them until they are untrusted by a team member.
-* Coop - this is a non-team member who has temporary permissions on the island and these permissions will cease if the team member who gave them logs off, or if they are uncoop-ed.
-* Visitor - this is the default rank for any players who visit the island
-* Banned - these players have been banned by a team member and cannot enter the island
+### 非团队成员等级
+岛屿有其他与团队相关但不是团队成员的等级：
+* 信任者 - 这是一个在岛上拥有永久权限的非团队成员，即他们拥有这些权限直到被团队成员取消信任。
+* 合作者 - 这是一个在岛上拥有临时权限的非团队成员，如果给予他们权限的团队成员下线，或者如果他们被取消合作，这些权限将停止。
+* 访客 - 这是任何访问岛屿的玩家的默认等级。
+* 封禁 - 这些玩家已被团队成员封禁，不能进入岛屿。
 
-### Configurable Rank Commands
-The owner of the island is able to grant access to team management commands to lower ranks via the Command Ranks menu in the in-game settings menu. This enables the owner to allow other members to invite other members, for example. 
+### 可配置的等级命令
+岛主可以通过游戏内设置菜单中的命令等级菜单授予较低等级的团队管理命令访问权限。这使得所有者能够允许其他成员邀请其他成员，例如。
 
-### Promotion and Demotion
-Team members can be promoted or demoted by the island owner or an island member who has the rank required to use these commands.
+### 晋升和降级
+团队成员可以由岛主或具有使用这些命令所需等级的岛成员晋升或降级。
 
-A player cannot demote or promote themselves.
+玩家不能自己降级或晋升自己。
 
-Currently, the only promotion or demotion possible is between the ranks of Member and Sub-Owner. In the future, additional ranks or custom ranks may be possible.
+目前，唯一可能的晋升或降级是在成员和副所有者等级之间。将来，可能会有额外的等级或自定义等级。
 
-## Joining Teams
-### Inviting
-Players can be invited to join a team using the `team invite` command. To invite players to join a team, the inviter must be an island owner or have sufficient rank to use the command (see [Configurable Rank Command](#configurable-rank-commands)). Players are invited by name and must be online. Invites can only be made to players who are not already on a team. If a player wants to switch teams, they must leave their current team before they can be invited.
-Invited players cannot be invited again until they reject the invite. 
-Invited players can only have **one** active invite at a time. This includes team, coop and trusted invites. If a player receives a new valid invite while another is pending, the old one is replaced by the new invite.
-If the island team size is already at the maximum, the invite command will tell the user that the island is full.
+## 加入团队
+### 邀请
+可以使用 `team invite` 命令邀请玩家加入团队。要邀请玩家加入团队，邀请者必须是岛主或具有足够的等级来使用该命令（参见[可配置的等级命令](#configurable-rank-commands)）。玩家按名称邀请，必须在线。只能向尚未加入团队的玩家发出邀请。如果玩家想要切换团队，他们必须先离开当前团队，然后才能被邀请。
+被邀请的玩家在拒绝邀请之前不能再次被邀请。
+被邀请的玩家一次只能有**一个**有效的邀请。这包括团队、合作和信任邀请。如果玩家在另一个邀请待处理时收到新的有效邀请，旧邀请将被新邀请取代。
+如果岛上团队规模已达到最大值，邀请命令将告诉用户岛屿已满。
 
-**API:** After all validation checks are complete, but before the invite is sent, the `TeamInviteEvent` will be fired. If this event is canceled then the invite will not be sent.
+**API：** 在完成所有验证检查但在发送邀请之前，将触发 `TeamInviteEvent`。如果此事件被取消，则不会发送邀请。
 
-#### Cooldown
-Invites can be abused by players, so BentoBox prevents the same player being invited to an island in the cool down period. The cool down is imposed on the island as a whole, so it is not possible for various members of the island to spam another player with invites. The default cool down times for the various invites are:
-* Team member - 60 minutes
-* Coop invite - 5 minutes
-* Trusted invite - 5 minutes
-See the game mode's `config.yml` to change.
+#### 冷却
+邀请可能被玩家滥用，因此 BentoBox 防止在冷却期内邀请同一玩家到岛上。冷却是对整个岛屿实施的，因此岛上的各个成员不可能向另一个玩家发送邀请垃圾邮件。各种邀请的默认冷却时间为：
+* 团队成员 - 60 分钟
+* 合作邀请 - 5 分钟
+* 信任邀请 - 5 分钟
+请参阅游戏模式的 `config.yml` 进行更改。
 
-### Checking invites
-A player can check who has invited them by using the `invite` command with no arguments. This will show any current team, coop or trusted invites. 
+### 检查邀请
+玩家可以使用不带参数的 `invite` 命令检查谁邀请了他们。这将显示任何当前的团队、合作或信任邀请。
 
-### Accepting an invite
-A player accepts an invite by issuing the `team invite accept` command. 
+### 接受邀请
+玩家通过发出 `team invite accept` 命令接受邀请。
 
-#### Confirmation
-The admin can decide whether confirmation is required or not for this command. The default is to require it for team membership but not require it for coop or trusted status. This is because team members lose their island if they join another one. If confirmation is required, the player will receive a warning that if they have an island then it will be lost. Once the player accepts the invite a second time, they will become a team member and teleport to the team island. 
+#### 确认
+管理员可以决定是否需要对此命令进行确认。默认情况下，团队成员资格需要确认，但合作或信任状态不需要确认。这是因为团队成员在加入另一个团队时会失去他们的岛屿。如果需要确认，玩家将收到警告，如果他们有一个岛屿，那么它将丢失。一旦玩家第二次接受邀请，他们将成为团队成员并传送到团队岛屿。
 
-There is a small chance that the inviter loses the rank required to invite players before the player accepts the invite. In this case, the acceptance will not process and the user will be told that the invite is no longer valid.
+邀请者在玩家接受邀请之前失去邀请玩家所需的等级的可能性很小。在这种情况下，接受将不会处理，用户将被告知邀请不再有效。
 
-**Accessability:** The default cool down response time is set globally for all game modes in **BentoBox's** `config.yml` and is 10 seconds. Extend this value if your players need more time to confirm commands. Remember that hitting the up arrow when in command mode will show the previous command so it is not required to type in the whole command again to confirm.
+**无障碍性：** 默认冷却响应时间在 **BentoBox** 的 `config.yml` 中为所有游戏模式全局设置，为 10 秒。如果您的玩家需要更多时间来确认命令，请延长此值。请记住，在命令模式下按向上箭头将显示上一个命令，因此无需再次输入整个命令来确认。
 
-**API:** After all validation checks are complete, but before the invite is sent, the `TeamJoinEvent` will be fired. If this event is canceled then the invite will not be sent. Once the player has joined the island, there are subsequent events that are fired depending on the invite type:
-*  `TeamJoinedEvent` that is fired once the player joins the  island team.
-* `IslandRankChange` is fired to indicate the new player rank of member, trusted or coop.
-These subsequent events are for notification and cannot be canceled.
+**API：** 在完成所有验证检查但在发送邀请之前，将触发 `TeamJoinEvent`。如果此事件被取消，则不会发送邀请。一旦玩家加入岛屿，将根据邀请类型触发后续事件：
+* `TeamJoinedEvent` 在玩家加入岛屿团队时触发。
+* `IslandRankChange` 在表示玩家新等级为成员、信任或合作时触发。
+这些后续事件用于通知，不能取消。
 
-#### Process of becoming a team member
-BentoBox performs the following steps to make a player a team member:
+#### 成为团队成员的过程
+BentoBox 执行以下步骤以使玩家成为团队成员：
 
- 1. Removes the invite.
- 2. Removes the player as owner of their old island (remember, team members cannot join another team, so only owners or those with no island can become members).
- 3. Cleans up the player based on settings - see game mode's `config.yml`:
-     - Ender chest inventory (default: do nothing)
-     - Player inventory (default: do not change **see note below!**)
-     - Money (default: do not zero)
-     - Restores health (default: restore all health)
-     - Restores hunger (default: remove all hunger)
-     - Zeros experience points (default: do not zero)
- 4. Adds the player as a team member of the new island.
- 5. Clears out the old home locations.
- 6. Teleports the player to their new island home.
- 7. Starts to delete the old island.
- 8. Resets their death counter, if the admin has set that setting.
- 9. Tells the player that they have joined the new island.
- 10. Tells the inviter that the player has joined the team island.
- 11. Saves the island to the database.
- 12. Fires the notification events. 
+1. 删除邀请。
+2. 删除玩家作为旧岛屿的所有者（请记住，团队成员不能加入另一个团队，因此只有所有者或没有岛屿的人才能成为成员）。
+3. 根据设置清理玩家 - 请参阅游戏模式的 `config.yml`：
+    - 末影箱物品栏（默认：不做任何事情）
+    - 玩家物品栏（默认：不更改 **请参阅下面的注释！**）
+    - 金钱（默认：不清零）
+    - 恢复健康（默认：恢复所有健康）
+    - 恢复饥饿（默认：消除所有饥饿）
+    - 清零经验点（默认：不清零）
+4. 将玩家添加为新岛屿的团队成员。
+5. 清除旧的家位置。
+6. 将玩家传送到他们的新岛屿家。
+7. 开始删除旧岛屿。
+8. 如果管理员设置了该设置，则重置他们的死亡计数器。
+9. 告诉玩家他们已加入新的岛屿。
+10. 告诉邀请者玩家已加入团队岛屿。
+11. 将岛屿保存到数据库。
+12. 触发通知事件。
 
-**Reseting Player Inventory**
-Admins should change this setting to clear player's inventory when they join a team! The reason why it is not set is to avoid accidents during installation. Some admins do not understand that joining an island will clear their inventory and so we decided to take the "do no harm" approach and leave inventories alone. However, to avoid exploits, it should be cleared.
+**重置玩家物品栏**
+管理员应将此设置更改为在玩家加入团队时清除玩家的物品栏！之所以不设置它，是为了避免在安装过程中发生事故。一些管理员不明白加入岛屿会清除他们的物品栏，因此我们决定采取"不造成伤害"的方法，让物品栏保持原样。但是，为了避免漏洞，应该清除它。
 
-### Rejecting an invite
-A player rejects an invite by issuing the `team invite reject` command. 
+### 拒绝邀请
+玩家通过发出 `team invite reject` 命令拒绝邀请。
 
-A player must have a valid invite to reject otherwise they just receive an error.
+玩家必须有有效的邀请才能拒绝，否则他们只会收到错误。
 
-**API:** If a player has a valid invite pending then the `TeamRejectEvent` will be fired. If this event is canceled then the invite will not be rejected and the command will fail silently. The canceling code is recommended to inform the user why the rejection did not happen.
+**API：** 如果玩家有待处理的有效邀请，则将触发 `TeamRejectEvent`。如果此事件被取消，则邀请不会被拒绝，命令将静默失败。建议取消代码通知用户为什么拒绝没有发生。
 
-Once the validations checks are complete, the invite will be rejected and the inviter will be notified.
+一旦验证检查完成，邀请将被拒绝，邀请者将被通知。
 
-## Changing Team Ownership
+## 更改团队所有权
 
-Owners can make another team member an owner using the `team setowner` command with the new owner's name as the parameter.
+所有者可以使用 `team setowner` 命令并将新所有者的名称作为参数来使另一个团队成员成为所有者。
 
-**API:** After the various checks are done to confirm the command can be executed but before it is executed, the  `TeamSetownerEvent` is fired. If this event is canceled then the ownership change will not occur and the command will fail silently. The canceling code is recommended to inform the user why the change did not happen.
+**API：** 在完成各种检查以确认可以执行命令但在执行命令之前，将触发 `TeamSetownerEvent`。如果此事件被取消，则所有权更改不会发生，命令将静默失败。建议取消代码通知用户为什么更改没有发生。
 
-Once the ownership changes, there are two `IslandRankChange` events that are fired: one for the new owner and one for the old owner.
+一旦所有权发生变化，就会触发两个 `IslandRankChange` 事件：一个用于新所有者，一个用于旧所有者。
 
-Owners must select a new owner before that can leave a team. 
+所有者在离开团队之前必须选择新的所有者。
 
-## Kicking A Player
-Sometimes a team member needs to be forced out of a team. This is done using the `team kick` command. The owner can always kick players and the owner can allow lower-ranked team members to kick too via the Command Ranks menu in island settings. The team member does not have to be online to be kicked.
+## 踢出玩家
+有时需要将团队成员强制踢出团队。这是使用 `team kick` 命令完成的。所有者总是可以踢出玩家，所有者还可以通过岛屿设置中的命令等级菜单允许较低等级的团队成员踢人。被踢出的团队成员不必在线。
 
-The command by default required confirmation. This can be configured in BentoBox's `config.yml`. 
+默认情况下，该命令需要确认。可以在 BentoBox 的 `config.yml` 中进行配置。
 
-When a player is kicked, the following happens:
+当玩家被踢出时，会发生以下情况：
 
- 1. The kicked player is notified (if online)
- 2. The player is removed from the island
- 3. If there are any commands configured to be run when a player leaves an island (see the GameMode's `config.yml`) then they will be executed at this point.
- 4. The player is "cleaned" based on the config settings:
-   - Ender chest is reset (default: do not reset). If the player is offline and resetting is to be done, then it is queued for when they next log in.
-   - Inventory reset (default: do not clear). If the player is offline and resetting is to be done, then it is queued for when they next log in.
-   - Money reset (default: do not reset). This can happen even if the player is offline.
-   - Set health to maximum (default: do not do anything). Only occurs if the player is online.
-   - Set food level to maximum (default: do not do anything). Only occurs if the player is online.
-   - Zero experience points (default: do not do anything). Only occurs if the player is online.
- 5. The kicker is informed that the kick is successful.
- 6. Notification events are fired.
-**API:** Two events are fired - `TeamKickEvent` and `IslandRankChangeEvent`. The latter notifies that the player now has the Visitor rank.
-  7. An invite cool down is applied to both the kicker and the kicked player. This helps limit any potential exploits that involve team members kicking players and then inviting them back immediately.
+1. 被踢出的玩家被通知（如果在线）
+2. 玩家被从岛上移除
+3. 如果有任何配置为在玩家离开岛屿时运行的命令（请参阅游戏模式的 `config.yml`），那么它们将在此时执行。
+4. 根据配置设置"清理"玩家：
+   - 末影箱被重置（默认：不重置）。如果玩家离线并且需要重置，则会在玩家下次登录时将其排队。
+   - 物品栏重置（默认：不清除）。如果玩家离线并且需要重置，则会在玩家下次登录时将其排队。
+   - 金钱重置（默认：不重置）。即使玩家离线也可以发生这种情况。
+   - 将健康设置为最大值（默认：不做任何事情）。仅在玩家在线时发生。
+   - 将食物等级设置为最大值（默认：不做任何事情）。仅在玩家在线时发生。
+   - 清零经验点（默认：不做任何事情）。仅在玩家在线时发生。
+5. 踢人者被告知踢出成功。
+6. 触发通知事件。
+**API：** 触发两个事件 - `TeamKickEvent` 和 `IslandRankChangeEvent`。后者通知玩家现在具有访客等级。
+7. 对踢人者和被踢出的玩家都应用邀请冷却。这有助于限制任何可能涉及团队成员踢出玩家然后立即再次邀请他们的漏洞。
 
-## Leaving a Team
-A player can voluntarily leave a team using the `team leave` command. The command requires confirmation by default, but this can be switched off in the BentoBox's config. When leaving a team voluntarily, a player may use up one of their allowed island resets. This is set in the GameMode's config and the default is not to lose a reset. If the player will lose a reset, then they will be warned about it if the leave command has a confirmation requirements. **Note:** is it possible for a player to use up all their resets by leaving a team and therefore not be able to make a new island of their own. That is something admins will have to consider.
+## 离开团队
+玩家可以使用 `team leave` 命令自愿离开团队。默认情况下，该命令需要确认，但可以在 BentoBox 的配置中关闭它。自愿离开团队时，玩家可能会使用他们允许的岛屿重置之一。这在游戏模式的配置中设置，默认是不损失重置。如果玩家将失去重置，如果离开命令有确认要求，他们将被警告。**注意：** 玩家有可能通过离开团队用完所有重置，因此无法建立自己的新岛屿。这是管理员必须考虑的问题。
 
-When a player leaves the island, the sequence and process is the same as when a player is kicked, except that the player may lose a reset.
+当玩家离开岛屿时，顺序和过程与玩家被踢出时相同，只是玩家可能会失去重置。
 
-**API:** After the player leaves the team, two notification events are fired: `TeamLeaveEvent` and `IslandRankChangeEvent`. The latter notifies that the player now has the Visitor rank.
+**API：** 在玩家离开团队后，会触发两个通知事件：`TeamLeaveEvent` 和 `IslandRankChangeEvent`。后者通知玩家现在具有访客等级。
 
-## Trusting and Cooping Other Players
-Sometimes players want to help out on other islands without having to join the team as a full member. This can be done by trusting a player or cooping an online player:
+## 信任和合作其他玩家
+有时玩家想要在其他岛屿上提供帮助，而不必作为正式成员加入团队。这可以通过信任玩家或与在线玩家合作来完成：
 
- - `team trust <player>`: the player becomes a permanent member of the island at a rank below Member
- - `team coop <player>`: the player becomes a temporary member of the island at a rank below Trusted
+- `team trust <player>`：玩家在低于成员等级的岛上成为永久成员
+- `team coop <player>`：玩家在低于信任者等级的岛上成为临时成员
 
-Island owners can trust or coops players and also enable lower-ranked players to use these commands via the Command Ranks page in the island settings.
+岛主可以信任或与玩家合作，还可以通过岛屿设置中的命令等级页面让较低等级的玩家使用这些命令。
 
-These commands actually send an invite to the player that they can accept or reject, just like the team join command. If the invite is rejected, it will not be possible to send another invite for a cool down period, which is set to 5 minutes by default. This protects players from invite-spam.
+这些命令实际上会向玩家发送一个邀请，他们可以接受或拒绝，就像团队加入命令一样。如果邀请被拒绝，在冷却期内将无法发送另一个邀请，默认设置为 5 分钟。这可以保护玩家免受邀请垃圾邮件的侵扰。
 
-If a player already has an invite pending from someone else or for a different rank, then that invite will be replaced by this one.
+如果玩家已经有来自其他人或不同等级的待处理邀请，则该邀请将被这个邀请取代。
 
-Once accepted, the player will receive the rank given for the new island. The inviter is notified of the acceptance.
+一旦接受，玩家将获得新岛屿的给定等级。邀请者被通知接受。
 
-**API:** One notification event is fired: `IslandRankChangeEvent` indicating the new Trusted or Coop rank.
+**API：** 触发一个通知事件：`IslandRankChangeEvent`，表示新的信任者或合作者等级。
 
-Coop players hold their rank until the player who invited them logs out, or until the server shuts down, whichever occurs first.
+合作玩家保持其等级，直到邀请他们的玩家注销，或者直到服务器关闭，以先发生者为准。
 
-### Untrusting or uncooping players
-Island owners, or players with a high enough rank can issue the `team untrusted` or `team uncoop` commands to remove players from the team with these ranks.
+### 取消信任或取消合作玩家
+岛主或具有足够高等级的玩家可以发出 `team untrusted` 或 `team uncoop` 命令从团队中移除具有这些等级的玩家。
 
-**API:** If successful, an `IslandRankChangeEvent` event will be fired for the affected player marking them now as having the Visitor rank.
-
+**API：** 如果成功，将为受影响的玩家触发 `IslandRankChangeEvent` 事件，标记他们现在具有访客等级。
