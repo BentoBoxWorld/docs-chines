@@ -1,96 +1,94 @@
-Placeholders allow you to display data from any BentoBox's addons or gamemodes in other plugins. And the opposite is true as well!
+## 如何使用占位符？
 
-## How to use placeholders?
+### 下载您需要的占位符API。
 
-### Download the placeholder API you need.
+BentoBox使用[**PlaceholderAPI**](https://www.spigotmc.org/resources/placeholderapi.6245/)作为占位符。
 
-BentoBox uses [**PlaceholderAPI**](https://www.spigotmc.org/resources/placeholderapi.6245/) for placeholders.
+### 启动服务器，您就可以开始了！
 
-### Launch the server and you're ready to go!
+无论您使用哪个占位符API，只需启动服务器即可。**无需下载任何扩展**：BentoBox会处理一切！
 
-Regardless of the placeholder API you're using, just start the server. There are **no expansions to download**: BentoBox handles everything!
+## 如何在聊天中显示占位符？
 
-## How to display a placeholder in the chat?
+如果您正在使用**EssentialsChat**和**PlaceholderAPI**，您**必须**安装[**ChatInjector**](https://www.spigotmc.org/resources/chatinjector-1-13.81201/)才能在聊天中显示占位符。但请注意，有报告称ChatInjector可能会导致问题。
 
-If you're using **EssentialsChat** and **PlaceholderAPI**, you **must** install [**ChatInjector**](https://www.spigotmc.org/resources/chatinjector-1-13.81201/) in order for the placeholders to show up in the chat. However, please note it has been reported that ChatInjector might cause issues.
+我们建议您使用支持PlaceholderAPI的替代聊天插件，例如[**ChatControl**](https://www.spigotmc.org/resources/chatcontrol%E2%84%A2-the-ultimate-chat-plugin-500-000-downloads-1-2-5-1-14-4.271/)。
 
-We recommend you to use an alternative chat plugin which supports PlaceholderAPI, such as [**ChatControl**](https://www.spigotmc.org/resources/chatcontrol%E2%84%A2-the-ultimate-chat-plugin-500-000-downloads-1-2-5-1-14-4.271/).
+## 如何在计分板中显示占位符？
 
-## How to display a placeholder in a scoreboard?
+如果您正在使用本身不支持**PlaceholderAPI**但支持**MVdWPlaceholderAPI**的计分板插件（如**Featherboard**），您仍然可以使用BentoBox占位符，但您需要添加**{placeholderapi_[text]}**，并将*[text]*替换为不带*％*字符的占位符，例如*{placeholderapi_bskyblock_island_name}*。
 
-If you're using a scoreboard plugin that natively does not support **PlaceholderAPI**, but supports **MVdWPlaceholderAPI** (like **Featherboard**), you still can use BentoBox placeholders, however, you need to add **{placeholderapi_[text]}**, and replace *[text]* with a placeholder without *%* chars, like *{placeholderapi_bskyblock_island_name}*.
+## 如何建议新的占位符？
 
-## How to suggest a new placeholder?
+如果您认为应该为BentoBox或游戏模式添加其他默认占位符，请提交[占位符请求](https://github.com/BentoBoxWorld/BentoBox/issues/new?assignees=&labels=Status%3A+Pending%2C+Type%3A+Enhancement&template=placeholder_request.md&title=Placeholder%3A+)。
 
-If you think a placeholder for BentoBox or another default placeholder for gamemodes should be added, then please submit a [placeholder request](https://github.com/BentoBoxWorld/BentoBox/issues/new?assignees=&labels=Status%3A+Pending%2C+Type%3A+Enhancement&template=placeholder_request.md&title=Placeholder%3A+).
+## 游戏模式附加组件的默认占位符
 
-## Default placeholders for gamemode addons
+所有游戏模式附加组件都会自动注册一些默认占位符。
 
-All gamemode addons get some default placeholders automatically registered to them.
+**可用的默认占位符**
 
-**Available default placeholders**
-
-| Placeholder | Description | Version |
+| 占位符 | 描述 | 版本 |
 |-------------------------------------------------------|--------------------------------------------------------------------------------|-----------|
-| %[gamemode]_world_friendly_name% | Name of the gamemode's world | 1.4.0 |
-| %[gamemode]_world_islands% | Number of islands in this gamemode's world | 1.5.0 |
-| %[gamemode]_island_distance% | Half the distance between islands' centers of the gamemode's world | 1.4.0 |
-| %[gamemode]_island_distance_diameter% | Distance between islands of the gamemode's world | 1.5.0 |
-| %[gamemode]_island_protection_range% | Radius of the island's protection range | 1.4.0 |
-| %[gamemode]_island_protection_range_diameter% | Diameter of the island's protection range | 1.5.0 |
-| %[gamemode]_island_owner% | Name of the island's owner | 1.4.0 |
-| %[gamemode]_island_creation_date% | Creation date of the island | 1.4.0 |
-| %[gamemode]_island_name% | Name of the island | 1.4.0 |
-| %[gamemode]_island_center% | Coordinates of the island's center | 1.5.0 |
-| %[gamemode]_island_center_x% | X coordinate of the island's center | 1.5.0 |
-| %[gamemode]_island_center_y% | Y coordinate of the island's center | 1.5.0 |
-| %[gamemode]_island_center_z% | Z coordinate of the island's center | 1.5.0 |
-| %[gamemode]_island_members_max% | Maximum number of members there can be on the island | 1.5.0 |
-| %[gamemode]_island_members_count% | Number of members, subowners and owner there are on the island | 1.5.0 |
-| %[gamemode]_island_members_list% | Comma separated list of player names that are at least MEMBER on the island | 1.13.0 |
-| %[gamemode]_island_trustees_count% | Number of players trusted to the island | 1.5.0 |
-| %[gamemode]_island_coops_count% | Number of players cooped to the island | 1.5.0 |
-| %[gamemode]_island_visitors_count% | Number of players currently visiting the island | 1.5.0 |
-| %[gamemode]_island_bans_count% | Number of players banned from the island | 1.5.0 |
-| %[gamemode]_island_uuid% | The unique ID of the island as used in the database | 1.15.4 |
-| %[gamemode]_visited_island_protection_range% | Radius of the protection range of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_protection_range_diameter% | Diameter of the protection range of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_owner% | Name of the owner of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_creation_date% | Creation date of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_name% | Name of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_center% | Coordinates of the center of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_center_x% | X coordinate of the center of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_center_y% | Y coordinate of the center of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_center_z% | Z coordinate of the center of the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_members_max% | Maximum number of members there can be on the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_members_count% | Number of members, subowners and owner there are on the island | 1.5.2 |
-| %[gamemode]_visited_island_members_list% | Comma separated list of player names that are at least MEMBER on the island the player is standing on | 1.13.0 |
-| %[gamemode]_visited_island_trustees_count% | Number of players trusted on the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_coops_count% | Number of players cooped to the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_visitors_count% | Number of players currently visiting the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_bans_count% | Number of players banned from the island the player is standing on | 1.5.2 |
-| %[gamemode]_visited_island_uuid% | The unique ID of the island the player is standing on | 1.15.4 |
-| %[gamemode]_has_island% | Whether the player has an island or not | 1.5.0 |
-| %[gamemode]_rank% | Rank the player has on his island | 1.5.0 |
-| %[gamemode]_resets% | Number of times the player has reset his island | 1.5.0 |
-| %[gamemode]_resets_left% | Number of times the player can reset his island | 1.5.0 |
-| %[gamemode]_deaths% | Number of times the player died | 1.12.0 |
-| %[gamemode]_on_island% | Whether the player is on an island he is part of or not | 1.13.0 |
+| %[gamemode]_world_friendly_name% | 游戏模式世界的名称 | 1.4.0 |
+| %[gamemode]_world_islands% | 游戏模式世界中的岛屿数量 | 1.5.0 |
+| %[gamemode]_island_distance% | 游戏模式世界中岛屿中心之间距离的一半 | 1.4.0 |
+| %[gamemode]_island_distance_diameter% | 游戏模式世界中岛屿之间的距离 | 1.5.0 |
+| %[gamemode]_island_protection_range% | 岛屿保护范围的半径 | 1.4.0 |
+| %[gamemode]_island_protection_range_diameter% | 岛屿保护范围的直径 | 1.5.0 |
+| %[gamemode]_island_owner% | 岛屿所有者的名称 | 1.4.0 |
+| %[gamemode]_island_creation_date% | 岛屿的创建日期 | 1.4.0 |
+| %[gamemode]_island_name% | 岛屿的名称 | 1.4.0 |
+| %[gamemode]_island_center% | 岛屿中心的坐标 | 1.5.0 |
+| %[gamemode]_island_center_x% | 岛屿中心的X坐标 | 1.5.0 |
+| %[gamemode]_island_center_y% | 岛屿中心的Y坐标 | 1.5.0 |
+| %[gamemode]_island_center_z% | 岛屿中心的Z坐标 | 1.5.0 |
+| %[gamemode]_island_members_max% | 岛上可以拥有的最大成员数 | 1.5.0 | 
+| %[gamemode]_island_members_count% | 岛上的成员、副所有者和所有者数量 | 1.5.0 |
+| %[gamemode]_island_members_list% | 岛上至少是成员的玩家名称的逗号分隔列表 | 1.13.0 |
+| %[gamemode]_island_trustees_count% | 被信任进入岛屿的玩家数量 | 1.5.0 |
+| %[gamemode]_island_coops_count% | 与岛屿合作的玩家数量 | 1.5.0 |
+| %[gamemode]_island_visitors_count% | 当前访问岛屿的玩家数量 | 1.5.0 |
+| %[gamemode]_island_bans_count% | 被禁止进入岛屿的玩家数量 | 1.5.0 |
+| %[gamemode]_island_uuid% | 数据库中使用的岛屿的唯一ID | 1.15.4 |
+| %[gamemode]_visited_island_protection_range% | 玩家所在岛屿保护范围的半径 | 1.5.2 |
+| %[gamemode]_visited_island_protection_range_diameter% | 玩家所在岛屿保护范围的直径 | 1.5.2 |
+| %[gamemode]_visited_island_owner% | 玩家所在岛屿所有者的名称 | 1.5.2 |
+| %[gamemode]_visited_island_creation_date% | 玩家所在岛屿的创建日期 | 1.5.2 |
+| %[gamemode]_visited_island_name% | 玩家所在岛屿的名称 | 1.5.2 |
+| %[gamemode]_visited_island_center% | 玩家所在岛屿中心的坐标 | 1.5.2 |
+| %[gamemode]_visited_island_center_x% | 玩家所在岛屿中心的X坐标 | 1.5.2 |
+| %[gamemode]_visited_island_center_y% | 玩家所在岛屿中心的Y坐标 | 1.5.2 |
+| %[gamemode]_visited_island_center_z% | 玩家所在岛屿中心的Z坐标 | 1.5.2 |
+| %[gamemode]_visited_island_members_max% | 玩家所在岛屿可以拥有的最大成员数 | 1.5.2 |
+| %[gamemode]_visited_island_members_count% | 玩家所在岛屿的成员、副所有者和所有者数量 | 1.5.2 |
+| %[gamemode]_visited_island_members_list% | 玩家所在岛屿上至少是成员的玩家名称的逗号分隔列表 | 1.13.0 |
+| %[gamemode]_visited_island_trustees_count% | 被信任进入玩家所在岛屿的玩家数量 | 1.5.2 |
+| %[gamemode]_visited_island_coops_count% | 与玩家所在岛屿合作的玩家数量 | 1.5.2 |
+| %[gamemode]_visited_island_visitors_count% | 当前访问玩家所在岛屿的玩家数量 | 1.5.2 |
+| %[gamemode]_visited_island_bans_count% | 被禁止进入玩家所在岛屿的玩家数量 | 1.5.2 |
+| %[gamemode]_visited_island_uuid% | 玩家所在岛屿的唯一ID | 1.15.4 |
+| %[gamemode]_has_island% | 玩家是否拥有岛屿 | 1.5.0 |
+| %[gamemode]_rank% | 玩家在其岛屿上的等级 | 1.5.0 |
+| %[gamemode]_resets% | 玩家重置岛屿的次数 | 1.5.0 | 
+| %[gamemode]_resets_left% | 玩家可以重置岛屿的次数 | 1.5.0 |
+| %[gamemode]_deaths% | 玩家死亡的次数 | 1.12.0 |
+| %[gamemode]_on_island% | 玩家是否在其所属的岛屿上 | 1.13.0 |
 
-## See also
-Gamemodes and Addons can also bring their own placeholders. We highly recommend that you look up the following pages, which are likely more adapted to your needs.
+## 另请参阅
+游戏模式和附加组件也可以带来自己的占位符。我们强烈建议您查看以下页面，它们可能更适合您的需求。
 
-- Gamemodes
-    - [AcidIsland](../../gamemodes/AcidIsland/Placeholders)
+- 游戏模式
+    - [AcidIsland](../../gamemodes/AcidIsland/Placeholders)  
     - [AOneBlock](../../gamemodes/AOneBlock/Placeholders)
     - [Boxed](../../gamemodes/Boxed/Placeholders)
     - [BSkyBlock](../../gamemodes/BSkyBlock/Placeholders)
     - [CaveBlock](../../gamemodes/CaveBlock/Placeholders)
     - [SkyGrid](../../gamemodes/SkyGrid/Placeholders)
-- Addons
+- 附加组件
     - [Bank](../../addons/Bank/#placeholders)
     - [Challenges](../../addons/Challenges/#placeholders)
-    - [Level](../../addons/Level/#placeholders)
+    - [Level](../../addons/Level/#placeholders) 
     - [Likes](../../addons/Likes/#placeholders)
     - [Limits](../../addons/Limits/#placeholders)
     - [MagicCobblestoneGenerator](../../addons/MagicCobblestoneGenerator/#placeholders)

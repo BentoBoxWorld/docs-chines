@@ -1,107 +1,111 @@
-# Blueprints
-**Blueprints** are a simple a quick way to make your own custom starter islands inside the game.
+# 蓝图
+**蓝图**是一种简单快速的方式，让你在游戏中创建自己定制的起始岛屿。
 
-Blueprints are *like* WorldEdit schematics but are **not** compatible. Blueprints are optimized for BentoBox addons and do not require any other plugin or library to use.
+蓝图类似于WorldEdit的图纸，但并不兼容。蓝图针对BentoBox插件进行了优化，使用时不需要任何其他插件或库。
 
-Blueprints are managed with the **Blueprint Manager** and can be bundled together into a **Blueprint Bundle** to contain a set of up to 3 islands (normal world, nether and end world). Blueprint Bundles can have their own icon, description and can contain other settings, like requiring permission to use.
+蓝图通过**蓝图管理器**管理，并可以被打包成一个**蓝图包**，包含多达3个岛屿（普通世界、地狱和末地）。蓝图包可以有自己的图标、描述，并可以包含其他设置，比如使用权限的要求。
 
-### FAQ: I have a lot of schematics - how do I convert them to Blueprints?
+### 常见问题解答：我有很多图纸 - 我该如何将它们转换成蓝图？
 
-It's quite easy, but you have to do it in-game because you'll need to add some signs to it.
+这相当简单，但你需要在游戏中进行，因为你需要添加一些标志。
 
-Steps:
+步骤：
 
-1. Load the schematic using WorldEdit
-2. Paste it somewhere, I recommend some space in the BSKyBlock world away from everything
-3. Find where you want the player to spawn and place a sign there with the text [spawn_here] on it.
-4. (Optional) Place a welcome sign facing the place that has the text [start] on it. For details on these signs, look below
-5. Select the island using the admin blueprint commands pos1 and pos2 (Remember to use the blueprint command and not WE!)
-6. Copy the island using the admin blueprint copy command
-7. Save the island using the admin blueprint save command
-8. Repeat for all your islands including Nether and End islands.
+1. 使用WorldEdit加载图纸
+2. 将其粘贴到某个地方，我推荐在BSkyBlock世界的某个地方，远离一切
+3. 找到你希望玩家出生的位置，并在那里放置一个标有[spawn_here]文字的标志。
+4. （可选）在面对你希望的位置放置一个欢迎标志，上面写着[start]。有关这些标志的详细信息，请查看下面
+5. 使用管理员蓝图命令pos1和pos2选择岛屿（记住使用蓝图命令，而不是WE！）
+6. 使用管理员蓝图复制命令复制岛屿
+7. 使用管理员蓝图保存命令保存岛屿
+8. 重复上述步骤，包括地狱和末地岛屿。
 
-Tips: Make sure you have a bedrock block in the center of the island. This is where the island will be centered around.
+提示：确保岛屿中心有一个基岩块。岛屿将围绕此处居中。
 
-## Asynchronous
-All Blueprint copying and pasting is done async and should __never__ lag the server no matter how large the Blueprint. It can take a number of seconds to paste very large Blueprints. You can set how many blocks will be copied or pasted by editing the paste speed in BentoBox's config.yml. The default should be acceptable for most systems. If you run timings, you may see the pasting process taking a long time, but it is just doing about 1000 blocks per tick and should not be lagging your system.
+## 异步
+所有蓝图的复制和粘贴都是异步进行的，无论蓝图有多大，都不应该使服务器延迟。粘贴非常大的蓝图可能需要几秒钟。你可以通过编辑BentoBox的config.yml来设置复制或粘贴的方块数量。默认设置应适用于大多数系统。如果你运行时间测量，你可能会看到粘贴过程需要很长时间，但它只是每个tick处理大约1000个方块，并不会使你的系统延迟。
 
-## Operation
-The basic flow for making a custom island:
+## 操作
+制作自定义岛屿的基本流程：
 
-1. Create a bounding box by setting two positions at opposite corners of the box - set pos1 and pos2
-2. Copy the contents of the box to the clipboard
-3. Save the contents. If you just want to overwrite the default islands, save as "island", "nether-island" or "end-island" - you will be asked to confirm the overwriting.
-4. Open up the Blueprint Manager, e.g., /bsb blueprint to make a new Bundle, set icons, group Blueprints, etc.
+1. 通过在盒子的对角线上设置两个位置来创建一个边界框 - 设置pos1和pos2
+2. 将盒子内的内容复制到剪贴板
+3. 保存内容。如果你只想覆盖默认岛屿，保存为"island"、"nether-island"或"end-island" - 你将被要求确认覆盖。
+4. 打开蓝图管理器，例如，/bsb blueprint来制作一个新的包，设置图标，分组蓝图等。
 
-### Video
-*Click on the thumbnail!*
+### 视频
+*点击缩略图！*
 [![thumbnail](https://user-images.githubusercontent.com/20014332/62939503-be4c5980-bdd1-11e9-8814-2253845cecd0.png)](https://youtu.be/4gvaG89uxAs)
 
-## Commands
-The commands are almost the same as WorldEdit schematic commands. You must be Op or an admin with permissions to use blueprints. Use the admin command and **blueprint** or its alias **bp**:
+## 命令
+命令几乎与WorldEdit的图纸命令相同。你必须是Op或拥有权限的管理员才能使用蓝图。使用管理员命令和**blueprint**或其别名**bp**：
 
-* /bsb bp pos1 - set one corner of the bounding box to the position of your player
-* /bsb bp pos2 - set the other corner
-* /bsb bp copy - copy the blocks and entities inside the box to the clipboard
-* /bsb bp copy air - copy the blocks, entities, and air inside the box to the clipboard. This is important if you plan to paste the island into water (AcidIsland) or rock (CaveBlock).
-* /bsb bp paste - paste the clipboard to your location
-* /bsb bp save <name> - saves the clipboard to a file (appends a .schem suffix)
-* /bsb bp load <name> - load a blueprint file (do not append the .schem suffix)
-* /bsb bp - open the Blueprint Manager GUI
+* /bsb bp pos1 - 将边界框的一个角设置为你的玩家位置
+* /bsb bp pos2 - 设置另
 
-For AcidIsland, use /acid instead of /bsb.
+一个角
+* /bsb bp copy - 复制盒子内的方块和实体到剪贴板
+* /bsb bp copy air - 复制盒子内的方块、实体和空气到剪贴板。如果你计划将岛屿粘贴到水中（AcidIsland）或岩石中（CaveBlock），这一点很重要。
+* /bsb bp paste - 将剪贴板内容粘贴到你的位置
+* /bsb bp save <name> - 将剪贴板保存到文件中（添加.schem后缀）
+* /bsb bp load <name> - 加载一个蓝图文件（不要添加.schem后缀）
+* /bsb bp - 打开蓝图管理器GUI
 
-## Blueprint Manager GUI
-The Blueprint Manager GUI enables you to create, edit and configure the island sets that players can select when they start a new island or reset. The sets of islands (normal world, nether world, and end world) are called "bundles". There is a default bundle that can be customized, but not deleted.
+对于AcidIsland，请使用/acid而不是/bsb。
 
-To create a new bundle, click on the green banner in the bottom left corner of the GUI. Text entry is done via the chat interface. Enter a name for the new bundle. You can change it later.
+## 蓝图管理器GUI
+蓝图管理器GUI使你能够创建、编辑和配置玩家在开始新岛屿或重置时可以选择的岛屿集。这些岛屿集（普通世界、地狱世界和末地世界）被称为"包"。有一个默认的包可以自定义，但不能删除。
 
-The new bundle will have a default red wool icon and a name. It has three slots to the right that represent the places where you can put 3 blueprints:
+要创建一个新的包，请点击GUI左下角的绿色横幅。文本输入通过聊天界面完成。为新包输入一个名称。你稍后可以更改它。
 
-* Green glass pane - this is the normal world blueprint slot
-* Red glass pane - this is the nether world blueprint slot
-* Yellow glass pane - this is the end world blueprint slot
+新包将有一个默认的红色羊毛图标和一个名称。它右侧有三个槽，代表你可以放置3个蓝图的位置：
 
-Right click on these slots to clear them.
+* 绿色玻璃板 - 这是普通世界蓝图槽
+* 红色玻璃板 - 这是地狱世界蓝图槽
+* 黄色玻璃板 - 这是末地世界蓝图槽
 
-Below the line of dark gray glass panes, you will see a number of blueprints to choose. Click on the one you want and it will glow. Then click on the slot where you want to put it. You can put the same blueprint in all three slots or have different blueprints for each one, it is up to you.
+右键点击这些槽以清除它们。
 
-To add a description to the bundle right click on the bundle icon and enter a description in the chat. Keep each line short so the GUI does not look too big. You can set the text color using Bukkit color codes, like &c for red.
+在深灰色玻璃板下方，你将看到许多蓝图供选择。点击你想要的那个，它会发光。然后点击你想放置它的槽。你可以在所有三个槽中放置相同的蓝图，或者为每一个都有不同的蓝图，这取决于你。
 
-To change a bundle's icon, click on an item in your inventory and it will replace the bundle's icon. To change a blueprint's icon, select the blueprint and then click on the inventory item.
+要为包添加描述，请右键点击包图标并在聊天中输入描述。保持每行文字简短，以免GUI看起来太大。你可以使用Bukkit颜色代码设置文字颜色，比如&c代表红色。
 
-To limit a bundle to players with the right permission, click the picture item to toggle whether permission is required or not. The icon will show what permission is required in its text (it is based on the name of the bundle). The permission is `GameModeAddonName.island.create.uniqueId` of blueprint bundle. e.g. `bskyblock.island.create.vip`.
+要更改包的图标，请点击你的库存中的某个物品，它将替换包的图标。要更改蓝图的图标，选择蓝图然后点击库存物品。
 
-To delete a bundle, right click on the TNT.
+要限制包只对拥有正确权限的玩家开放，请点击图片物品以切换是否需要权限。图标将在其文字中显示所需的权限（基于包的名称）。权限为`GameModeAddonName.island.create.uniqueId`的蓝图包。例如，`bskyblock.island.create.vip`。
 
-Bundles and blueprints must be renamed in the GUI. Do not try to rename them using the file system.
+要删除包，请右键点击TNT。
 
-## Files and Editing
-When using blueprints in the game, always use just the name of the blueprint. On the file system, blueprints are saved in a compressed format with the **.blu** suffix and blueprint bundles are saved as **.json** text files. You can edit the JSON blueprint bundles with a text editor, but you should never edit .blu files outside of the game.
+在GUI中重命名包和蓝图。不要尝试使用文件系统来重命名它们。
 
-## Incomplete bundles
-Bundles must always have an Overworld/Normal world blueprint. If they do not, then the default island (island.blu) blueprint will be used and an error logged in the console.
-Bundles do not have to have Nether or End World blueprints, but if they do not, no island will be pasted in those worlds (obviously).
+## 文件和编辑
+在游戏中使用蓝图时，总是只使用蓝图的名称。在文件系统上，蓝图以**.blu**后缀保存为压缩格式，而蓝图包保存为**.json**文本文件。你可以用文本编辑器编辑JSON蓝图包，但你绝对不应该在游戏外编辑.blu文件。
 
-## Entities
+## 不完整的包
+包必须始终有一个Overworld/Normal world蓝图。如果没有，则将使用默认岛屿（island.blu）蓝图，并在控制台记录错误。
+包
 
-!!! new "Coming in BentoBox 1.14.0"
-    In this upcoming release, you will also be able to use `[name]`, which will be replaced by the island owner's name when creating the island.
+不必拥有地狱或末地世界蓝图，但如果没有，那些世界将不会粘贴任何岛屿（显然）。
 
-You can use placeholders in entities' names.
-Rename a name tag with the placeholder in an anvil, then apply the name tag to the entity.
+## 实体
 
-## Signs
-Blueprints can have two special signs in them to help you place where a player will spawn and to give them a welcome message.
+!!! 新 "即将在BentoBox 1.14.0中推出"
+    在即将发布的版本中，你还可以使用`[name]`，在创建岛屿时将其替换为岛屿所有者的名字。
 
-### Spawn Here Sign
-Place a sign with the first line as [spawn_here] where you want the player to spawn. They will appear in this position and the sign will not be pasted. This applies to all world islands, so you can specify where players will appear in the Nether when they go through a portal, for example.
+你可以在实体的名称中使用占位符。
+在铁砧中用占位符重命名一个名称标签，然后将名称标签应用于实体。
 
-### Welcome Sign
-The welcome sign provides a friendly way to give players a hint about the game and what to do, or not do! Place a sign with [start] on the first line. The sign's text will be replaced by the sign text in the GameModeAddon's locale file.
+## 标志
+蓝图可以包含两个特殊的标志，以帮助你放置玩家将出生的位置，以及给他们一个欢迎信息。
 
-## Tips & Recommendations
-* We recommend that you keep starting islands small to make the game a challenge. Put just enough items and blocks on an island for players to be able to grow their island.
-* Try making split islands (think up and down, side to side) to give players a target to build to when they have the resources.
-* If you are copying with air, try to make your bounding box as small as possible to keep the file size small.
-* After copying a blueprint, try pasting it to check it was copied correctly. Then save it.
+### 出生地标志
+在你希望玩家出生的位置放置一个第一行为[spawn_here]的标志。他们将出现在这个位置，标志将不被粘贴。这适用于所有世界岛屿，所以你可以指定玩家在通过门进入地狱时会出现的位置，例如。
+
+### 欢迎标志
+欢迎标志提供了一种友好的方式，给玩家一些关于游戏的提示，以及做什么或不做什么的提示！在第一行写上[start]的地方放置一个标志。标志的文本将被GameModeAddon的语言文件中的标志文本替换。
+
+## 提示和建议
+* 我们建议你保持起始岛屿小，以使游戏具有挑战性。在岛屿上放置足够的物品和方块，让玩家能够扩展他们的岛屿。
+* 尝试制作分离的岛屿（想想上下、左右），给玩家一个目标，当他们有资源时可以建造。
+* 如果你在复制时包含了空气，尝试使你的边界框尽可能小，以保持文件大小小。
+* 在复制蓝图后，尝试粘贴它以检查是否正确复制。然后保存它。

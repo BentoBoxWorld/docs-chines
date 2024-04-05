@@ -4,54 +4,54 @@ repo_url: https://github.com/BentoBoxWorld/BentoBox
 repo_name: BentoBoxWorld/BentoBox
 edit_uri: ""
 nav:
-    - Home: index.md
-    - "What does BentoBox do?":
-        - Team Handling: BentoBox/About/Teams.md
-        - Protection: BentoBox/About/Protections.md
-    - FAQ: FAQ.md
-    - Game Modes:
-        - BSkyBlock: gamemodes/BSkyBlock/index.md
-        - Boxed: gamemodes/Boxed/index.md
-        - AcidIsland: gamemodes/AcidIsland/index.md
-        - SkyGrid: gamemodes/SkyGrid/index.md
-        - CaveBlock: gamemodes/CaveBlock/index.md
-        - AOneBlock: gamemodes/AOneBlock/index.md
-    - Addons:
-        - Bank: addons/Bank/index.md
-        - Biomes: addons/Biomes/index.md
-        - Border: addons/Border/index.md
-        - CauldronWitchery: addons/CauldronWitchery/index.md
-        - Challenges: addons/Challenges/index.md
-        - Chat: addons/Chat/index.md
-        - CheckMeOut: addons/CheckMeOut/index.md
-        - ControlPanel: addons/ControlPanel/index.md
-        - DimensionalTrees: addons/DimensionalTrees/index.md
-        - ExtraMobs: addons/ExtraMobs/index.md
-        - FarmersDance: addons/FarmersDance/index.md
-        - Greenhouses: addons/Greenhouses/index.md
-        - InvSwitcher: addons/InvSwitcher/index.md
-        - IslandFly: addons/IslandFly/index.md
-        - Level: addons/Level/index.md
-        - Likes: addons/Likes/index.md
-        - Limits: addons/Limits/index.md
-        - MagicCobblestoneGenerator: addons/MagicCobblestoneGenerator/index.md
-        - TopBlock: addons/TopBlock/index.md
-        - TwerkingForTrees: addons/TwerkingForTrees/index.md
-        - Upgrades: addons/Upgrades/index.md
-        - Visit: addons/Visit/index.md
-        - VoidPortals: addons/VoidPortals/index.md
-        - Warps: addons/Warps/index.md
-    - "Tutorials – Generic":
-        - "How To Install": BentoBox/Install-Bentobox.md
-        - "Set a BentoBox world as the server's default world": BentoBox/Set-a-BentoBox-world-as-the-server-default-world.md
-        - "Database transition": BentoBox/Database-transition.md
-    - "Tutorials – API":
-        - "Create an Addon": Tutorials/api/Create-an-addon.md
-        - "Config API": BentoBox/Config-API.md
-        - "Database API": BentoBox/Database-API.md
-        - "Metadata API": BentoBox/MetadataAPI.md
-        - "Templated Panel API": Tutorials/api/Templated-Panel.md
-        - "Get Data From Addons": BentoBox/Request-Handler-API---How-plugins-can-get-data-from-addons.md
+   - 首页: index.md
+   - "BentoBox能做什么？":
+       - 团队处理: BentoBox/About/Teams.md
+       - 保护: BentoBox/About/Protections.md
+   - 常见问题解答: FAQ.md
+   - 游戏模式:
+       - BSkyBlock: gamemodes/BSkyBlock/index.md
+       - Boxed: gamemodes/Boxed/index.md
+       - AcidIsland: gamemodes/AcidIsland/index.md
+       - SkyGrid: gamemodes/SkyGrid/index.md
+       - CaveBlock: gamemodes/CaveBlock/index.md
+       - AOneBlock: gamemodes/AOneBlock/index.md
+   - 插件:
+       - 银行: addons/Bank/index.md
+       - 生态群落: addons/Biomes/index.md
+       - 边界: addons/Border/index.md
+       - 炼药术: addons/CauldronWitchery/index.md
+       - 挑战: addons/Challenges/index.md
+       - 聊天: addons/Chat/index.md
+       - 查看我: addons/CheckMeOut/index.md
+       - 控制面板: addons/ControlPanel/index.md
+       - 维度树: addons/DimensionalTrees/index.md
+       - 额外怪物: addons/ExtraMobs/index.md
+       - 农民之舞: addons/FarmersDance/index.md
+       - 温室: addons/Greenhouses/index.md
+       - 物品转换器: addons/InvSwitcher/index.md
+       - 岛屿飞行: addons/IslandFly/index.md
+       - 等级: addons/Level/index.md
+       - 点赞: addons/Likes/index.md
+       - 限制: addons/Limits/index.md
+       - 魔法鹅卵石生成器: addons/MagicCobblestoneGenerator/index.md
+       - 顶级方块: addons/TopBlock/index.md
+       - 树木摇摆: addons/TwerkingForTrees/index.md
+       - 升级: addons/Upgrades/index.md
+       - 访问: addons/Visit/index.md
+       - 虚空传送门: addons/VoidPortals/index.md
+       - 传送点: addons/Warps/index.md
+   - "教程 – 通用":
+       - "如何安装": BentoBox/Install-Bentobox.md
+       - "将BentoBox世界设置为服务器的默认世界": BentoBox/Set-a-BentoBox-world-as-the-server-default-world.md
+       - "数据库转移": BentoBox/Database-transition.md
+   - "教程 – API":
+       - "创建一个插件": Tutorials/api/Create-an-addon.md
+       - "配置API": BentoBox/Config-API.md
+       - "数据库API": BentoBox/Database-API.md
+       - "元数据API": BentoBox/MetadataAPI.md
+       - "模板面板API": Tutorials/api/Templated-Panel.md
+       - "从插件获取数据": BentoBox/Request-Handler-API---How-plugins-can-get-data-from-addons.md
 theme:
   name: material
   palette:

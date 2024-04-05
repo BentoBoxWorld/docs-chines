@@ -1,16 +1,16 @@
-## Available locales
+## 可用的语言环境
 
 {{ translations(2855, ["cs", "de", "es", "fr", "hu", "id", "it", "ja", "lv", "pl", "pt", "ro", "ru", "tr", "vi", "zh-CN", "zh-HK", "zh-TW", "hr", "ko", "uk", "nl"]) }}
 
-## Guidelines
+## 指南
 
-* Please use GitLocalize for the translations and when you think you are done, alert us on Discord. Translators get a special badge!
-* Do not translate text inside square brackets because those are placeholders, e.g. [name] should remain in English
-* Test your translations - try to check everything you can before submitting it
-* Do not include any advertising, swear words, or derogatory comments in the translations. We do check them before accepting the PR.
-* Feel free to ask questions on Discord about translations.
+* 请使用GitLocalize进行翻译，并在完成后通过Discord通知我们。翻译者会获得一个特殊徽章！
+* 不要翻译方括号内的文本，因为那些是占位符，例如[name]应保持英文
+* 测试你的翻译 - 在提交之前尽可能检查一切
+* 翻译中不要包含任何广告、脏话或贬低性评论。我们在接受PR之前会检查它们。
+* 如果有关于翻译的问题，欢迎在Discord上提问。
 
-## Addons
+## 插件
 - [AcidIsland](/gamemodes/AcidIsland/#translations)
 - [BSkyBlock](/gamemodes/BSkyBlock/#translations)
 - [CaveBlock](/gamemodes/CaveBlock/#translations)
