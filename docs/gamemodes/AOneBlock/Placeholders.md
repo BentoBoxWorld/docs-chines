@@ -1,22 +1,22 @@
-# AOneBlock placeholders
+# AOneBlock 占位符
 
-These are the placeholders available:
+以下是可用的占位符：
 
-|Placeholder|Description|AOneBlock Version|
+|占位符|描述|AOneBlock 版本|
 |--- |--- |--- |
-|%aoneblock_my_island_phase%|the phase of your island|1.1.2|
-|%aoneblock_my_island_count%|the block count of your island|1.1.2|
-|%aoneblock_visited_island_phase%|the phase of the island you are standing on|1.1.2|
-|%aoneblock_visited_island_count%|the block count of the island you are standing on|1.1.2|
-|%aoneblock_my_island_next_phase%|the next phase for your island|1.1.2|
-|%aoneblock_visited_island_next_phase%|the next phase for the island you are standing on|1.1.2|
-|%aoneblock_my_island_blocks_to_next_phase%|blocks to go until the next phase, or "infinite" if there is no next phase|1.5.2|
-|%aoneblock_visited_island_blocks_to_next_phase%|blocks until the next phase for the island you are standing on|1.5.2|
-|%aoneblock_my_island_percent_done%|phase completion percentage|1.5.2|
-|%aoneblock_visited_island_percent_done%|phase completion percentage of the island you are standing on|1.5.2|
-|%aoneblock_my_island_done_scale%|phase completion scale of your island|1.5.2|
-|%aoneblock_visited_island_done_scale%|phase completion scale of the island you are standing on|1.5.2|
-|%aoneblock_my_island_lifetime_count%|the block count of lifetime for your island|1.10.0|
-|%aoneblock_visited_island_lifetime_count%|the block count of lifetime for the island you are standing on|1.10.0|
+|%aoneblock_my_island_phase%|你的岛屿所处的阶段|1.1.2|
+|%aoneblock_my_island_count%|你的岛屿的方块计数|1.1.2|
+|%aoneblock_visited_island_phase%|你所站立的岛屿的阶段|1.1.2|
+|%aoneblock_visited_island_count%|你所站立的岛屿的方块计数|1.1.2|
+|%aoneblock_my_island_next_phase%|你的岛屿的下一阶段|1.1.2|
+|%aoneblock_visited_island_next_phase%|你所站立的岛屿的下一阶段|1.1.2|
+|%aoneblock_my_island_blocks_to_next_phase%|直到下一阶段的方块数，如果没有下一阶段则为“无限”|1.5.2|
+|%aoneblock_visited_island_blocks_to_next_phase%|你所站立的岛屿直到下一阶段的方块数|1.5.2|
+|%aoneblock_my_island_percent_done%|阶段完成百分比|1.5.2|
+|%aoneblock_visited_island_percent_done%|你所站立的岛屿的阶段完成百分比|1.5.2|
+|%aoneblock_my_island_done_scale%|你的岛屿的阶段完成比例|1.5.2|
+|%aoneblock_visited_island_done_scale%|你所站立的岛屿的阶段完成比例|1.5.2|
+|%aoneblock_my_island_lifetime_count%|你的岛屿的终生方块计数|1.10.0|
+|%aoneblock_visited_island_lifetime_count%|你所站立的岛屿的终生方块计数|1.10.0|
 
 {{ placeholders_bundle(gamemode_name="aoneblock") }}

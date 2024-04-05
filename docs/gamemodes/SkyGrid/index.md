@@ -1,36 +1,36 @@
 # SkyGrid
 
-**SkyGrid** is a map filled with floating blocks placed on a four block grid. So every fourth block in every direction is an actual block, and everything else is air.  The creator of the original SkyBlick, SethBling, released SkyGrid in 2012 and it has become one of the most popular Minecraft maps to play in.
+**SkyGrid** 是一个充满了浮动方块的地图，这些方块放置在一个四方格网上。所以每个方向上的每第四个方块是实际的方块，其他的都是空气。原始SkyBlick的创造者SethBling于2012年发布了SkyGrid，它已成为最受欢迎的Minecraft地图之一。
 
-There are goals and techniques to playing (and surviving) in SkyGrid and there is no shortage of online help, tips and ways to make this game very fun!
+在SkyGrid中玩耍（和生存）有其目标和技巧，网络上有大量的帮助、技巧和方法，使这个游戏非常有趣！
 
-Created and maintained by [tastybento](https://github.com/tastybento).
+由[tastybento](https://github.com/tastybento)创建和维护。
 
 {{ addon_description("SkyGrid") }}
 
-## Installation
+## 安装
 
-0. Install BentoBox and run it on the server at least once to create its data folders.
-1. Place this jar in the addons folder of the BentoBox plugin.
-2. Restart the server.
-3. The addon will create worlds and a data folder and inside the folder will be a config.yml.
-4. Stop the server .
-5. Edit the config.yml how you want.
-6. Delete any worlds that were created by default if you made changes that would affect them.
-7. Restart the server.
+0. 安装BentoBox并至少运行一次服务器以创建其数据文件夹。
+1. 将这个jar文件放在BentoBox插件的addons文件夹中。
+2. 重启服务器。
+3. 插件将创建世界和一个数据文件夹，并且文件夹中会有一个config.yml。
+4. 停止服务器。
+5. 按照您的意愿编辑config.yml。
+6. 如果您做了会影响它们的更改，删除默认创建的任何世界。
+7. 重启服务器。
 
-## Permissions
+## 权限
 
-Permissions can be found [here](Permissions).
+权限可以在[这里](Permissions)找到。
 
-## Commands
+## 命令
 
-Commands can be found [here](Commands).
+命令可以在[这里](Commands)找到。
 
-## Placeholders
+## 占位符
 
-Placeholders can be found [here](Placeholders).
+占位符可以在[这里](Placeholders)找到。
 
-## Translations
+## 翻译
 
 {{ translations(2970, ["cs", "de", "id", "ja", "ro", "zh-CN", "fr", "ru"]) }}

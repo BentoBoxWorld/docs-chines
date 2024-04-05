@@ -4,28 +4,28 @@ import json
 def define_env(env):
 
     languages = [
-        {"id": "zh-CN", "name": "Chinese, China"},
-        {"id": "zh-HK", "name": "Chinese, Hong Kong"},
-        {"id": "zh-TW", "name": "Chinese, Taiwan"},
-        {"id": "hr", "name": "Croatian"},
-        {"id": "cs", "name": "Czech"},
-        {"id": "fr", "name": "French"},
-        {"id": "de", "name": "German"},
-        {"id": "hu", "name": "Hungarian"},
-        {"id": "id", "name": "Indonesian"},
-        {"id": "it", "name": "Italian"},
-        {"id": "ja", "name": "Japanese"},
-        {"id": "ko", "name": "Korean"},
-        {"id": "lv", "name": "Latvian"},
-        {"id": "pl", "name": "Polish"},
-        {"id": "pt", "name": "Portuguese"},
-        {"id": "ro", "name": "Romanian"},
-        {"id": "ru", "name": "Russian"},
-        {"id": "es", "name": "Spanish"},
-        {"id": "tr", "name": "Turkish"},
-        {"id": "vi", "name": "Vietnamese"},
-        {"id": "uk", "name": "Ukrainian"},
-        {"id": "nl", "name": "Dutch"}
+        {"id": "zh-CN", "name": "中文（中国）"},
+        {"id": "zh-HK", "name": "中文（香港）"},
+        {"id": "zh-TW", "name": "中文（台湾）"},
+        {"id": "hr", "name": "克罗地亚语"},
+        {"id": "cs", "name": "捷克语"},
+        {"id": "fr", "name": "法语"},
+        {"id": "de", "name": "德语"},
+        {"id": "hu", "name": "匈牙利语"},
+        {"id": "id", "name": "印尼语"},
+        {"id": "it", "name": "意大利语"},
+        {"id": "ja", "name": "日语"},
+        {"id": "ko", "name": "韩语"},
+        {"id": "lv", "name": "拉脱维亚语"},
+        {"id": "pl", "name": "波兰语"},
+        {"id": "pt", "name": "葡萄牙语"},
+        {"id": "ro", "name": "罗马尼亚语"},
+        {"id": "ru", "name": "俄语"},
+        {"id": "es", "name": "西班牙语"},
+        {"id": "tr", "name": "土耳其语"},
+        {"id": "vi", "name": "越南语"},
+        {"id": "uk", "name": "乌克兰语"},
+        {"id": "nl", "name": "荷兰语"}
     ]
 
     @env.macro
@@ -107,17 +107,17 @@ BentoBox 及其附加组件中的绝大多数字符串几乎可以翻译成任�
     # Adds placeholder table to the addon pages.
     @env.macro
     def placeholders_source(source:str):
-        result = f"""!!! tip "Tip"\n
-    `[gamemode]` is a prefix that differs depending on the gamemode you are running.\n
-    The prefix is the lowercased name of the gamemode, i.e. if you are using BSkyBlock, the prefix is `bskyblock`.\n\n
-    Properly translated placeholders for each gamemode can be found:\n
-    - [AcidIsland](/en/latest/gamemodes/AcidIsland/Placeholders)
-    - [AOneBlock](/en/latest/gamemodes/AOneBlock/Placeholders)
-    - [Boxed](/en/latest/gamemodes/Boxed/Placeholders)
-    - [BSkyBlock](/en/latest/gamemodes/BSkyBlock/Placeholders)
-    - [CaveBlock](/en/latest/gamemodes/CaveBlock/Placeholders)
-    - [SkyGrid](/en/latest/gamemodes/SkyGrid/Placeholders).\n
-    Please read the main [Placeholders page](/en/latest/BentoBox/Placeholders).\n\n"""
+        result = f"""!!! tip "提示"\n
+        `[gamemode]` 是一个前缀，根据你运行的游戏模式而有所不同。\n
+        前缀是游戏模式名称的小写形式，即如果你正在使用 BSkyBlock，前缀则为 `bskyblock`。\n\n
+        每个游戏模式正确翻译的占位符可以在以下位置找到：\n
+        - [AcidIsland](/en/latest/gamemodes/AcidIsland/Placeholders)
+        - [AOneBlock](/en/latest/gamemodes/AOneBlock/Placeholders)
+        - [Boxed](/en/latest/gamemodes/Boxed/Placeholders)
+        - [BSkyBlock](/en/latest/gamemodes/BSkyBlock/Placeholders)
+        - [CaveBlock](/en/latest/gamemodes/CaveBlock/Placeholders)
+        - [SkyGrid](/en/latest/gamemodes/SkyGrid/Placeholders).\n
+        请阅读主要的[占位符页面](/en/latest/BentoBox/Placeholders).\n\n"""
 
         result += f"""\n
 

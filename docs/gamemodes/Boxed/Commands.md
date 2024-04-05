@@ -1,350 +1,81 @@
-<h1>Commands</h1>
-All the commands are the same as other game modes, like BSkyBlock.
-<h1><b>Boxed Admin Commands </b>(Alias: /boxadmin)</h2>
-<table width="100%" align="center">
-<tr>
-<td align='left'><b>Command</b></td>
-<td align='left'><b>Description</b></td>
-<td align='left'><b>Permission</b></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin</b></td>
-<td align='left'>displays all Boxed Commands</td>
-<td align='left'>boxed.island</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin add <owner> <player></b></td>
-<td align='left'>add player to owner's team</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin biomes</b></td>
-<td align='left'>Main biome addon admin command. Opens Admin GUI for players</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin challenges</b></td>
-<td align='left'>Access /boxadmin challenges admin commands</td>
-<td align='left'>boxed.admin.challenges</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin deaths</b></td>
-<td align='left'>edit deaths of players</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin delete</b></td>
-<td align='left'>deletes a player's island</td>
-<td align='left'>boxed.admin.delete</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin disband <owner></b></td>
-<td align='left'>disband owner's team</td>
-<td align='left'>boxed.mod.bypassprotect</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin getrank <player></b></td>
-<td align='left'>get a player's rank on their island</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin info <player></b></td>
-<td align='left'>get info on where you are or player's island</td>
-<td align='left'>boxed.mod.info</td>
-</tr>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin kick <team player></b></td>
-<td align='left'>kick a player from a team</td>
-<td align='left'>boxed.mod.bypassexpel</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin level <player></b></td>
-<td align='left'>calculate the island level for player</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin range</b></td>
-<td align='left'>Admin island range command</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin register <player></b></td>
-<td align='left'>register player to unowned island you are on</td>
-<td align='left'>boxed.admin.register</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin reload</b></td>
-<td align='left'>reload the plugin</td>
-<td align='left'>boxed.admin.relaod</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin reset</b></td>
-<td align='left'>commands.admin.resets.reset.description</td>
-<td align='left'>boxed.admin.settingsreset</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin bp</b></td>
-<td align='left'>manipulate blueprints</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin bp copy [air]</b></td>
-<td align='left'>copy the clipboard set by pos1 and pos2 and optionally the air blocks</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin bp load <bp name></b></td>
-<td align='left'>load bp into the clipboard</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin bp origin</b></td>
-<td align='left'>set the bp's origin to your position</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin bp paste</b></td>
-<td align='left'>paste the clipboard to your location</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin bp pos1</b></td>
-<td align='left'>set 1st corner of cuboid clipboard</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin bp pos2</b></td>
-<td align='left'>set 2nd corner of cuboid clipboard</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin bp save <bp name></b></td>
-<td align='left'>save the copied clipboard</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin setowner <player></b></td>
-<td align='left'>transfers island ownership to the player</td>
-<td align='left'>boxed.admin.register</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin setrank <player> <rank></b></td>
-<td align='left'>set a player's rank on their island</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin setspawn</b></td>
-<td align='left'>commands.admin.setspawn.description</td>
-<td align='left'>boxed.admin.setspawn</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin top</b></td>
-<td align='left'>show the top ten list</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin tp <player></b></td>
-<td align='left'>teleport to a player's island</td>
-<td align='left'>boxed.mod.tp</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin tpend <player></b></td>
-<td align='left'>teleport to a player's island</td>
-<td align='left'>boxed.mod.tp</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin tpnether <player></b></td>
-<td align='left'>teleport to a player's island</td>
-<td align='left'>boxed.mod.tp</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin unregister <owner></b></td>
-<td align='left'>unregister owner from island, but keep island blocks</td>
-<td align='left'>boxed.admin.unregister</td>
-</tr>
-<tr>
-<td align='left'><b>/boxadmin why <player></b></td>
-<td align='left'>toggle console protection debug reporting</td>
-<td align='left'></td>
-</tr>
-</table>
+# 命令
 
-<h1><b>Boxed Island Player Commands </b>(Alias: /box or /boxed)</h2>
-<table width="100%" align="center">
-<tr>
-<td align='left'><b>Command</b></td>
-<td align='left'><b>Description</b></td>
-<td align='left'><b>Permission</b></td>
-</tr>
-<tr>
-<td align='left'><b>/box</b></td>
-<td align='left'>The main player command</td>
-<td align='left'>boxed.island</td>
-</tr>
-</tr>
-<tr>
-<td align='left'><b>/box ban <player></b></td>
-<td align='left'>ban a player from your island</td>
-<td align='left'>boxed.island.ban</td>
-</tr>
-<tr>
-<td align='left'><b>/box banlist</b></td>
-<td align='left'>list banned players</td>
-<td align='left'>boxed.island.ban</td>
-</tr>
-<tr>
-<td align='left'><b>/box biomes</b></td>
-<td align='left'>Main biome addon command that opens biome change GUI</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/box challenges [Level]</b></td>
-<td align='left'>Let the player use /box challenges command</td>
-<td align='left'>boxed.challenges</td>
-</tr>
-<tr>
-<td align='left'><b>/box create</b></td>
-<td align='left'>create an island</td>
-<td align='left'>boxed.island.create</td>
-</tr>
-<tr>
-<td align='left'><b>/box go</b></td>
-<td align='left'>teleport you to your island</td>
-<td align='left'>boxed.island</td>
-</tr>
-<tr>
-<td align='left'><b>/box info <player></b></td>
-<td align='left'>display info about your island or the player's island</td>
-<td align='left'>boxed.island.info</td>
-</tr>
-<tr>
-<td align='left'><b>/box language</b></td>
-<td align='left'>select language</td>
-<td align='left'>boxed.island.language</td>
-</tr>
-<tr>
-<td align='left'><b>/box level [player]</b></td>
-<td align='left'>calculate your island level or show the level of [player]</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/box reset</b></td>
-<td align='left'>restart your island and remove the old one</td>
-<td align='left'>boxed.island.reset</td>
-</tr>
-<tr>
-<td align='left'><b>/box sethome</b></td>
-<td align='left'>set your home teleport point</td>
-<td align='left'>boxed.island.sethome</td>
-</tr>
-<tr>
-<td align='left'><b>/box setname <name></b></td>
-<td align='left'>set a name for your island</td>
-<td align='left'>boxed.island.name</td>
-</tr>
-<tr>
-<td align='left'><b>/box settings</b></td>
-<td align='left'>display island settings</td>
-<td align='left'>boxed.island.settings</td>
-</tr>
-<tr>
-<td align='left'><b>/box spawn</b></td>
-<td align='left'>teleport you to the spawn</td>
-<td align='left'>boxed.island.home</td>
-</tr>
-<tr>
-<td align='left'><b>/box resetname</b></td>
-<td align='left'>reset your island name</td>
-<td align='left'>boxed.mod.resetname</td>
-</tr>
-<tr>
-<td align='left'><b>/box unban <player></b></td>
-<td align='left'>unban a player from your island</td>
-<td align='left'>boxed.island.ban</td>
-</tr>
-<tr>
-<td align='left'><b>/box team</b></td>
-<td align='left'>manage your team</td>
-<td align='left'>boxed.island.team</td>
-</tr>
-<tr>
-<td align='left'><b>/box team accept</b></td>
-<td align='left'>accept an invitation</td>
-<td align='left'>boxed.island.team</td>
-</tr>
-<tr>
-<td align='left'><b>/box team coop <player></b></td>
-<td align='left'>make a player coop rank on your island</td>
-<td align='left'>boxed.island.team.coop</td>
-</tr>
-<tr>
-<td align='left'><b>/box team demote <player></b></td>
-<td align='left'>demote a player on your island down a rank</td>
-<td align='left'>boxed.island.team</td>
-</tr>
-<tr>
-<td align='left'><b>/box team leave</b></td>
-<td align='left'>leave your island</td>
-<td align='left'>boxed.island.team</td>
-</tr>
-<tr>
-<td align='left'><b>/box team invite</b></td>
-<td align='left'>invite a player to join your island</td>
-<td align='left'>boxed.island.team</td>
-</tr>
-<tr>
-<td align='left'><b>/box team kick <player></b></td>
-<td align='left'>remove a member from your island</td>
-<td align='left'>boxed.island.expel</td>
-</tr>
-<tr>
-<td align='left'><b>/box team promote <player></b></td>
-<td align='left'>promote a player on your island up a rank</td>
-<td align='left'>boxed.island.team</td>
-</tr>
-<tr>
-<td align='left'><b>/box team reject</b></td>
-<td align='left'>reject an invitation</td>
-<td align='left'>boxed.island.team</td>
-</tr>
-<tr>
-<td align='left'><b>/box team setowner <player></b></td>
-<td align='left'>transfer your island ownership to a member</td>
-<td align='left'>boxed.island.team</td>
-</tr>
-<tr>
-<td align='left'><b>/box team trust <player></b></td>
-<td align='left'>give a player trusted rank on your island</td>
-<td align='left'>boxed.island.team.trust</td>
-</tr>
-<tr>
-<td align='left'><b>/box top</b></td>
-<td align='left'>show the Top Ten</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/box team uncoop <player></b></td>
-<td align='left'>remove a coop rank from player</td>
-<td align='left'>boxed.island.team.coop</td>
-</tr>
-<tr>
-<td align='left'><b>/box team untrust <player></b></td>
-<td align='left'>remove trusted player rank from player</td>
-<td align='left'>boxed.island.team.trust</td>
-</tr>
-<tr>
-<td align='left'><b>/box warp <name></b></td>
-<td align='left'>warp to the player's warp sign</td>
-<td align='left'></td>
-</tr>
-<tr>
-<td align='left'><b>/box warps</b></td>
-<td align='left'>open the warps panel</td>
-<td align='left'></td>
-</tr>
-</table>
-<BR>
-<h3>Island Settings (/box settings)</h3>
-The unique setting for Boxed is to determine who can move the box by throwing ender pearls. The default is just the owner. The icon is composter.
+所有的命令与其他游戏模式（如BSkyBlock）相同。
 
+# Boxed 管理员命令（别名：/boxadmin）
+| 命令 | 描述 | 权限 |
+| --- | --- | --- |
+| **/boxadmin** | 显示所有 Boxed 命令 | boxed.island |
+| **/boxadmin add <owner> <player>** | 将玩家添加到所有者的团队中 |  |
+| **/boxadmin biomes** | 生物群系插件管理员主命令。为玩家打开管理员 GUI |  |
+| **/boxadmin challenges** | 访问 /boxadmin 挑战管理员命令 | boxed.admin.challenges |
+| **/boxadmin deaths** | 编辑玩家死亡次数 |  |
+| **/boxadmin delete** | 删除一个玩家的岛屿 | boxed.admin.delete |
+| **/boxadmin disband <owner>** | 解散所有者的团队 | boxed.mod.bypassprotect |
+| **/boxadmin getrank <player>** | 获取玩家在其岛屿上的等级 |  |
+| **/boxadmin info <player>** | 获取你所在位置或玩家岛屿的信息 | boxed.mod.info |
+| **/boxadmin kick <team player>** | 将一个玩家从团队中踢出 | boxed.mod.bypassexpel |
+| **/boxadmin level <player>** | 为玩家计算岛屿等级 |  |
+| **/boxadmin range** | 管理员岛屿范围命令 |  |
+| **/boxadmin register <player>** | 将玩家注册到你所在的无主岛屿上 | boxed.admin.register |
+| **/boxadmin reload** | 重载插件 | boxed.admin.reload |
+| **/boxadmin reset** | commands.admin.resets.reset.description | boxed.admin.settingsreset |
+| **/boxadmin bp** | 操作蓝图 |  |
+| **/boxadmin bp copy [air]** | 复制由 pos1 和 pos2 设置的剪贴板，并可选复制空气方块 |  |
+| **/boxadmin bp load <bp name>** | 将 bp 加载到剪贴板中 |  |
+| **/boxadmin bp origin** | 将 bp 的原点设置为你的位置 |  |
+| **/boxadmin bp paste** | 将剪贴板粘贴到你的位置 |  |
+| **/boxadmin bp pos1** | 设置长方体剪贴板的第一个角 |  |
+| **/boxadmin bp pos2** | 设置长方体剪贴板的第二个角 |  |
+| **/boxadmin bp save <bp name>** | 保存已复制的剪贴板 |  |
+| **/boxadmin setowner <player>** | 将岛屿所有权转移给玩家 | boxed.admin.register |
+| **/boxadmin setrank <player> <rank>** | 设置玩家在其岛屿上的等级 |  |
+| **/boxadmin setspawn** | commands.admin.setspawn.description | boxed.admin.setspawn |
+| **/boxadmin top** | 显示前十名列表 |  |
+| **/boxadmin tp <player>** | 传送到一个玩家的岛屿 | boxed.mod.tp |
+| **/boxadmin tpend <player>** | 传送到一个玩家的岛屿 | boxed.mod.tp |
+| **/boxadmin tpnether <player>** | 传送到一个玩家的岛屿 | boxed.mod.tp |
+| **/boxadmin unregister <owner>** | 取消注册岛屿所有者，但保留岛屿方块 | boxed.admin.unregister |
+| **/boxadmin why <player>** | 切换控制台保护调试报告 |  |
+
+# Boxed 岛屿玩家命令（别名：/box 或 /boxed）
+| 命令 | 描述 | 权限 |
+| --- | --- | --- |
+| **/box** | 主玩家命令 | boxed.island |
+| **/box ban <player
+
+>** | 禁止玩家进入你的岛屿 | boxed.island.ban |
+| **/box banlist** | 列出被禁止的玩家 | boxed.island.ban |
+| **/box biomes** | 生物群系插件主命令，打开生物群系更改 GUI |  |
+| **/box challenges [Level]** | 允许玩家使用 /box challenges 命令 | boxed.challenges |
+| **/box create** | 创建一个岛屿 | boxed.island.create |
+| **/box go** | 传送你到你的岛屿 | boxed.island |
+| **/box info <player>** | 显示你的岛屿或玩家岛屿的信息 | boxed.island.info |
+| **/box language** | 选择语言 | boxed.island.language |
+| **/box level [player]** | 计算你的岛屿等级或显示 [player] 的等级 |  |
+| **/box reset** | 重启你的岛屿并移除旧的 | boxed.island.reset |
+| **/box sethome** | 设置你的家传送点 | boxed.island.sethome |
+| **/box setname <name>** | 为你的岛屿设置名称 | boxed.island.name |
+| **/box settings** | 显示岛屿设置 | boxed.island.settings |
+| **/box spawn** | 传送你到出生点 | boxed.island.home |
+| **/box resetname** | 重置你的岛屿名称 | boxed.mod.resetname |
+| **/box unban <player>** | 解禁一个玩家进入你的岛屿 | boxed.island.ban |
+| **/box team** | 管理你的团队 | boxed.island.team |
+| **/box team accept** | 接受邀请 | boxed.island.team |
+| **/box team coop <player>** | 使一个玩家在你的岛屿上成为合作等级 | boxed.island.team.coop |
+| **/box team demote <player>** | 在你的岛屿上降低一个玩家的等级 | boxed.island.team |
+| **/box team leave** | 离开你的岛屿 | boxed.island.team |
+| **/box team invite** | 邀请一个玩家加入你的岛屿 | boxed.island.team |
+| **/box team kick <player>** | 从你的岛屿中移除一个成员 | boxed.island.expel |
+| **/box team promote <player>** | 在你的岛屿上提升一个玩家的等级 | boxed.island.team |
+| **/box team reject** | 拒绝邀请 | boxed.island.team |
+| **/box team setowner <player>** | 将你的岛屿所有权转给一个成员 | boxed.island.team |
+| **/box team trust <player>** | 在你的岛屿上给一个玩家信任等级 | boxed.island.team.trust |
+| **/box top** | 显示十强 |  |
+| **/box team uncoop <player>** | 移除一个玩家的合作等级 | boxed.island.team.coop |
+| **/box team untrust <player>** | 移除一个玩家的信任等级 | boxed.island.team.trust |
+| **/box warp <name>** | 传送到玩家的传送标志 |  |
+| **/box warps** | 打开传送面板 |  |
+
+## 岛屿设置（/box settings）
+Boxed 的独特设置是确定谁可以通过投掷末影珍珠移动盒子。默认只有所有者可以。图标是堆肥桶。

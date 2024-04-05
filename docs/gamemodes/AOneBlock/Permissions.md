@@ -1,286 +1,63 @@
-# AOneBlock Permissions
+# AOneBlock 权限
 
-**NOTE** this list is not complete yet.
+**注意** 这个列表还没有完成。
 
-<table align='center'>
-<tr>
-  <td align='left'><b>Permission</b></td>
-  <td align='left'><b>Enable For</b></td>
-  <td align='left'><b>Description</b></td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.count</td>
-  <td align='left'>true</td>
-  <td align='left'>Allow use of the aoneblock count command</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.phases</td>
-  <td align='left'>false</td>
-  <td align='left'>Allow the use of the phases command</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.info</td>
-  <td align='left'>op</td>
-  <td align='left'>Let a moderator see info on a player</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.clearreset</td>
-  <td align='left'>false</td>
-  <td align='left'>Allow clearing of island reset limit</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.bypasscooldowns</td>
-  <td align='left'>op</td>
-  <td align='left'>Allow moderator to bypass cooldowns</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.bypassdelays</td>
-  <td align='left'>op</td>
-  <td align='left'>Allow moderator to bypass delays</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.bypassprotect</td>
-  <td align='left'>op</td>
-  <td align='left'>Allow moderator to bypass island protection</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.bypassexpel</td>
-  <td align='left'>op</td>
-  <td align='left'>Allow moderator to bypass island expulsion</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.switch</td>
-  <td align='left'>op</td>
-  <td align='left'>Allows moderator to toggle bypass protection</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.lock</td>
-  <td align='left'>op</td>
-  <td align='left'>Locks or unlocks an island</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.bypasslock</td>
-  <td align='left'>op</td>
-  <td align='left'>Bypasses an island lock</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.bypassban</td>
-  <td align='left'>op</td>
-  <td align='left'>Bypasses island ban</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.mod.team</td>
-  <td align='left'>false</td>
-  <td align='left'>Enables modification of teams via kick and add commands</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.tp</td>
-  <td align='left'>op</td>
-  <td align='left'>Allows teleport to an island</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.clearresetall</td>
-  <td align='left'>op</td>
-  <td align='left'>Allow clearing of island reset limit of all players</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.reload</td>
-  <td align='left'>op</td>
-  <td align='left'>Reload the config.yml</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.delete</td>
-  <td align='left'>op</td>
-  <td align='left'>Let a player completely remove a player (including island)</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.register</td>
-  <td align='left'>op</td>
-  <td align='left'>Let a player register the nearest island to another player</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.unregister</td>
-  <td align='left'>op</td>
-  <td align='left'>Removes a player from an island without deleting the island blocks</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.setspawn</td>
-  <td align='left'>op</td>
-  <td align='left'>Allows use of spawn tools</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.setrange</td>
-  <td align='left'>op</td>
-  <td align='left'>Allows setting of island protection range</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.settingsreset</td>
-  <td align='left'>op</td>
-  <td align='left'>Resets all the islands to default protection settings</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.noban</td>
-  <td align='left'>op</td>
-  <td align='left'>Player cannot be banned from an island</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.noexpel</td>
-  <td align='left'>op</td>
-  <td align='left'>Player cannot be expelled from an island</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.setlanguage</td>
-  <td align='left'>op</td>
-  <td align='left'>Resets all player languages and sets the default language</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.getrank</td>
-  <td align='left'>op</td>
-  <td align='left'>Get a player's rank</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.setrank</td>
-  <td align='left'>op</td>
-  <td align='left'>Set a player's rank</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.admin.setchest</td>
-  <td align='left'>op</td>
-  <td align='left'>Puts the looked-at chest into a phase with a given rarity</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.count</td>
-  <td align='left'>true </td>
-  <td align='left'>Allow use of the aoneblock count command</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island</td>
-  <td align='left'>true</td>
-  <td align='left'>Allow island command usage</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.create</td>
-  <td align='left'>true</td>
-  <td align='left'>Allow island creation</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.home</td>
-  <td align='left'>true</td>
-  <td align='left'>Allow teleporting to player island</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.number.x</td>
-  <td align='left'>false</td>
-  <td align='left'>x sets how many islands the player can make.</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.sethome</td>
-  <td align='left'>true</td>
-  <td align='left'>Let the player use the sethome command</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.info</td>
-  <td align='left'>true</td>
-  <td align='left'>Let the player use the info command</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.lock</td>
-  <td align='left'>true</td>
-  <td align='left'>Allows island locking</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.near</td>
-  <td align='left'>true</td>
-  <td align='left'>description: Players can see nearby island names</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.expel</td>
-  <td align='left'>true</td>
-  <td align='left'>Allows expelling of visitors</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.ban</td>
-  <td align='left'>true</td>
-  <td align='left'>Allows banning of visitors</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.settings</td>
-  <td align='left'>true</td>
-  <td align='left'>Player can see server settings</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.language</td>
-  <td align='left'>true</td>
-  <td align='left'>Player can select a language</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.name</td>
-  <td align='left'>true</td>
-  <td align='left'>Player can set the name of their island</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.spawn</td>
-  <td align='left'>true</td>
-  <td align='left'>Player can use the island spawn command if spawn exists</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.reset</td>
-  <td align='left'>true</td>
-  <td align='left'>Player can use the island reset or restart command</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player use team command</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.setowner</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player change the team owner</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.invite</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player invite others</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.reject</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player reject invites</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.leave</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player leave the team</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.kick</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player kick team members</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.accept</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player accept invitations</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.trust</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player use team trust commands</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.coop</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player use team coop commands</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.island.team.promote</td>
-  <td align='left'>true</td>
-  <td align='left'>Let a player use promote commands</td>
-</tr>
-<tr>
-  <td align='left'>aoneblock.settings.*</td>
-  <td align='left'>true</td>
-  <td align='left'>Allow use of settings on island</td>
-</tr>
-</table>
+| 权限                                | 启用对象 | 描述                                       |
+|-----------------------------------|------|------------------------------------------|
+| aoneblock.count                   | true | 允许使用 aoneblock count 命令                  |
+| aoneblock.phases                  | false| 允许使用 phases 命令                        |
+| aoneblock.mod.info                | op   | 允许管理员查看玩家信息                            |
+| aoneblock.mod.clearreset          | false| 允许清除岛屿重置限制                            |
+| aoneblock.mod.bypasscooldowns     | op   | 允许管理员绕过冷却时间                           |
+| aoneblock.mod.bypassdelays        | op   | 允许管理员绕过延迟                             |
+| aoneblock.mod.bypassprotect       | op   | 允许管理员绕过岛屿保护                           |
+| aoneblock.mod.bypassexpel         | op   | 允许管理员绕过岛屿驱逐                           |
+| aoneblock.mod.switch              | op   | 允许管理员切换绕过保护                           |
+| aoneblock.mod.lock                | op   | 锁定或解锁一个岛屿                             |
+| aoneblock.mod.bypasslock          | op   | 绕过岛屿锁定                                 |
+| aoneblock.mod.bypassban           | op   | 绕过岛屿禁止                                 |
+| aoneblock.mod.team                | false| 通过踢出和添加命令修改团队                        |
+| aoneblock.admin.tp                | op   | 允许传送到岛屿                                |
+| aoneblock.admin.clearresetall     | op   | 允许清除所有玩家的岛屿重置限制                      |
+| aoneblock.admin.reload            | op   | 重新加载 config.yml 文件                    |
+| aoneblock.admin.delete            | op   | 允许玩家完全移除一个玩家（包括岛屿）                  |
+| aoneblock.admin.register          | op   | 允许玩家为另一个玩家注册最近的岛屿                    |
+| aoneblock.admin.unregister        | op   | 移除一个玩家出岛屿但不删除岛屿方块                    |
+| aoneblock.admin.setspawn          | op   | 允许使用出生点工具                             |
+| aoneblock.admin.setrange          | op   | 允许设置岛屿保护范围                           |
+| aoneblock.admin.settingsreset     | op   | 重置所有岛屿为默认保护设置                        |
+| aoneblock.admin.noban             | op   | 玩家不能被禁止进入岛屿                          |
+| aoneblock.admin.noexpel           | op   | 玩家不能被驱逐出岛屿                          |
+| aoneblock.admin.setlanguage       | op   | 重置所有玩家语言并设置默认语言                      |
+| aoneblock.admin.getrank           | op   | 获取玩家排名                                 |
+| aoneblock.admin.setrank           | op   | 设置玩家排名                                 |
+| aoneblock.admin.setchest          | op   | 将看到的箱子放入具有给定稀有度的阶段                 |
+| aoneblock.count                   | true | 允许使用 aoneblock count 命令                  |
+| aoneblock.island                  | true | 允许岛屿命令的使用                             |
+| aoneblock.island.create           | true | 允许创建岛屿                                 |
+| aoneblock.island.home             | true | 允许传送到玩家岛屿                             |
+| aoneblock.island.number.x         | false| x 设置玩家可以制作的岛屿数量。                     |
+| aoneblock.island.sethome          | true | 允许玩家使用 sethome 命令                      |
+| aoneblock.island.info             | true | 允许玩家使用 info 命令                         |
+| aoneblock.island.lock             | true | 允许
+
+锁定岛屿                                 |
+| aoneblock.island.near             | true | 玩家可以看到附近岛屿的名称                         |
+| aoneblock.island.expel            | true | 允许驱逐访客                                 |
+| aoneblock.island.ban              | true | 允许禁止访客                                 |
+| aoneblock.island.settings         | true | 玩家可以查看服务器设置                           |
+| aoneblock.island.language         | true | 玩家可以选择语言                               |
+| aoneblock.island.name             | true | 玩家可以设置他们岛屿的名称                        |
+| aoneblock.island.spawn            | true | 如果存在出生点，玩家可以使用岛屿出生命令              |
+| aoneblock.island.reset            | true | 玩家可以使用岛屿重置或重启命令                     |
+| aoneblock.island.team             | true | 允许玩家使用团队命令                             |
+| aoneblock.island.team.setowner    | true | 允许玩家更改团队所有者                           |
+| aoneblock.island.team.invite      | true | 允许玩家邀请他人                               |
+| aoneblock.island.team.reject      | true | 允许玩家拒绝邀请                               |
+| aoneblock.island.team.leave       | true | 允许玩家离开团队                               |
+| aoneblock.island.team.kick        | true | 允许玩家踢出团队成员                             |
+| aoneblock.island.team.accept      | true | 允许玩家接受邀请                               |
+| aoneblock.island.team.trust       | true | 允许玩家使用团队信任命令                          |
+| aoneblock.island.team.coop        | true | 允许玩家使用团队合作命令                          |
+| aoneblock.island.team.promote     | true | 允许玩家使用提升命令                             |
+| aoneblock.settings.*              | true | 允许在岛屿上使用设置                             |

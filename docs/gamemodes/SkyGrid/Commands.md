@@ -1,29 +1,8 @@
-# SkyGrid Commands
+# SkyGrid 命令
 
-<table width="100%" align="center">
-<tr>
-<td align='left'><b>Command</b></td>
-<td align='left'><b>Description</b></td>
-<td align='left'><b>Permission</b></td>
-</tr>
-<tr>
-<td align='left'><b>/skygrid</b></td>
-<td align='left'>Start a SkyGrid game or teleport to your SkyGrid home</td>
-<td align='left'>skygrid.skygrid</td>
-</tr>
-<tr>
-<td align='left'><b>/skygrid go</b></td>
-<td align='left'>Go home</td>
-<td align='left'>skygrid.island.home</td>
-</tr>
-<tr>
-<td align='left'><b>/skygrid language</b></td>
-<td align='left'>select language</td>
-<td align='left'>skygrid.island.language</td>
-</tr>
-<tr>
-<td align='left'><b>/skygrid sethome</b></td>
-<td align='left'>set your home teleport port</td>
-<td align='left'>skygrid.island.sethome</td>
-</tr>
-</table>
+| 命令                  | 描述                               | 权限                      |
+|-------------------|----------------------------------|-------------------------|
+| **/skygrid**      | 开始 SkyGrid 游戏或传送到你的 SkyGrid 家园     | skygrid.skygrid        |
+| **/skygrid go**   | 回家                               | skygrid.island.home    |
+| **/skygrid language** | 选择语言                            | skygrid.island.language |
+| **/skygrid sethome**  | 设置你的家传送点                         | skygrid.island.sethome |
