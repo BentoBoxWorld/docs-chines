@@ -66,16 +66,16 @@ BentoBox 及其附加组件中的绝大多数字符串几乎可以翻译成任�
         result = ""
 
         if beta:
-            result += f"""!!! warning
-    **{addon_name}** is currently in **Beta**.\n
-    Keep in mind that **you are more likely to encounter bugs** and **some features might not be stable**.\n\n"""
+            result += f"""!!! 警告
+        **{addon_name}** 目前处于 **Beta 测试阶段**。\n
+        请记住，**您可能会遇到更多的错误** 且 **某些功能可能不够稳定**。\n\n"""
 
-        result += f"""!!! info "Useful links"
-    - [GitHub repository](https://github.com/BentoBoxWorld/{addon_name})
-    ([Releases](https://github.com/BentoBoxWorld/{addon_name}/releases))
-    - [Issue tracker](https://github.com/BentoBoxWorld/{addon_name}/issues)
-    - [Development builds](https://ci.codemc.org/job/BentoBoxWorld/job/{addon_name})
-    ([Latest stable build](https://ci.codemc.io/job/BentoBoxWorld/job/{addon_name}/lastStableBuild/))"""
+        result += f"""!!! 信息 "有用的链接"
+        - [GitHub 仓库](https://github.com/BentoBoxWorld/{addon_name})
+        ([发布版本](https://github.com/BentoBoxWorld/{addon_name}/releases))
+        - [问题跟踪器](https://github.com/BentoBoxWorld/{addon_name}/issues)
+        - [开发构建版本](https://ci.codemc.org/job/BentoBoxWorld/job/{addon_name})
+        ([最新稳定构建](https://ci.codemc.io/job/BentoBoxWorld/job/{addon_name}/lastStableBuild/))"""
 
         return result
 
